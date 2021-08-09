@@ -4,6 +4,11 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.2.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.15",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -20,7 +25,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-css": "tailwindcss build -i src/index.css -o public/styles.css"
   },
   "eslintConfig": {
     "extends": [
@@ -41,9 +47,9 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.2.7",
     "autoprefixer": "^9.8.6",
     "postcss": "^7.0.36",
-    "postcss-cli": "^8.3.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.7"
   }
 }
