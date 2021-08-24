@@ -1,34 +1,46 @@
 import React from "react";
-import logo from "../../assets/ROCKETS_LOGO.png";
+import Header from "../../components/header";
+import { Link } from "react-router-dom";
+import right_main from "../../assets/right_main.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import "./home.css";
 
 export default function Home() {
   return (
-    <div className="flex justify-end background p-5 text-white flex mx-16 my-16 rounded-t-3xl">
-      <div className="flex justify-evenly text-center px-20 items-center w-3/5">
-        <h1 className="flex-1 ">INICIO</h1>
-        <h1 className="flex-1 ">CONÓCENOS</h1>
-        <img className="w-20" src={logo} alt="logo Rockets Athman" />
-        <h1 className="flex-1 ">LOGROS</h1>
-        <h1 className="flex-1 ">CONTACTENOS</h1>
-      </div>
-      <div className="flex justify-center text-center items-center px-10 w-1/5">
-        <FontAwesomeIcon
-          className="flex-1"
-          icon={["fab", "tiktok"]}
-          size="2x"
-        />
-        <FontAwesomeIcon
-          className="flex-1"
-          icon={["fab", "facebook"]}
-          size="2x"
-        />
-        <FontAwesomeIcon
-          className="flex-1"
-          icon={["fab", "instagram"]}
-          size="2x"
+    <div className="mx-16">
+      <Header />
+      <div className="flex bg-white">
+        <section className="w-1/2 p-12">
+          <h3 className="text-gray font-bold tracking-widest">
+            EQUIPO DE FOOTBALL FLAG
+          </h3>
+          <h1 className="text-7xl my-2">Haz parte de nuestra familia </h1>
+          <span className="text-red text-7xl my-2">ROCKETS 🚀</span>
+          <div className="items-center">
+            <button
+              type="button"
+              className="mr-3 my-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
+            >
+              Conocenos
+              <FontAwesomeIcon
+                className="flex-1 ml-1"
+                icon={["fas", "external-link-alt"]}
+                size="1x"
+              />
+            </button>
+            <Link to="/login">
+              <button
+                type="button"
+                className="ml-5 my-10 font-semibold bg-white text-red-dark rounded-3xl px-3 py-1 border-2 border-red-dark"
+              >
+                Iniciar Sesion
+              </button>
+            </Link>
+          </div>
+        </section>
+        <img
+          className="w-1/2 border-1"
+          src={right_main}
+          alt="logo Rockets Athman"
         />
       </div>
     </div>
