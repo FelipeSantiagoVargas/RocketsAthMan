@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 
-mongoose.connect("mongodb://localhost/rockets",{
+mongoose.set('useFindAndModify',false);
+mongoose.connect("mongodb+srv://rockets:rockets123@maincluster.ruvpj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",{
     useNewUrlParser: true ,
     useUnifiedTopology: true,
     useCreateIndex: true
