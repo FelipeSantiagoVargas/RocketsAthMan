@@ -8,4 +8,6 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 
-library.add(faTiktok, faFacebook, faInstagram);
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faTiktok, faFacebook, faInstagram, faExternalLinkAlt);
