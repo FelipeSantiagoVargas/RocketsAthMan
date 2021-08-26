@@ -17,7 +17,6 @@ function App() {
             <DashboardMenu name="Guillermo Paez" />
           </Route>
           <Route path="*" exact component={Error404} />
-          <Route path="/dashboard" exact component={Dashboard} />
         </Switch>
       </Router>
     </div>
