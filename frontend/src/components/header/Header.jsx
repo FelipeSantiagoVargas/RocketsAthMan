@@ -5,7 +5,7 @@ import "./Header.css";
 
 export default function Header() {
   return (
-    <div className="flex justify-end background p-5 text-white mt-10 rounded-t-3xl">
+    <div className="flex justify-end background p-5 text-white">
       <div className="flex justify-evenly text-center px-20 items-center w-3/5">
         <h1 className="flex-1 ">INICIO</h1>
         <h1 className="flex-1 ">CONÓCENOS</h1>
