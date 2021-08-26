@@ -1,7 +1,8 @@
 import mongoose from 'mongoose'
 
+const uri = "mongodb+srv://rockets:rockets123@maincluster.ruvpj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 mongoose.set('useFindAndModify',false);
-mongoose.connect("mongodb+srv://rockets:rockets123@maincluster.ruvpj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",{
+mongoose.connect(uri,{
     useNewUrlParser: true ,
     useUnifiedTopology: true,
     useCreateIndex: true
