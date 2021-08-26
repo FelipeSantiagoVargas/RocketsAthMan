@@ -6,7 +6,7 @@ const playerSchema = new Schema({
     lastName: String,
     gender: String,
     birthday: String,
-    documentId: String,
+    documentId: {type: String,unique: true},
     phone: String,
     address: String,
     position: String,

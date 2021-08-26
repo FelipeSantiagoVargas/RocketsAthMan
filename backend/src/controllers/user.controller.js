@@ -1,3 +1,3 @@
 export const createUser = (req, res) => {
-    res.json('create user')
+    res.status(200).json('create user')
 }
