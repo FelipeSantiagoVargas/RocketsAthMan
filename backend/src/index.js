@@ -1,6 +1,6 @@
-import app from './app'
-import './database'
+import app from "./app";
+import "./database";
 
-app.listen(4000)
+app.listen(4000);
 
-console.log('Sever on list',4000)
+console.log("Server on list", 4000);
