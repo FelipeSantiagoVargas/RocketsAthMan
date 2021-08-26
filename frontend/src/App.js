@@ -11,12 +11,11 @@ function App() {
     <div className="App flex bg-gray">
       <Router>
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/dashboard" exact={true}>
+          <Route path="/dashboard">
             <DashboardMenu name="Guillermo Paez" />
           </Route>
-          <Route path="*" exact component={Error404} />
+          <Route path="/" exact component={Home} />
+          <Route path="/login" exact component={Login} />
         </Switch>
       </Router>
     </div>

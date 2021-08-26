@@ -86,7 +86,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="w-full absolute bottom-0 top-0 p-14 bg-no-repeat bg-cover Back-image">
+      <div className="w-full min-h-screen p-14 bg-no-repeat bg-cover Back-image">
         <div className="flex flex-col bg-white m-20 p-12 rounded-3xl items-center">
           <img className="w-48" src={logo} alt="logo Rockets Athman" />
           <label className="custom-field one ">
