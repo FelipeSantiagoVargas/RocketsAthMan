@@ -1,5 +1,6 @@
 import {ROLES} from "../models/Role"
 import User from "../models/User"
+import Player from "../models/Player"
 
 export const checkDuplicateUsernameOrEmail = async (req,res,next) =>{
     const user = await User.findOne({username: req.body.username})
@@ -26,5 +27,13 @@ export const checkRolesExisted = (req,res,next) =>{
     }
 
     next()
+}
+
+export const checkDuplicateDocumentId = async (req,res,next) =>{
+    const player = await Player.findOne({documentId: req.body.documentId})
+
+    if (player) return res.status(400).json({message:'The document already exists'})
+    
+    next();
 }
 

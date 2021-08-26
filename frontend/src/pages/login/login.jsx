@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import logo from "../../assets/ROCKETS_LOGO.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import md5 from "md5";
 import Cookies from "universal-cookie";
@@ -106,18 +107,20 @@ export default class Login extends Component {
             />
             <span className="placeholder">Contraseña</span>
           </label>
-          <button
-            type="button"
-            onClick={() => this.iniciarSesion()}
-            className="mr-3 my-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
-          >
-            Ingresar
-            <FontAwesomeIcon
-              className="flex-1 ml-1"
-              icon={["fas", "external-link-alt"]}
-              size="1x"
-            />
-          </button>
+          <Link to="/dashboard">
+            <button
+              type="button"
+              onClick={() => this.iniciarSesion()}
+              className="mr-3 my-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
+            >
+              Ingresar
+              <FontAwesomeIcon
+                className="flex-1 ml-1"
+                icon={["fas", "external-link-alt"]}
+                size="1x"
+              />
+            </button>
+          </Link>
           <span>Olvidaste tu contraseña?</span>
         </div>
       </div>
