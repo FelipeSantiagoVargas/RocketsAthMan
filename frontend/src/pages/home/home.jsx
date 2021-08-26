@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Home() {
   return (
-    <div className="mx-16">
+    <div>
       <Header />
-      <div className="flex bg-white">
+      <div className="flex bg-gray">
         <section className="w-1/2 p-12">
           <h3 className="text-gray font-bold tracking-widest">
             EQUIPO DE FOOTBALL FLAG
