@@ -2,6 +2,19 @@ import React from "react";
 import picture from "../../assets/profile_picture.jpg";
 import "./DashboardMenu.css";
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useRouteMatch,
+} from "react-router-dom";
+import "./DashboardMenu.css";
+
+// Pages
+import Home from "../../pages/home";
+import Login from "../../pages/login";
+import registerPlayer from "../../pages/registerPlayer";
+
 export default function DashboardMenu(props) {
   let title = "";
   let { path, url } = useRouteMatch();
@@ -54,7 +67,7 @@ export default function DashboardMenu(props) {
             <Route exact path={path}>
               <h3>Please select a topic.</h3>
             </Route>
-            <Route path={`${path}/editar`} component={Home} />
+            <Route path={`${path}/registerplayer`} component={registerPlayer} />
             <Route path={`${path}/b`} component={Login} />
             <Route path={`${path}/*`}>
               <h3>Please select a topic.</h3>

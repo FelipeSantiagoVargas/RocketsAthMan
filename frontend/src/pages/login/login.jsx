@@ -30,12 +30,13 @@ export default class Login extends Component {
   };
 
   iniciarSesion = async () => {
+
     await axios
       .get(baseUrl, {
         params: {
           username: this.state.form.username,
           password: md5(this.state.form.password),
-        },
+        }
       })
       .then((response) => {
         return response.data;
