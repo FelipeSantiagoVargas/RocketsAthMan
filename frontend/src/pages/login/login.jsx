@@ -13,7 +13,6 @@ const instance = axios.create({
 });
 
 const baseUrl = "http://3.238.91.249:4000/api/auth/signin";
-const base1 = "/api/auth/signin";
 const cookies = new Cookies();
 
 export default class Login extends Component {

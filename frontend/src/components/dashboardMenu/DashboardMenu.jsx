@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 import React from "react";
 import picture from "../../assets/profile_picture.jpg";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
@@ -5,8 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./DashboardMenu.css";
 
 // Pages
-import Home from "../../pages/home";
+// import Home from "../../pages/home";
+// import Error404 from "../../pages/error404";
 import Login from "../../pages/login";
+import PlayerCard from "../PlayerCard/PlayerCard";
+import PlayersScreen  from "../../pages/PlayersScreen/PlayersScreen";
+import registerPlayer from "../../pages/registerPlayer";
 
 export default function DashboardMenu(props) {
   let { path } = useRouteMatch();
@@ -59,7 +64,12 @@ export default function DashboardMenu(props) {
             <Route exact path={path}>
               <h3>Please select a topic.</h3>
             </Route>
-            <Route path={`${path}/a`} component={Home} />
+
+            <Route path={`${path}/card`} component={PlayerCard} />
+            <Route path={`${path}/jugadores`} component={PlayersScreen} />
+            <Route path={`${path}/b`} component={Login} />            
+=======
+            <Route path={`${path}/registerplayer`} component={registerPlayer} />
             <Route path={`${path}/b`} component={Login} />
             <Route path={`${path}/*`}>
               <h3>Please select a topic.</h3>
