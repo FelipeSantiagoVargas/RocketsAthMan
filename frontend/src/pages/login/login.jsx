@@ -35,23 +35,14 @@ export default class Login extends Component {
 
   iniciarSesion = async () => {
     await instance
-      .get(baseUrl, {
-        params: {
-          email: this.state.form.email,
-          password: this.state.form.password,
-        },
+      .post(baseUrl, {
+        email: this.state.form.email,
+        password: this.state.form.password,
       })
       .then((response) => {
-        return response.token;
-      })
-      .then((response) => {
-        if (response > 0) {
-          cookies.set("token", response.token);
-          alert(`Bienvenido ${cookies.token}`);
-          window.location.href = "./dashboard";
-        } else {
-          alert("El usuario o la contraseña son incorrectos.");
-        }
+        cookies.set("token", response.data.token);
+        alert(`Bienvenido ${cookies.token}`);
+        window.location.href = "./dashboard";
       })
       .catch((error) => {
         console.log(error);

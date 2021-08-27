@@ -1,4 +1,4 @@
-/* eslint-disable */ 
+/* eslint-disable */
 import React from "react";
 import picture from "../../assets/profile_picture.jpg";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
@@ -6,11 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./DashboardMenu.css";
 
 // Pages
-// import Home from "../../pages/home";
-// import Error404 from "../../pages/error404";
-import Login from "../../pages/login";
 import PlayerCard from "../PlayerCard/PlayerCard";
-import PlayersScreen  from "../../pages/PlayersScreen/PlayersScreen";
+import PlayersScreen from "../../pages/PlayersScreen/PlayersScreen";
 import registerPlayer from "../../pages/registerPlayer";
 
 export default function DashboardMenu(props) {
@@ -48,32 +45,19 @@ export default function DashboardMenu(props) {
       <div className="flex flex-col w-full">
         <div class="bg-gray-dark flex items-center justify-center w-full h-28">
           <Switch>
-            <Route path={`${path}/`} exact>
-              <h1 className="text-6xl text-white">Panel de Control</h1>
+            <Route path={`${path}/registerplayer`}>
+              <h1 className="text-6xl text-white">REGISTRAR JUGADOR</h1>
             </Route>
-            <Route path={`${path}/a`}>
-              <h1 className="text-6xl text-white">Usuarios</h1>
-            </Route>
-            <Route path={`${path}/b`} component={Login}>
-              <h1 className="text-6xl text-white">Fatos</h1>
+            <Route path={`${path}*`} exact>
+              <h1 className="text-6xl text-white">JUGADORES</h1>
             </Route>
           </Switch>
         </div>
         <div class="bg-gray min-h-screen w-full">
           <Switch>
-            <Route exact path={path}>
-              <h3>Please select a topic.</h3>
-            </Route>
-
             <Route path={`${path}/card`} component={PlayerCard} />
-            <Route path={`${path}/jugadores`} component={PlayersScreen} />
-            <Route path={`${path}/b`} component={Login} />            
-=======
             <Route path={`${path}/registerplayer`} component={registerPlayer} />
-            <Route path={`${path}/b`} component={Login} />
-            <Route path={`${path}/*`}>
-              <h3>Please select a topic.</h3>
-            </Route>
+            <Route path={`${path}*`} component={PlayersScreen} />
           </Switch>
         </div>
       </div>
