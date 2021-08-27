@@ -2,18 +2,23 @@ import React, { Component } from "react";
 import logo from "../../assets/ROCKETS_LOGO.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import md5 from "md5";
 import Cookies from "universal-cookie";
 
 import "./login.css";
 
-const baseUrl = "http://localhost:3001/usuarios";
+const instance = axios.create({
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+  },
+});
+
+const baseUrl = "http://3.238.91.249:4000/api/auth/signin";
 const cookies = new Cookies();
 
 export default class Login extends Component {
   state = {
     form: {
-      username: "",
+      email: "",
       password: "",
     },
   };
@@ -29,55 +34,15 @@ export default class Login extends Component {
   };
 
   iniciarSesion = async () => {
-
-    await axios
-      .get(baseUrl, {
-        params: {
-          username: this.state.form.username,
-          password: md5(this.state.form.password),
-        }
+    await instance
+      .post(baseUrl, {
+        email: this.state.form.email,
+        password: this.state.form.password,
       })
       .then((response) => {
-        return response.data;
-      })
-      .then((response) => {
-        if (response.length > 0) {
-          var respuesta = response[0];
-          cookies.set(
-            "id",
-            respuesta.id,
-            { path: "/" },
-            { sameSite: "Strict" }
-          );
-          cookies.set(
-            "apellido_paterno",
-            respuesta.apellido_paterno,
-            { path: "/" },
-            { sameSite: "Strict secure" }
-          );
-          cookies.set(
-            "apellido_materno",
-            respuesta.apellido_materno,
-            { path: "/" },
-            { sameSite: "Strict" }
-          );
-          cookies.set(
-            "nombre",
-            respuesta.nombre,
-            { path: "/" },
-            { sameSite: "Strict" }
-          );
-          cookies.set(
-            "nombre",
-            respuesta.username,
-            { path: "/" },
-            { sameSite: "Strict" }
-          );
-          alert(`Bienvenido ${respuesta.nombre} ${respuesta.apellido_paterno}`);
-          window.location.href = "./dashboard";
-        } else {
-          alert("El usuario o la contraseña son incorrectos.");
-        }
+        cookies.set("token", response.data.token);
+        alert(`Bienvenido ${cookies.token}`);
+        window.location.href = "./dashboard";
       })
       .catch((error) => {
         console.log(error);
@@ -92,7 +57,7 @@ export default class Login extends Component {
           <label className="custom-field one ">
             <input
               type="text"
-              name="username"
+              name="email"
               required
               onChange={this.handleChange}
             />
