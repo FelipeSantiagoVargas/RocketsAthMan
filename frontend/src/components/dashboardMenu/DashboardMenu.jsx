@@ -1,21 +1,9 @@
 import React from "react";
 import picture from "../../assets/profile_picture.jpg";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useRouteMatch,
-} from "react-router-dom";
 import "./DashboardMenu.css";
 
-// Pages
-import Home from "../../pages/home";
-import Error404 from "../../pages/error404";
-import Login from "../../pages/login";
-
 export default function DashboardMenu(props) {
-  let { path, url } = useRouteMatch();
-
+  console.log(props.name);
   return (
     <div className="relative w-full min-h-screen flex">
       <div class="relative bg-red min-w-max flex-col items-center">
@@ -59,15 +47,7 @@ export default function DashboardMenu(props) {
         <div class="bg-gray-dark flex items-center justify-center w-full h-28">
           <h1 className="header text-6xl text-white">REGISTRAR JUGADOR</h1>
         </div>
-        <div class="bg-gray min-h-screen w-full">
-          <Switch>
-            <Route exact path={path}>
-              <h3>Please select a topic.</h3>
-            </Route>
-            <Route path={`${path}/a`} component={Home} />
-            <Route path={`${path}/b`} component={Login} />
-          </Switch>
-        </div>
+        <div class="bg-gray min-h-screen w-full">content goes here</div>
       </div>
     </div>
   );
