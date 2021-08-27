@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Axios from "axios";
 import PlayerCard from "../../components/PlayerCard/PlayerCard";
 
 import "./PlayersScreen.css";
 
 export default function PlayersScreen(props) {
+  const [players, setPlayers] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await Axios.get(
+          "http://3.238.91.249:4000/api/players"
+        );
+        setPlayers(data);
+      } catch (err) {}
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="custom-font-bold">
       <div className="p-5 m-5 flex flex-row justify-between rounded-3xl bg-grayLi">
@@ -40,14 +54,11 @@ export default function PlayersScreen(props) {
             MASCULINO
           </h1>
           <div className="w-full flex flex-wrap">
-            <PlayerCard></PlayerCard>
-            <PlayerCard></PlayerCard>
-            <PlayerCard></PlayerCard>
-            <PlayerCard></PlayerCard>
-            <PlayerCard></PlayerCard>
-            <PlayerCard></PlayerCard>
-            <PlayerCard></PlayerCard>
-            <PlayerCard></PlayerCard>
+            {players
+              .filter((players) => players.gender.includes("Male"))
+              .map((player) => (
+                <PlayerCard player={player} />
+              ))}
           </div>
         </section>
         <section className="w-1/2 m-5 bg-grayLi rounded-t-2xl">
@@ -55,14 +66,11 @@ export default function PlayersScreen(props) {
             FEMENINO
           </h1>
           <div className="w-full flex flex-wrap">
-            <PlayerCard></PlayerCard>
-            <PlayerCard></PlayerCard>
-            <PlayerCard></PlayerCard>
-            <PlayerCard></PlayerCard>
-            <PlayerCard></PlayerCard>
-            <PlayerCard></PlayerCard>
-            <PlayerCard></PlayerCard>
-            <PlayerCard></PlayerCard>
+            {players
+              .filter((players) => players.gender.includes("Female"))
+              .map((player) => (
+                <PlayerCard key={player._id} player={player} />
+              ))}
           </div>
         </section>
       </div>

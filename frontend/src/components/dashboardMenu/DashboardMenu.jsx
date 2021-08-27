@@ -7,7 +7,7 @@ import "./DashboardMenu.css";
 
 // Pages
 import PlayerCard from "../PlayerCard/PlayerCard";
-import PlayersScreen from "../../pages/PlayersScreen/PlayersScreen";
+import PlayersScreen from "../../pages/PlayersScreen";
 import registerPlayer from "../../pages/registerPlayer";
 
 export default function DashboardMenu(props) {
@@ -15,7 +15,7 @@ export default function DashboardMenu(props) {
 
   return (
     <div className="header relative w-full min-h-screen flex">
-      <div class="relative bg-red min-w-max flex-col items-center">
+      <div className="relative bg-red min-w-max flex-col items-center">
         <img
           className="w-32 rounded-full mx-10 mt-10"
           src={picture}
@@ -25,7 +25,7 @@ export default function DashboardMenu(props) {
           Coach
         </h1>
 
-        <article class="block p-5 text-2xl text-white font-extrabold bg-gray-dark">
+        <article className="block p-5 text-2xl text-white font-extrabold bg-gray-dark">
           <FontAwesomeIcon
             className="flex-1 mx-2"
             icon={["fas", "users"]}
@@ -43,7 +43,7 @@ export default function DashboardMenu(props) {
         </nav>
       </div>
       <div className="flex flex-col w-full">
-        <div class="bg-gray-dark flex items-center justify-center w-full h-28">
+        <div className="bg-gray-dark flex items-center justify-center w-full h-28">
           <Switch>
             <Route path={`${path}/registerplayer`}>
               <h1 className="text-6xl text-white">REGISTRAR JUGADOR</h1>
@@ -53,7 +53,7 @@ export default function DashboardMenu(props) {
             </Route>
           </Switch>
         </div>
-        <div class="bg-gray min-h-screen w-full">
+        <div className="bg-gray min-h-screen w-full">
           <Switch>
             <Route path={`${path}/card`} component={PlayerCard} />
             <Route path={`${path}/registerplayer`} component={registerPlayer} />
