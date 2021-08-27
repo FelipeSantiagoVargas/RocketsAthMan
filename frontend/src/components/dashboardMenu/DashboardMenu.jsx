@@ -1,4 +1,4 @@
-/* eslint-disable */ 
+/* eslint-disable */
 import React from "react";
 import picture from "../../assets/profile_picture.jpg";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
@@ -10,7 +10,7 @@ import "./DashboardMenu.css";
 // import Error404 from "../../pages/error404";
 import Login from "../../pages/login";
 import PlayerCard from "../PlayerCard/PlayerCard";
-import PlayersScreen  from "../../pages/PlayersScreen/PlayersScreen";
+import PlayersScreen from "../../pages/PlayersScreen/PlayersScreen";
 import registerPlayer from "../../pages/registerPlayer";
 
 export default function DashboardMenu(props) {
@@ -67,8 +67,7 @@ export default function DashboardMenu(props) {
 
             <Route path={`${path}/card`} component={PlayerCard} />
             <Route path={`${path}/jugadores`} component={PlayersScreen} />
-            <Route path={`${path}/b`} component={Login} />            
-=======
+            <Route path={`${path}/b`} component={Login} />
             <Route path={`${path}/registerplayer`} component={registerPlayer} />
             <Route path={`${path}/b`} component={Login} />
             <Route path={`${path}/*`}>
