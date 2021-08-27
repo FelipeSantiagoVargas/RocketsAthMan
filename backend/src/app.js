@@ -6,8 +6,6 @@ import playerRoutes from './routes/player.routes'
 import authRoutes from './routes/auth.routes'
 import userRoutes from './routes/user.routes'
 
-
-
 const app = express()
 const cors = require('cors');
 createRoles();
