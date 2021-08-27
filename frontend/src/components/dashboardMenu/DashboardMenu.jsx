@@ -14,6 +14,7 @@ import Error404 from "../../pages/error404";
 import Login from "../../pages/login";
 
 export default function DashboardMenu(props) {
+  let title = "";
   let { path, url } = useRouteMatch();
 
   return (
@@ -57,15 +58,18 @@ export default function DashboardMenu(props) {
       </div>
       <div className="flex flex-col w-full">
         <div class="bg-gray-dark flex items-center justify-center w-full h-28">
-          <h1 className="header text-6xl text-white">REGISTRAR JUGADOR</h1>
+          <h1 className="header text-6xl text-white">{title}</h1>
         </div>
         <div class="bg-gray min-h-screen w-full">
           <Switch>
             <Route exact path={path}>
               <h3>Please select a topic.</h3>
             </Route>
-            <Route path={`${path}/a`} component={Home} />
+            <Route path={`${path}/editar`} component={Home} />
             <Route path={`${path}/b`} component={Login} />
+            <Route path={`${path}/*`}>
+              <h3>Please select a topic.</h3>
+            </Route>
           </Switch>
         </div>
       </div>
