@@ -11,6 +11,7 @@ import "./DashboardMenu.css";
 import Login from "../../pages/login";
 import PlayerCard from "../PlayerCard/PlayerCard";
 import PlayersScreen  from "../../pages/PlayersScreen/PlayersScreen";
+import registerPlayer from "../../pages/registerPlayer";
 
 export default function DashboardMenu(props) {
   let { path } = useRouteMatch();
