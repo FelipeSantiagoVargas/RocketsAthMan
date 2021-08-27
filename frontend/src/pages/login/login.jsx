@@ -84,7 +84,7 @@ export default class Login extends Component {
               size="1x"
             />
           </button>
-          <span>Olvidaste tu contraseña?</span>
+          <span>¿Olvidaste tu contraseña?</span>
         </div>
       </div>
     );

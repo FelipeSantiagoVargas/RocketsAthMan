@@ -7,12 +7,14 @@ import authRoutes from './routes/auth.routes'
 import userRoutes from './routes/user.routes'
 
 const app = express()
+const cors = require('cors');
 createRoles();
 
 app.set('pkg', pkg)
 
 app.use(morgan('dev'))
 app.use(express.json())
+app.use(cors());
 
 app.get('/',(req,res)=>{
     res.json({
