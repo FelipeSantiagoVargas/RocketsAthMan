@@ -12,9 +12,10 @@ module.exports = {
         red: {
           light: "#DC1818",
           DEFAULT: "#C61414",
-          dark: "#950F0F",
+          dark: "#950F0F"
         },
         brown: "#130202",
+        grayLi: "#A19999"
       },
       fontFamily: {
         body: ["Quicksand"],

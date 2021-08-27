@@ -6,6 +6,7 @@ import Error404 from "./pages/error404";
 import Login from "./pages/login";
 import DashboardMenu from "./components/dashboardMenu";
 
+
 function App() {
   return (
     <div className="App flex bg-gray">

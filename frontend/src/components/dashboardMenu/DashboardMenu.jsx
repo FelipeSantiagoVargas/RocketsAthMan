@@ -1,7 +1,8 @@
+/* eslint-disable */ 
 import React from "react";
 import picture from "../../assets/profile_picture.jpg";
 import {
-  BrowserRouter as Router,
+  BrowserRouter as
   Switch,
   Route,
   useRouteMatch,
@@ -9,9 +10,11 @@ import {
 import "./DashboardMenu.css";
 
 // Pages
-import Home from "../../pages/home";
-import Error404 from "../../pages/error404";
+// import Home from "../../pages/home";
+// import Error404 from "../../pages/error404";
 import Login from "../../pages/login";
+import PlayerCard from "../PlayerCard/PlayerCard";
+import PlayersScreen  from "../../pages/PlayersScreen/PlayersScreen";
 
 export default function DashboardMenu(props) {
   let title = "";
@@ -65,11 +68,9 @@ export default function DashboardMenu(props) {
             <Route exact path={path}>
               <h3>Please select a topic.</h3>
             </Route>
-            <Route path={`${path}/editar`} component={Home} />
-            <Route path={`${path}/b`} component={Login} />
-            <Route path={`${path}/*`}>
-              <h3>Please select a topic.</h3>
-            </Route>
+            <Route path={`${path}/card`} component={PlayerCard} />
+            <Route path={`${path}/jugadores`} component={PlayersScreen} />
+            <Route path={`${path}/b`} component={Login} />            
           </Switch>
         </div>
       </div>
