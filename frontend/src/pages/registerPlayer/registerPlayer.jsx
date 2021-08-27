@@ -1,15 +1,17 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 
 import "./registerPlayer.css";
 
-const url = "http://3.238.91.249:4000/api/players"
+const url = "http://3.238.91.249:4000/api/players";
+
+const headers = {
+  'Content-Type': 'application/json',
+  'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZjFhOTI4ZThkMDFkMzkwZTdjYSIsImlhdCI6MTYzMDAzOTgzNCwiZXhwIjoxNjMwMTI2MjM0fQ.atW24t5uV3U2VpXEPCyPp_TN2MlQWIutIrR6e-xnosk'
+}
 
 export default class registerPlayer extends Component {
-
-
 
   state = {
     form: {
@@ -41,7 +43,8 @@ export default class registerPlayer extends Component {
   }
 
   postPlayers() {
-    axios.post(url, this.state.form).then(response => {
+    axios.post(url, this.state.form, { headers: headers }).then(response => {
+      window.location.href = "./";
     }).catch(error => {
       console.log(error.message);
     })
@@ -60,13 +63,13 @@ export default class registerPlayer extends Component {
             <input class="bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " type="text" placeholder="Teléfono" name="phone" onChange={this.handleChange} required />
             <input class="bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " type="text" placeholder="Apellido" name="lastname" onChange={this.handleChange} required />
             <input class="bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " type="text" placeholder="Dirección" name="address" onChange={this.handleChange} required />
-            <select name="gender" defaultValue={"DEFAULT"} onChange={this.handleChange} class="bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50">
+            <select name="gender" defaultValue={"DEFAULT"} onChange={this.handleChange} class="bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50" required>
               <option value="DEFAULT" disabled defaultValue>Género: </option>
               <option value="Male">Hombre</option>
               <option value="Female">Mujeres</option>
             </select>
 
-            <select name="position" defaultValue={"DEFAULT"} onChange={this.handleChange} class="bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 ">
+            <select name="position" defaultValue={"DEFAULT"} onChange={this.handleChange} class="bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " required>
               <option value="DEFAULT" disabled defaultValue>Posición: </option>
               <option value="QB">QB</option>
               <option value="RB">RB</option>
@@ -91,12 +94,12 @@ export default class registerPlayer extends Component {
         </div>
         <div class="flex justify-end">
           <div class="ml-20">
-            <Link to="/dashboard">
-              <button type="button" onClick={() => this.postPlayers} class=" bg-black text-white rounded-full px-4 py-3 mt-10">
-                <label class="ml-4 text-lg">Registrar</label>
-                <FontAwesomeIcon className="flex-1 ml-5 mr-1" icon={["fas", "user-check"]} size="1x" />
-              </button>
-            </Link>
+
+            <button type="submit" onClick={() => this.postPlayers()} class=" bg-black text-white rounded-full px-4 py-3 mt-10">
+              <label class="ml-4 text-lg">Registrar</label>
+              <FontAwesomeIcon className="flex-1 ml-5 mr-1" icon={["fas", "user-check"]} size="1x" />
+            </button>
+
           </div>
         </div>
       </div>

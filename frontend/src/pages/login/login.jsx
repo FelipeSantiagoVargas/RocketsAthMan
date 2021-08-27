@@ -40,9 +40,13 @@ export default class Login extends Component {
         password: this.state.form.password,
       })
       .then((response) => {
-        cookies.set("token", response.data.token);
-        alert(`Bienvenido ${cookies.token}`);
-        window.location.href = "./dashboard";
+        if (response.data.token) {
+          cookies.set("token", response.data.token);
+          alert(`Bienvenido ${cookies.get('token')}`);
+          window.location.href = "./dashboard";
+        } else {
+          alert("Usuario o contraseña incorrectos");
+        }
       })
       .catch((error) => {
         console.log(error);

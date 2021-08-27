@@ -14,7 +14,7 @@ export default function PlayersScreen(props) {
           "http://3.238.91.249:4000/api/players"
         );
         setPlayers(data);
-      } catch (err) {}
+      } catch (err) { }
     };
     fetchData();
   }, []);
@@ -42,7 +42,7 @@ export default function PlayersScreen(props) {
           REGISTRAR JUGADORES
           <FontAwesomeIcon
             className="flex-1 ml-1"
-            icon={["fas", "save"]}
+            icon={["fas", "user-plus"]}
             size="1x"
           />
         </button>

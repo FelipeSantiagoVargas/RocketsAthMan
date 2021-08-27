@@ -4,6 +4,7 @@ import picture from "../../assets/profile_picture.jpg";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./DashboardMenu.css";
+import { Link } from "react-router-dom";
 
 // Pages
 import PlayerCard from "../PlayerCard/PlayerCard";
@@ -24,21 +25,22 @@ export default function DashboardMenu(props) {
         <h1 className="text-center px-5 pb-5 text-3xl text-white font-extrabold ">
           Coach
         </h1>
-
-        <article className="block p-5 text-2xl text-white font-extrabold bg-gray-dark">
-          <FontAwesomeIcon
-            className="flex-1 mx-2"
-            icon={["fas", "users"]}
-            size="1x"
-          />
-          Plantilla
-        </article>
+        <Link to="/dashboard">
+          <article className="block p-5 text-2xl text-white font-extrabold bg-gray-dark">
+            <FontAwesomeIcon
+              className="flex-1 mx-2"
+              icon={["fas", "users"]}
+              size="1x"
+            />
+            Plantilla
+          </article>
+        </Link>
         <nav>
           <a className="block py-2.5 px-4 transition duration-200 hover:bg-gray-dark text-white">
             Masculino
           </a>
           <a className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-dark text-white">
-            Femanino
+            Femenino
           </a>
         </nav>
       </div>

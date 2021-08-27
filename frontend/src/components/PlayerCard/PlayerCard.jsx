@@ -24,7 +24,6 @@ export default function PlayerCard(props) {
         <div className="border-solid border-red-800 border-2 rounded-b-lg text-white p-3 text-center  transition-all duration-500">
           <button
             type="button"
-            // onClick={() => this.iniciarSesion()}
             className="mr-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
           >
             Editar
@@ -36,7 +35,6 @@ export default function PlayerCard(props) {
           </button>
           <button
             type="button"
-            // onClick={() => this.iniciarSesion()}
             className="mr-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
           >
             Borrar
