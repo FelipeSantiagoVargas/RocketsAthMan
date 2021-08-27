@@ -3,7 +3,9 @@ import picture from "../../assets/profile_picture.jpg";
 import "./DashboardMenu.css";
 
 export default function DashboardMenu(props) {
-  console.log(props.name);
+  let title = "";
+  let { path, url } = useRouteMatch();
+
   return (
     <div className="relative w-full min-h-screen flex">
       <div class="relative bg-red min-w-max flex-col items-center">
@@ -45,9 +47,20 @@ export default function DashboardMenu(props) {
       </div>
       <div className="flex flex-col w-full">
         <div class="bg-gray-dark flex items-center justify-center w-full h-28">
-          <h1 className="header text-6xl text-white">REGISTRAR JUGADOR</h1>
+          <h1 className="header text-6xl text-white">{title}</h1>
         </div>
-        <div class="bg-gray min-h-screen w-full">content goes here</div>
+        <div class="bg-gray min-h-screen w-full">
+          <Switch>
+            <Route exact path={path}>
+              <h3>Please select a topic.</h3>
+            </Route>
+            <Route path={`${path}/editar`} component={Home} />
+            <Route path={`${path}/b`} component={Login} />
+            <Route path={`${path}/*`}>
+              <h3>Please select a topic.</h3>
+            </Route>
+          </Switch>
+        </div>
       </div>
     </div>
   );

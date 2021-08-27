@@ -16,6 +16,7 @@ function App() {
           </Route>
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
+          <Route path="*" exact component={Error404} />
         </Switch>
       </Router>
     </div>
