@@ -6,9 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./DashboardMenu.css";
 
 // Pages
-import Home from "../../pages/home";
+// import Home from "../../pages/home";
+// import Error404 from "../../pages/error404";
 import Login from "../../pages/login";
-import registerPlayer from "../../pages/registerPlayer";
+import PlayerCard from "../PlayerCard/PlayerCard";
+import PlayersScreen  from "../../pages/PlayersScreen/PlayersScreen";
 
 export default function DashboardMenu(props) {
   let { path } = useRouteMatch();
@@ -66,7 +68,7 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/jugadores`} component={PlayersScreen} />
             <Route path={`${path}/b`} component={Login} />            
 =======
-            <Route path={`${path}/a`} component={Home} />
+            <Route path={`${path}/registerplayer`} component={registerPlayer} />
             <Route path={`${path}/b`} component={Login} />
             <Route path={`${path}/*`}>
               <h3>Please select a topic.</h3>
