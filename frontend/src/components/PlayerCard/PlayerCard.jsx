@@ -20,13 +20,19 @@ export default function PlayerCard(props) {
   }
 
   function deletePlayer() {
+
     console.log(props.player._id)
-    Axios.delete(url + props.player._id, { headers: headers })
+    const answer = window.confirm("Desea eliminar el jugador?")
+    if(answer){
+
+      Axios.delete(url + props.player._id, { headers: headers })
             .then((res) => {
                 console.log('Eliminado')
             }).catch((error) => {
                 console.log(error)
             })
+    }
+    
   }
   
 
@@ -44,10 +50,10 @@ export default function PlayerCard(props) {
           <p>Peso: {weight}</p>
           <p>Edad: {birthday}</p>
         </div>
-        <div className="border-solid border-red-800 border-2 rounded-b-lg text-white p-3 text-center  transition-all duration-500">
+        <div className="border-solid border-red-800 border-2 rounded-b-lg text-white p-3 text-center  transition-all duration-500">          
           <button
             type="button"
-            onClick={editPlayer}
+            onClick={() => (window.location.href = "/dashboard/editplayer")}
             className="mr-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
           >
             Editar
@@ -65,7 +71,7 @@ export default function PlayerCard(props) {
             Borrar
             <FontAwesomeIcon
               className="flex-1 ml-1"
-              icon={["fas", "save"]}
+              icon={["fas", "trash-alt"]}
               size="1x"
             />
           </button>
