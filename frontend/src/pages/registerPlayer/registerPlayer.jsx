@@ -64,8 +64,6 @@ const validate = values => {
   }
   if (!values.weight) {
     errors.weight = 'Campo obligatorio';
-  } else if (!/^[0-9]+$/.test(values.weight)) {
-    errors.weight = 'El peso debe ser de tipo numérico';
   } else if (values.weight.length > 5) {
     errors.weight = 'El peso debe tener menos de 5 caracteres';
   }
@@ -187,7 +185,7 @@ export default class registerPlayer extends Component {
             </div>
 
             <div className="mb-4 text-gray-700">
-              <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Peso (kg)" name="weight" onChange={this.handleChange} required />
+              <input type="number" step="any" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Peso (kg)" name="weight" onChange={this.handleChange} required />
               {errors.weight && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.weight}</span>}
             </div>
 
