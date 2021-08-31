@@ -8,7 +8,7 @@ const url = "http://3.238.91.249:4000/api/players";
 
 const headers = {
   'Content-Type': 'application/json',
-  'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMDM2OTU0NCwiZXhwIjoxNjMwNDU1OTQ0fQ.AmhIgiw9lUd5bG8KgBRjPX7zPleXQFST4Dc6bsWgM54'
+  'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMDQyMDExMiwiZXhwIjoxNjMwNTA2NTEyfQ.eYfbEQaR7zHevrcIzjoCeDzQrcXI4v36L9G6suR1KlQ'
 }
 
 const validate = values => {
@@ -18,9 +18,10 @@ const validate = values => {
   } else if (values.name.length > 100) {
     errors.name = 'El nombre debe tener menos de 100 caracteres';
   }
+
   if (!values.phone) {
     errors.phone = 'Campo obligatorio';
-  } else if (!typeof values.phone === 'number') {
+  } else if (!/^[0-9]+$/.test(values.phone)) {
     errors.phone = 'El teléfono debe ser de tipo numérico';
   } else if (values.phone.length !== 10) {
     errors.phone = 'El teléfono debe tener 10 caracteres';
@@ -41,23 +42,43 @@ const validate = values => {
   if (!values.position) {
     errors.position = 'Se debe escoger una opción';
   }
+
+  const actualDate = new Date();
+  const selectedDate = Date.parse(values.birthday);
   if (!values.birthday) {
     errors.birthday = 'Campo obligatorio';
+  } else if (selectedDate > actualDate) {
+    errors.birthday = 'Fecha no válida';
   }
   if (!values.height) {
     errors.height = 'Campo obligatorio';
-  } else if (values.height.length > 100) {
-    errors.height = 'Campo obligatorio';
+  } else if (!/^[0-9]+$/.test(values.height)) {
+    errors.height = 'La estatura debe ser de tipo numérico';
+  } else if (values.height.length > 5) {
+    errors.height = 'La estatura debe tener menos de 5 caracteres';
   }
   if (!values.email) {
     errors.email = 'Campo obligatorio';
-  } if (!values.weight) {
+  } else if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(values.email)) {
+    errors.email = 'Correo no válido';
+  }
+  if (!values.weight) {
     errors.weight = 'Campo obligatorio';
-  } if (!values.documentId) {
-    errors.documentId = 'Campo obligatorio';
-  } if (!values.eps) {
-    errors.eps = 'Campo obligatorio';
+  } else if (!/^[0-9]+$/.test(values.weight)) {
+    errors.weight = 'El peso debe ser de tipo numérico';
+  } else if (values.weight.length > 5) {
+    errors.weight = 'El peso debe tener menos de 5 caracteres';
+  }
 
+  if (!values.documentId) {
+    errors.documentId = 'Campo obligatorio';
+  } else if (values.documentId.length > 100) {
+    errors.documentId = 'El documento debe tener menos de 100 caracteres';
+  }
+  if (!values.eps) {
+    errors.eps = 'Campo obligatorio';
+  } else if (values.eps.length > 100) {
+    errors.eps = 'La eps debe tener menos de 100 caracteres';
   }
   return errors;
 }
@@ -85,42 +106,12 @@ export default class registerPlayer extends Component {
       delete this.state['errors'];
       console.log(this.state);
       axios.post(url, this.state, { headers: headers }).then(response => {
-        // window.location.href = "./";
+        window.location.href = "./";
       }).catch(error => {
         console.log(error.message);
       })
     }
   }
-
-  // handleChange = async e => {
-  //   e.persist();
-  //   await this.setState({
-  //     form: {
-  //       ...this.state.form,
-  //       [e.target.name]: e.target.value
-  //     }
-  //   });
-  // }
-
-  // postPlayers() {
-  //   const { errors, ...noErrors } = this.state;
-
-  //   const result = validate(noErrors);
-
-  //   this.setState({ errors: result });
-
-  //   console.log('dsada', Object.keys(result).length);
-  //   console.log('dsada', Object.keys(result));
-
-  //   if (!Object.keys(result).length) {
-  //     console.log('formulario válido');
-  //   }
-
-
-
-  // }
-
-
 
   render() {
     const { errors } = this.state;
@@ -135,23 +126,23 @@ export default class registerPlayer extends Component {
           <div className="grid grid-cols-2 gap-x-10">
             <div className="mb-4 text-gray-700">
               <input className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " type="text" placeholder="Nombre" name="name" onChange={this.handleChange} required />
-              {errors.name && <span className="ml-3 text-xs text-green-700" id="passwordHelp">{errors.name}</span>}
+              {errors.name && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.name}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
               <input className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " type="text" placeholder="Teléfono" name="phone" onChange={this.handleChange} required />
-              {errors.phone && <span className="ml-3 text-xs text-green-700" id="passwordHelp">{errors.phone}</span>}
+              {errors.phone && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.phone}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
               <input className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " type="text" placeholder="Apellido" name="lastname" onChange={this.handleChange} required />
-              {errors.lastname && <span className="ml-3 text-xs text-green-700" id="passwordHelp">{errors.lastname}</span>}
+              {errors.lastname && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.lastname}</span>}
             </div>
 
 
             <div className="mb-4 text-gray-700">
               <input className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " type="text" placeholder="Dirección" name="address" onChange={this.handleChange} required />
-              {errors.address && <span className="ml-3 text-xs text-green-700" id="passwordHelp">{errors.address}</span>}
+              {errors.address && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.address}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
@@ -160,7 +151,7 @@ export default class registerPlayer extends Component {
                 <option value="Male">Masculino</option>
                 <option value="Female">Femenino</option>
               </select>
-              {errors.gender && <span className="ml-3 text-xs text-green-700" id="passwordHelp">{errors.gender}</span>}
+              {errors.gender && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.gender}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
@@ -174,7 +165,7 @@ export default class registerPlayer extends Component {
                 <option value="CB">CB</option>
                 <option value="C">C</option>
               </select>
-              {errors.position && <span className="ml-3 text-xs text-green-700" id="passwordHelp">{errors.position}</span>}
+              {errors.position && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.position}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
@@ -182,32 +173,32 @@ export default class registerPlayer extends Component {
                 <span className="text-gray-500 text-lm mr-8">Date of Birth:</span>
                 <input type="Date" className="bg-white h-7 border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-sm focus:bg-red-50 mt-0 mb-0" name="birthday" onChange={this.handleChange} required />
               </label>
-              {errors.birthday && <span className="ml-3 text-xs text-green-700" id="passwordHelp">{errors.birthday}</span>}
+              {errors.birthday && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.birthday}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
-              <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Estatura" name="height" onChange={this.handleChange} required />
-              {errors.height && <span className="ml-3 text-xs text-green-700" id="passwordHelp">{errors.height}</span>}
+              <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Estatura (mts)" name="height" onChange={this.handleChange} required />
+              {errors.height && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.height}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
               <input type="text" className="block w-full flex-auto bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Correo electrónico" name="email" onChange={this.handleChange} required />
-              {errors.email && <span className="ml-3 text-xs text-green-700" id="passwordHelp">{errors.email}</span>}
+              {errors.email && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.email}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
               <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Peso" name="weight" onChange={this.handleChange} required />
-              {errors.weight && <span className="ml-3 text-xs text-green-700" id="passwordHelp">{errors.weight}</span>}
+              {errors.weight && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.weight}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
               <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Documento de identidad" name="documentId" onChange={this.handleChange} required />
-              {errors.documentId && <span className="ml-3 text-xs text-green-700" id="passwordHelp">{errors.documentId}</span>}
+              {errors.documentId && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.documentId}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
-              <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="EPS" name="eps" onChange={this.handleChange} required />
-              {errors.eps && <span className="ml-3 text-xs text-green-700" id="passwordHelp">{errors.eps}</span>}
+              <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="EPS" name="eps" id="eps" onChange={this.handleChange} required />
+              {errors.eps && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.eps}</span>}
             </div>
           </div>
         </form>
