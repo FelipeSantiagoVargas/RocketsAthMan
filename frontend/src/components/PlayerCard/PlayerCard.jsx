@@ -4,6 +4,9 @@ import Axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./PlayerCard.css";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 const url = "http://3.238.91.249:4000/api/players/"
 
@@ -16,7 +19,8 @@ export default function PlayerCard(props) {
   const { name, height, weight, birthday } = props.player;
 
   function editPlayer() {
-    console.log("Acción para editar el id: ", props.player._id);
+    cookies.set("playerEditID", props.player._id);
+    window.location.href = "/dashboard/editplayer";
   }
 
   function deletePlayer() {
@@ -52,10 +56,10 @@ export default function PlayerCard(props) {
           <p>Peso: {weight}</p>
           <p>Edad: {birthday}</p>
         </div>
-        <div className="border-solid border-red-800 border-2 rounded-b-lg text-white p-3 text-center  transition-all duration-500">
+        <div className="border-solid border-red-800 border-2 rounded-b-lg text-white p-3 text-center transition-all duration-500">
           <button
             type="button"
-            onClick={() => (window.location.href = "/dashboard/editplayer")}
+            onClick={editPlayer}
             className="mr-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
           >
             Editar

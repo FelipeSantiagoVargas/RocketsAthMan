@@ -59,7 +59,7 @@ const validate = values => {
   }
   if (!values.email) {
     errors.email = 'Campo obligatorio';
-  } else if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(values.email)) {
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
     errors.email = 'Correo no válido';
   }
   if (!values.weight) {
@@ -187,7 +187,7 @@ export default class registerPlayer extends Component {
             </div>
 
             <div className="mb-4 text-gray-700">
-              <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Peso" name="weight" onChange={this.handleChange} required />
+              <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Peso (kg)" name="weight" onChange={this.handleChange} required />
               {errors.weight && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.weight}</span>}
             </div>
 

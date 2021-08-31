@@ -5,7 +5,9 @@ import PlayerCard from "../../components/PlayerCard/PlayerCard";
 
 import "./PlayersScreen.css";
 
+
 export default function PlayersScreen(props) {
+
   const [players, setPlayers] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
