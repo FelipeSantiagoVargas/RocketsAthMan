@@ -5,7 +5,9 @@ import PlayerCard from "../../components/PlayerCard/PlayerCard";
 
 import "./PlayersScreen.css";
 
+
 export default function PlayersScreen(props) {
+
   const [players, setPlayers] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +59,7 @@ export default function PlayersScreen(props) {
             {players
               .filter((players) => players.gender.includes("Male"))
               .map((player) => (
-                <PlayerCard player={player} />
+                <PlayerCard key={player._id} player={player} />
               ))}
           </div>
         </section>

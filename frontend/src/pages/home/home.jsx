@@ -20,7 +20,7 @@ export default function Home() {
               type="button"
               className="mr-3 my-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
             >
-              Conocenos
+              Conócenos
               <FontAwesomeIcon
                 className="flex-1 ml-1"
                 icon={["fas", "external-link-alt"]}
@@ -32,7 +32,7 @@ export default function Home() {
                 type="button"
                 className="ml-5 my-10 font-semibold bg-white text-red-dark rounded-3xl px-3 py-1 border-2 border-red-dark"
               >
-                Iniciar Sesion
+                Iniciar Sesión
               </button>
             </Link>
           </div>

@@ -1,15 +1,27 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import Cookies from "universal-cookie";
+import "./EditPlayer.css";
 
-import "./registerPlayer.css";
-
-const url = "http://3.238.91.249:4000/api/players";
+const cookies = new Cookies();
+const url = "http://3.238.91.249:4000/api/players/" + cookies.get('playerEditID');
 
 const headers = {
   'Content-Type': 'application/json',
   'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMDQyMDExMiwiZXhwIjoxNjMwNTA2NTEyfQ.eYfbEQaR7zHevrcIzjoCeDzQrcXI4v36L9G6suR1KlQ'
 }
+
+  ;
+axios.get('http://3.238.91.249:4000/api/players/' + cookies.get('playerEditID'))
+  .then(function (response) {
+    console.log(response.data);
+    return response.data;
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  });
 
 const validate = values => {
   const errors = {};
@@ -64,6 +76,8 @@ const validate = values => {
   }
   if (!values.weight) {
     errors.weight = 'Campo obligatorio';
+  } else if (!/^[0-9]+$/.test(values.weight)) {
+    errors.weight = 'El peso debe ser de tipo numérico';
   } else if (values.weight.length > 5) {
     errors.weight = 'El peso debe tener menos de 5 caracteres';
   }
@@ -103,7 +117,7 @@ export default class registerPlayer extends Component {
     if (!Object.keys(result).length) {
       delete this.state['errors'];
       console.log(this.state);
-      axios.post(url, this.state, { headers: headers }).then(response => {
+      axios.put(url, this.state, { headers: headers }).then(response => {
         window.location.href = "./";
       }).catch(error => {
         console.log(error.message);
@@ -113,6 +127,7 @@ export default class registerPlayer extends Component {
 
   render() {
     const { errors } = this.state;
+
     return (
       <div className="w-full min-h-screen pl-20 pr-20 bg-auto object-fill back-image" >
 
@@ -185,7 +200,7 @@ export default class registerPlayer extends Component {
             </div>
 
             <div className="mb-4 text-gray-700">
-              <input type="number" step="any" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Peso (kg)" name="weight" onChange={this.handleChange} required />
+              <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Peso (kg)" name="weight" onChange={this.handleChange} required />
               {errors.weight && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.weight}</span>}
             </div>
 
