@@ -57,7 +57,7 @@ export default function PlayersScreen(props) {
             {players
               .filter((players) => players.gender.includes("Male"))
               .map((player) => (
-                <PlayerCard player={player} />
+                <PlayerCard key={player._id} player={player} />
               ))}
           </div>
         </section>

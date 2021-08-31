@@ -8,7 +8,7 @@ const url = "http://3.238.91.249:4000/api/players";
 
 const headers = {
   'Content-Type': 'application/json',
-  'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZjFhOTI4ZThkMDFkMzkwZTdjYSIsImlhdCI6MTYzMDAzOTgzNCwiZXhwIjoxNjMwMTI2MjM0fQ.atW24t5uV3U2VpXEPCyPp_TN2MlQWIutIrR6e-xnosk'
+  'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMDM2OTU0NCwiZXhwIjoxNjMwNDU1OTQ0fQ.AmhIgiw9lUd5bG8KgBRjPX7zPleXQFST4Dc6bsWgM54'
 }
 
 const validate = values => {

@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import PlayerCard from "../PlayerCard/PlayerCard";
 import PlayersScreen from "../../pages/PlayersScreen";
 import registerPlayer from "../../pages/registerPlayer";
+import EditPlayer from "../../pages/EditPlayer";
+
 
 export default function DashboardMenu(props) {
   let { path } = useRouteMatch();
@@ -50,6 +52,9 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/registerplayer`}>
               <h1 className="text-6xl text-white">REGISTRAR JUGADOR</h1>
             </Route>
+            <Route path={`${path}/editplayer`}>
+              <h1 className="text-6xl text-white">EDITAR JUGADOR</h1>
+            </Route>
             <Route path={`${path}*`} exact>
               <h1 className="text-6xl text-white">JUGADORES</h1>
             </Route>
@@ -59,6 +64,7 @@ export default function DashboardMenu(props) {
           <Switch>
             <Route path={`${path}/card`} component={PlayerCard} />
             <Route path={`${path}/registerplayer`} component={registerPlayer} />
+            <Route path={`${path}/editplayer`} component={EditPlayer} />
             <Route path={`${path}*`} component={PlayersScreen} />
           </Switch>
         </div>
