@@ -27,7 +27,9 @@ export default function PlayerCard(props) {
 
       Axios.delete(url + props.player._id, { headers: headers })
         .then((res) => {
-          console.log('Eliminado')
+          window.alert("Jugador eliminado");
+          window.location.href = "/dashboard/playerscreen"
+
         }).catch((error) => {
           console.log(error)
         })
