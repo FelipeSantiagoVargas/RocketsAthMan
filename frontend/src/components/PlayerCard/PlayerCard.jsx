@@ -138,12 +138,6 @@ export default function PlayerCard(props) {
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-
-}
-*/
-=======
     </div>
 */
 
->>>>>>> 8da3295da293b382e29e9950a5d26a624e1970cd

@@ -22,7 +22,7 @@ const validate = values => {
     errors.phone = 'Campo obligatorio';
   } else if (!typeof values.phone === 'number') {
     errors.phone = 'El teléfono debe ser de tipo numérico';
-  } else if (!values.phone.length === 10) {
+  } else if (values.phone.length !== 10) {
     errors.phone = 'El teléfono debe tener 10 caracteres';
   }
   if (!values.lastname) {
@@ -36,12 +36,20 @@ const validate = values => {
     errors.address = 'La dirección debe tener menos de 100 caracteres';
   }
   if (!values.gender) {
-    errors.gender = 'Campo obligatorio';
-  } if (!values.position) {
-    errors.position = 'Campo obligatorio';
-  } if (!values.height) {
+    errors.gender = 'Se debe escoger una opción';
+  }
+  if (!values.position) {
+    errors.position = 'Se debe escoger una opción';
+  }
+  if (!values.birthday) {
+    errors.birthday = 'Campo obligatorio';
+  }
+  if (!values.height) {
     errors.height = 'Campo obligatorio';
-  } if (!values.email) {
+  } else if (values.height.length > 100) {
+    errors.height = 'Campo obligatorio';
+  }
+  if (!values.email) {
     errors.email = 'Campo obligatorio';
   } if (!values.weight) {
     errors.weight = 'Campo obligatorio';
