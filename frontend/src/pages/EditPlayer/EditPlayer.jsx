@@ -22,13 +22,14 @@ axios
     document.getElementById("lastName").value = response.data.lastName;
     document.getElementById("address").value = response.data.address;
     document.getElementById("gender").value = response.data.gender;
-    document.getElementById("email").value = response.data.email;
+    document.getElementById("email").value = response.data.user.email;
     document.getElementById("position").value = response.data.position;
     document.getElementById("birthday").value = response.data.birthday;
     document.getElementById("height").value = response.data.height;
     document.getElementById("weight").value = response.data.weight;
     document.getElementById("documentId").value = response.data.documentId;
     document.getElementById("eps").value = response.data.eps;
+    console.log(response);
   })
   .catch(function (error) {
     // handle error
@@ -274,7 +275,7 @@ export default class registerPlayer extends Component {
             </div>
 
             <div className="mb-4 text-gray-700">
-              <span className="text-gray-500 text-lm mr-8">Date of Birth:</span>
+              <span>Date of Birth:</span>
               <input
                 id="birthday"
                 type="Date"
@@ -309,15 +310,22 @@ export default class registerPlayer extends Component {
             </div>
 
             <div className="mb-4 text-gray-700">
-              <span>Correo Electronico</span>
+              <span>
+                <FontAwesomeIcon
+                  className="flex-1 text-black mx-2"
+                  icon={["fas", "lock"]}
+                />
+                Correo Electronico
+              </span>
               <input
                 type="text"
-                className="block w-full flex-auto bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
+                className="block w-full flex-auto bg-grayLi border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
                 placeholder="Correo electrónico"
                 name="email"
                 id="email"
                 onChange={this.handleChange}
                 required
+                disabled
               />
               {errors.email && (
                 <span className="ml-3 text-md text-red" id="passwordHelp">
@@ -345,15 +353,23 @@ export default class registerPlayer extends Component {
             </div>
 
             <div className="mb-4 text-gray-700">
-              <span>Documento de Identidad</span>
+              <span>
+                {" "}
+                <FontAwesomeIcon
+                  className="flex-1 text-black mx-2"
+                  icon={["fas", "lock"]}
+                />{" "}
+                Documento de Identidad
+              </span>
               <input
                 type="text"
-                className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
+                className="block w-full bg-grayLi border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
                 placeholder="Documento de identidad"
                 name="documentId"
                 id="documentId"
                 onChange={this.handleChange}
                 required
+                disabled
               />
               {errors.documentId && (
                 <span className="ml-3 text-md text-red" id="passwordHelp">
