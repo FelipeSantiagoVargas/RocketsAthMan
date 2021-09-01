@@ -46,7 +46,8 @@ export const createPlayer = async (req, res, next) => {
 
 export const getPlayers = async (req, res) => {
     const players = await Player.find();
-    res.json(players)
+    const users = await User.populate(players, {path:'user'})
+    res.json(users)
 }
 
 export const getPlayerById = async (req, res) => {
