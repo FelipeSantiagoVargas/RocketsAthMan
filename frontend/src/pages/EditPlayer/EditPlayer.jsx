@@ -80,15 +80,9 @@ const validate = (values) => {
   if (!values.height) {
     errors.height = "Campo obligatorio";
   } else if (!/^[0-9]+$/.test(values.height)) {
-<<<<<<< HEAD
-    errors.height = 'La estatura debe ser de tipo numérico';
-  } else if (values.height.length > 3) {
-    errors.height = 'La estatura debe ser menor de 999cm';
-=======
     errors.height = "La estatura debe ser de tipo numérico";
   } else if (values.height.length > 5) {
     errors.height = "La estatura debe tener menos de 5 caracteres";
->>>>>>> e73eef335742d535e8126be16cb6bfb349ca2e53
   }
   if (!values.email) {
     errors.email = "Campo obligatorio";
