@@ -31,12 +31,10 @@ axios
     document.getElementById("eps").value = response.data.eps;
     console.log(response);
   })
-}
-setVariable();
-console.log(jsonData);
-
-//console.log(getPlayerData());
-
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  });
 
 const validate = (values) => {
   const errors = {};
@@ -90,11 +88,11 @@ const validate = (values) => {
     errors.email = "Correo no válido";
   }
   if (!values.weight) {
-    errors.weight = 'Campo obligatorio';
-  } else if (values.weight.length > 3) {
-    errors.weight = 'El peso debe ser menor de 999kg';
-  } else if (!/^\d+(.\d+)?$/.test(values.weight)) {
-    errors.weight = 'El peso debe ser de tipo numérico';
+    errors.weight = "Campo obligatorio";
+  } else if (!/^[0-9]+$/.test(values.weight)) {
+    errors.weight = "El peso debe ser de tipo numérico";
+  } else if (values.weight.length > 5) {
+    errors.weight = "El peso debe tener menos de 5 caracteres";
   }
 
   if (!values.documentId) {
@@ -142,7 +140,6 @@ export default class registerPlayer extends Component {
   };
 
   render() {
-
     const { errors } = this.state;
 
     return (
