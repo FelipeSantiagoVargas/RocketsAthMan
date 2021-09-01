@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Home() {
   return (
-    <div className="mx-16">
+    <div>
       <Header />
-      <div className="flex bg-white">
+      <div className="flex bg-gray">
         <section className="w-1/2 p-12">
           <h3 className="text-gray font-bold tracking-widest">
             EQUIPO DE FOOTBALL FLAG
@@ -20,7 +20,7 @@ export default function Home() {
               type="button"
               className="mr-3 my-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
             >
-              Conocenos
+              Conócenos
               <FontAwesomeIcon
                 className="flex-1 ml-1"
                 icon={["fas", "external-link-alt"]}
@@ -32,7 +32,7 @@ export default function Home() {
                 type="button"
                 className="ml-5 my-10 font-semibold bg-white text-red-dark rounded-3xl px-3 py-1 border-2 border-red-dark"
               >
-                Iniciar Sesion
+                Iniciar Sesión
               </button>
             </Link>
           </div>

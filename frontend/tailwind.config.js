@@ -5,13 +5,17 @@ module.exports = {
     extend: {
       colors: {
         white: "#ffffff",
-        gray: "#E5E5E5",
+        gray: {
+          DEFAULT: "#E5E5E5",
+          dark: "#2F2929",
+        },
         red: {
           light: "#DC1818",
           DEFAULT: "#C61414",
-          dark: "#950F0F",
+          dark: "#950F0F"
         },
         brown: "#130202",
+        grayLi: "#A19999"
       },
       fontFamily: {
         body: ["Quicksand"],
