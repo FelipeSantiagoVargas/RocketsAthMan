@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../../assets/ROCKETS_LOGO.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Header.css";
 
@@ -9,7 +8,11 @@ export default function Header() {
       <div className="flex justify-evenly text-center px-20 items-center w-3/5 text-xl">
         <h1 className="flex-1 ">INICIO</h1>
         <h1 className="flex-1 ">CONÓCENOS</h1>
-        <img className="w-24" src={logo} alt="logo Rockets Athman" />
+        <img
+          className="w-24"
+          src="https://i.ibb.co/M1MbSvC/ROCKETS-LOGO.png"
+          alt="logo Rockets Athman"
+        />
         <h1 className="flex-1 ">LOGROS</h1>
         <h1 className="flex-1 ">CONTACTENOS</h1>
       </div>

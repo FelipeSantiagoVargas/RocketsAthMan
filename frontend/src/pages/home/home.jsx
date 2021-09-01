@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "../../components/header";
 import { Link } from "react-router-dom";
-import right_main from "../../assets/right_main.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Home() {
@@ -39,7 +38,7 @@ export default function Home() {
         </section>
         <img
           className="w-1/2 border-1"
-          src={right_main}
+          src="https://i.ibb.co/W2dtvgc/right-main.png"
           alt="logo Rockets Athman"
         />
       </div>
