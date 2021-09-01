@@ -31,10 +31,12 @@ axios
     document.getElementById("eps").value = response.data.eps;
     console.log(response);
   })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  });
+}
+setVariable();
+console.log(jsonData);
+
+//console.log(getPlayerData());
+
 
 const validate = (values) => {
   const errors = {};
@@ -78,9 +80,15 @@ const validate = (values) => {
   if (!values.height) {
     errors.height = "Campo obligatorio";
   } else if (!/^[0-9]+$/.test(values.height)) {
+<<<<<<< HEAD
+    errors.height = 'La estatura debe ser de tipo numérico';
+  } else if (values.height.length > 3) {
+    errors.height = 'La estatura debe ser menor de 999cm';
+=======
     errors.height = "La estatura debe ser de tipo numérico";
   } else if (values.height.length > 5) {
     errors.height = "La estatura debe tener menos de 5 caracteres";
+>>>>>>> e73eef335742d535e8126be16cb6bfb349ca2e53
   }
   if (!values.email) {
     errors.email = "Campo obligatorio";
@@ -88,11 +96,11 @@ const validate = (values) => {
     errors.email = "Correo no válido";
   }
   if (!values.weight) {
-    errors.weight = "Campo obligatorio";
-  } else if (!/^[0-9]+$/.test(values.weight)) {
-    errors.weight = "El peso debe ser de tipo numérico";
-  } else if (values.weight.length > 5) {
-    errors.weight = "El peso debe tener menos de 5 caracteres";
+    errors.weight = 'Campo obligatorio';
+  } else if (values.weight.length > 3) {
+    errors.weight = 'El peso debe ser menor de 999kg';
+  } else if (!/^\d+(.\d+)?$/.test(values.weight)) {
+    errors.weight = 'El peso debe ser de tipo numérico';
   }
 
   if (!values.documentId) {
@@ -140,6 +148,7 @@ export default class registerPlayer extends Component {
   };
 
   render() {
+
     const { errors } = this.state;
 
     return (
