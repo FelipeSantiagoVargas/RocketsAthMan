@@ -52,11 +52,16 @@ export const getPlayers = async (req, res) => {
 
 export const getPlayerById = async (req, res) => {
     const players = await Player.findById(req.params.playerId);
-    res.status(200).json(players)
+    const user = await User.populate(players, {path:'user'})
+    console.log(user)
+    res.status(200).json(user)
 }
 
 export const updatePlayerById = async (req, res) => {
     const updatePlayer = await Player.findByIdAndUpdate(req.params.playerId, req.body,
+        { new: true }
+    );
+    const updateUser = await User.findByIdAndUpdate(updatePlayer.user, req.body,
         { new: true }
     );
 
