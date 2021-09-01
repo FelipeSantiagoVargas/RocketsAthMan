@@ -10,18 +10,37 @@ const url = "http://3.238.91.249:4000/api/players/" + cookies.get('playerEditID'
 const headers = {
   'Content-Type': 'application/json',
   'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMDQyMDExMiwiZXhwIjoxNjMwNTA2NTEyfQ.eYfbEQaR7zHevrcIzjoCeDzQrcXI4v36L9G6suR1KlQ'
-}
+};
 
-  ;
-axios.get('http://3.238.91.249:4000/api/players/' + cookies.get('playerEditID'))
-  .then(function (response) {
-    console.log(response.data);
-    return response.data;
+// axios.get('http://3.238.91.249:4000/api/players/' + cookies.get('playerEditID'))
+//   .then(function (response) {
+//     console.log(response.data);
+//     return response.data;
+//   })
+//   .catch(function (error) {
+//     // handle error
+//     console.log(error);
+//   });
+
+
+async function getPlayerData() {
+  const response = await fetch(url, {});
+  const json = await response.json();
+  console.log(json);
+  return json;
+}
+// const json = await response.json();
+let jsonData;
+function setVariable() {
+  getPlayerData().then((json) => {
+    jsonData = json;
   })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  });
+}
+setVariable();
+console.log(jsonData);
+
+//console.log(getPlayerData());
+
 
 const validate = values => {
   const errors = {};
@@ -66,8 +85,8 @@ const validate = values => {
     errors.height = 'Campo obligatorio';
   } else if (!/^[0-9]+$/.test(values.height)) {
     errors.height = 'La estatura debe ser de tipo numérico';
-  } else if (values.height.length > 5) {
-    errors.height = 'La estatura debe tener menos de 5 caracteres';
+  } else if (values.height.length > 3) {
+    errors.height = 'La estatura debe ser menor de 999cm';
   }
   if (!values.email) {
     errors.email = 'Campo obligatorio';
@@ -76,10 +95,10 @@ const validate = values => {
   }
   if (!values.weight) {
     errors.weight = 'Campo obligatorio';
-  } else if (!/^[0-9]+$/.test(values.weight)) {
+  } else if (values.weight.length > 3) {
+    errors.weight = 'El peso debe ser menor de 999kg';
+  } else if (!/^\d+(.\d+)?$/.test(values.weight)) {
     errors.weight = 'El peso debe ser de tipo numérico';
-  } else if (values.weight.length > 5) {
-    errors.weight = 'El peso debe tener menos de 5 caracteres';
   }
 
   if (!values.documentId) {
@@ -126,6 +145,7 @@ export default class registerPlayer extends Component {
   }
 
   render() {
+
     const { errors } = this.state;
 
     return (
@@ -139,23 +159,23 @@ export default class registerPlayer extends Component {
           <div className="grid grid-cols-2 gap-x-10">
             <div className="mb-4 text-gray-700">
               <input className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " type="text" placeholder="Nombre" name="name" onChange={this.handleChange} required />
-              {errors.name && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.name}</span>}
+              {errors.name && <span className="ml-3 text-md text-red" >{errors.name}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
               <input className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " type="text" placeholder="Teléfono" name="phone" onChange={this.handleChange} required />
-              {errors.phone && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.phone}</span>}
+              {errors.phone && <span className="ml-3 text-md text-red" >{errors.phone}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
               <input className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " type="text" placeholder="Apellido" name="lastname" onChange={this.handleChange} required />
-              {errors.lastname && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.lastname}</span>}
+              {errors.lastname && <span className="ml-3 text-md text-red" >{errors.lastname}</span>}
             </div>
 
 
             <div className="mb-4 text-gray-700">
               <input className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " type="text" placeholder="Dirección" name="address" onChange={this.handleChange} required />
-              {errors.address && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.address}</span>}
+              {errors.address && <span className="ml-3 text-md text-red">{errors.address}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
@@ -164,7 +184,7 @@ export default class registerPlayer extends Component {
                 <option value="Male">Masculino</option>
                 <option value="Female">Femenino</option>
               </select>
-              {errors.gender && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.gender}</span>}
+              {errors.gender && <span className="ml-3 text-md text-red">{errors.gender}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
@@ -178,7 +198,7 @@ export default class registerPlayer extends Component {
                 <option value="CB">CB</option>
                 <option value="C">C</option>
               </select>
-              {errors.position && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.position}</span>}
+              {errors.position && <span className="ml-3 text-md text-red" >{errors.position}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
@@ -186,32 +206,32 @@ export default class registerPlayer extends Component {
                 <span className="text-gray-500 text-lm mr-8">Date of Birth:</span>
                 <input type="Date" className="bg-white h-7 border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-sm focus:bg-red-50 mt-0 mb-0" name="birthday" onChange={this.handleChange} required />
               </label>
-              {errors.birthday && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.birthday}</span>}
+              {errors.birthday && <span className="ml-3 text-md text-red" >{errors.birthday}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
-              <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Estatura (mts)" name="height" onChange={this.handleChange} required />
-              {errors.height && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.height}</span>}
+              <input type="number" step="any" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Estatura (cm)" name="height" onChange={this.handleChange} required />
+              {errors.height && <span className="ml-3 text-md text-red" >{errors.height}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
               <input type="text" className="block w-full flex-auto bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Correo electrónico" name="email" onChange={this.handleChange} required />
-              {errors.email && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.email}</span>}
+              {errors.email && <span className="ml-3 text-md text-red" >{errors.email}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
               <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Peso (kg)" name="weight" onChange={this.handleChange} required />
-              {errors.weight && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.weight}</span>}
+              {errors.weight && <span className="ml-3 text-md text-red" >{errors.weight}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
               <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Documento de identidad" name="documentId" onChange={this.handleChange} required />
-              {errors.documentId && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.documentId}</span>}
+              {errors.documentId && <span className="ml-3 text-md text-red" >{errors.documentId}</span>}
             </div>
 
             <div className="mb-4 text-gray-700">
               <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="EPS" name="eps" id="eps" onChange={this.handleChange} required />
-              {errors.eps && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.eps}</span>}
+              {errors.eps && <span className="ml-3 text-md text-red">{errors.eps}</span>}
             </div>
           </div>
         </form>

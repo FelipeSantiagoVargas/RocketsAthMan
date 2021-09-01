@@ -54,8 +54,8 @@ const validate = values => {
     errors.height = 'Campo obligatorio';
   } else if (!/^[0-9]+$/.test(values.height)) {
     errors.height = 'La estatura debe ser de tipo numérico';
-  } else if (values.height.length > 5) {
-    errors.height = 'La estatura debe tener menos de 5 caracteres';
+  } else if (values.height.length > 4) {
+    errors.height = 'La estatura debe ser menor de 999cm';
   }
   if (!values.email) {
     errors.email = 'Campo obligatorio';
@@ -64,8 +64,10 @@ const validate = values => {
   }
   if (!values.weight) {
     errors.weight = 'Campo obligatorio';
-  } else if (values.weight.length > 5) {
-    errors.weight = 'El peso debe tener menos de 5 caracteres';
+  } else if (values.weight.length > 4) {
+    errors.weight = 'El peso debe ser menor de 999kg';
+  } else if (!/^\d+(.\d+)?$/.test(values.weight)) {
+    errors.weight = 'Peso no válido. Ej: 76.0';
   }
 
   if (!values.documentId) {
@@ -175,7 +177,7 @@ export default class registerPlayer extends Component {
             </div>
 
             <div className="mb-4 text-gray-700">
-              <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Estatura (mts)" name="height" onChange={this.handleChange} required />
+              <input type="number" step="any" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Estatura (mts)" name="height" onChange={this.handleChange} required />
               {errors.height && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.height}</span>}
             </div>
 
@@ -185,7 +187,7 @@ export default class registerPlayer extends Component {
             </div>
 
             <div className="mb-4 text-gray-700">
-              <input type="number" step="any" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Peso (kg)" name="weight" onChange={this.handleChange} required />
+              <input type="text" className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 " placeholder="Peso (kg)" name="weight" onChange={this.handleChange} required />
               {errors.weight && <span className="ml-3 text-md text-red" id="passwordHelp">{errors.weight}</span>}
             </div>
 
