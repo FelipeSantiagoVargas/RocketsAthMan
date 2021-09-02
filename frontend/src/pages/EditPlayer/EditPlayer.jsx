@@ -142,7 +142,7 @@ export default class registerPlayer extends Component {
       delete this.state["errors"];
       console.log(this.state);
       axios
-        .put(url, this.state.form, { headers: headers })
+        .put(url, this.state, { headers: headers })
         .then((response) => {
           window.location.href = "./";
         })
