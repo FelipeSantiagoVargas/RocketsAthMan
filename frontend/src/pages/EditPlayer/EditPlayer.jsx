@@ -11,30 +11,8 @@ const url =
 const headers = {
   "Content-Type": "application/json",
   "x-access-token":
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMDQyMDExMiwiZXhwIjoxNjMwNTA2NTEyfQ.eYfbEQaR7zHevrcIzjoCeDzQrcXI4v36L9G6suR1KlQ",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMzAzNTE1ZDhmNjAxOWUyYmViOGFiZSIsImlhdCI6MTYzMDU1NDEyMiwiZXhwIjoxNjMwNjQwNTIyfQ.2jeYTlNz3yah6DbM7DWn20dFYkysqunMtZr1SHQ8mXY",
 };
-
-axios
-  .get(url)
-  .then(function (response) {
-    document.getElementById("name").value = response.data.name;
-    document.getElementById("phone").value = response.data.phone;
-    document.getElementById("lastName").value = response.data.lastName;
-    document.getElementById("address").value = response.data.address;
-    document.getElementById("gender").value = response.data.gender;
-    document.getElementById("email").value = response.data.user.email;
-    document.getElementById("position").value = response.data.position;
-    document.getElementById("birthday").value = response.data.birthday;
-    document.getElementById("height").value = response.data.height;
-    document.getElementById("weight").value = response.data.weight;
-    document.getElementById("documentId").value = response.data.documentId;
-    document.getElementById("eps").value = response.data.eps;
-    console.log(response);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  });
 
 const validate = (values) => {
   const errors = {};
@@ -51,10 +29,10 @@ const validate = (values) => {
   } else if (values.phone.length !== 10) {
     errors.phone = "El teléfono debe tener 10 caracteres";
   }
-  if (!values.lastname) {
-    errors.lastname = "Campo obligatorio";
-  } else if (values.lastname.length > 100) {
-    errors.lastname = "El apellido debe tener menos de 100 caracteres";
+  if (!values.lastName) {
+    errors.lastName = "Campo obligatorio";
+  } else if (values.lastName.length > 100) {
+    errors.lastName = "El apellido debe tener menos de 100 caracteres";
   }
   if (!values.address) {
     errors.address = "Campo obligatorio";
@@ -75,24 +53,24 @@ const validate = (values) => {
   } else if (selectedDate > actualDate) {
     errors.birthday = "Fecha no válida";
   }
+
+  const heightFloat = parseInt(values.height);
   if (!values.height) {
     errors.height = "Campo obligatorio";
-  } else if (!/^[0-9]+$/.test(values.height)) {
-    errors.height = "La estatura debe ser de tipo numérico";
-  } else if (values.height.length > 5) {
-    errors.height = "La estatura debe tener menos de 5 caracteres";
+  } else if (heightFloat > 300 || heightFloat < 1) {
+    errors.height = "La estatura debe ser menor de 300 cm";
   }
   if (!values.email) {
     errors.email = "Campo obligatorio";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
     errors.email = "Correo no válido";
   }
+
+  const weightFloat = parseFloat(values.weight);
   if (!values.weight) {
-    errors.weight = "Campo obligatorio";
-  } else if (!/^[0-9]+$/.test(values.weight)) {
-    errors.weight = "El peso debe ser de tipo numérico";
-  } else if (values.weight.length > 5) {
-    errors.weight = "El peso debe tener menos de 5 caracteres";
+    errors.weight = 'Campo obligatorio';
+  } else if (weightFloat > 500 || weightFloat < 1) {
+    errors.weight = 'El peso debe ser menor de 500 kg';
   }
 
   if (!values.documentId) {
@@ -113,6 +91,41 @@ export default class registerPlayer extends Component {
     errors: {},
   };
 
+  componentDidMount() {
+    fetch(url)
+      .then(response => response.json())
+      .then((responseData) => {
+        console.log(responseData);
+        document.getElementById("name").value = responseData.name;
+        document.getElementById("phone").value = responseData.phone;
+        document.getElementById("lastName").value = responseData.lastName;
+        document.getElementById("address").value = responseData.address;
+        document.getElementById("gender").value = responseData.gender;
+        document.getElementById("email").value = responseData.user.email;
+        document.getElementById("position").value = responseData.position;
+        document.getElementById("birthday").value = responseData.birthday;
+        document.getElementById("height").value = responseData.height;
+        document.getElementById("weight").value = responseData.weight;
+        document.getElementById("documentId").value = responseData.documentId;
+        document.getElementById("eps").value = responseData.eps;
+        this.setState({
+          "name": responseData.name,
+          "phone": responseData.phone,
+          "lastName": responseData.lastName,
+          "address": responseData.address,
+          "gender": responseData.gender,
+          "email": responseData.user.email,
+          "position": responseData.position,
+          "birthday": responseData.birthday,
+          "height": responseData.height,
+          "weight": responseData.weight,
+          "documentId": responseData.documentId,
+          "eps": responseData.eps
+        })
+        console.log(this.state);
+      }).catch(console.log('error'));
+  }
+
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
@@ -129,7 +142,7 @@ export default class registerPlayer extends Component {
       delete this.state["errors"];
       console.log(this.state);
       axios
-        .put(url, this.state, { headers: headers })
+        .put(url, this.state.form, { headers: headers })
         .then((response) => {
           window.location.href = "./";
         })
@@ -141,7 +154,6 @@ export default class registerPlayer extends Component {
 
   render() {
     const { errors } = this.state;
-
     return (
       <div className="w-full min-h-screen pl-20 pr-20 bg-auto object-fill back-image">
         <div className="flex items-center ">
@@ -195,7 +207,7 @@ export default class registerPlayer extends Component {
                 className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
                 type="text"
                 placeholder="Apellido"
-                name="lastname"
+                name="lastName"
                 id="lastName"
                 onChange={this.handleChange}
                 required
@@ -226,7 +238,7 @@ export default class registerPlayer extends Component {
             </div>
 
             <div className="mb-4 text-gray-700">
-              <span>Genero</span>
+              <span>Género</span>
               <select
                 name="gender"
                 id="gender"
@@ -235,7 +247,7 @@ export default class registerPlayer extends Component {
                 required
               >
                 <option value="DEFAULT" disabled defaultValue>
-                  Género:{" "}
+                  Género:
                 </option>
                 <option value="Male">Masculino</option>
                 <option value="Female">Femenino</option>
@@ -248,7 +260,7 @@ export default class registerPlayer extends Component {
             </div>
 
             <div className="mb-4 text-gray-700">
-              <span>Posicion</span>
+              <span>Posición</span>
               <select
                 id="position"
                 name="position"
@@ -257,7 +269,7 @@ export default class registerPlayer extends Component {
                 required
               >
                 <option value="DEFAULT" disabled defaultValue>
-                  Posición:{" "}
+                  Posición:
                 </option>
                 <option value="QB">QB</option>
                 <option value="RB">RB</option>
@@ -275,7 +287,7 @@ export default class registerPlayer extends Component {
             </div>
 
             <div className="mb-4 text-gray-700">
-              <span>Date of Birth:</span>
+              <span>Fecha de nacimiento</span>
               <input
                 id="birthday"
                 type="Date"
@@ -292,11 +304,13 @@ export default class registerPlayer extends Component {
             </div>
 
             <div className="mb-4 text-gray-700">
-              <span>Estatura (Cm)</span>
+              <span>Estatura (cm)</span>
               <input
-                type="text"
+                type="number"
+                min="1"
+                max="300"
                 className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
-                placeholder="Estatura (Cm)"
+                placeholder="Estatura (cm)"
                 name="height"
                 id="height"
                 onChange={this.handleChange}
@@ -315,7 +329,7 @@ export default class registerPlayer extends Component {
                   className="flex-1 text-black mx-2"
                   icon={["fas", "lock"]}
                 />
-                Correo Electronico
+                Correo Electrónico
               </span>
               <input
                 type="text"
@@ -337,7 +351,8 @@ export default class registerPlayer extends Component {
             <div className="mb-4 text-gray-700">
               <span>Peso (kg)</span>
               <input
-                type="text"
+                type="number"
+                min="1"
                 className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
                 placeholder="Peso (kg)"
                 name="weight"
