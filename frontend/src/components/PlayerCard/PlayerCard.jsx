@@ -12,7 +12,7 @@ const url = "http://3.238.91.249:4000/api/players/"
 
 const headers = {
   'Content-Type': 'application/json',
-  'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMzAzNTE1ZDhmNjAxOWUyYmViOGFiZSIsImlhdCI6MTYzMDU1NDEyMiwiZXhwIjoxNjMwNjQwNTIyfQ.2jeYTlNz3yah6DbM7DWn20dFYkysqunMtZr1SHQ8mXY'
+  'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2I5MThkOGI2MzhmODI2OWEyYWVjMSIsImlhdCI6MTYzMTI5MzgzNywiZXhwIjoxNjMxMzgwMjM3fQ.bjkFmOdhYkaXK_bWlit9PHxkQYQn2rPDnYd-ML9MwPw'
 }
 
 export default function PlayerCard(props) {
