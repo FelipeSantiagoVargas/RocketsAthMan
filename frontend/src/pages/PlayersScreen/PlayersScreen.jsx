@@ -9,6 +9,9 @@ import "./PlayersScreen.css";
 export default function PlayersScreen(props) {
 
   const [players, setPlayers] = useState([]);
+  const [playersCardList, setPlayersCardList] = useState([]);
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,18 +27,17 @@ export default function PlayersScreen(props) {
   return (
     <div className="custom-font-bold">
       <div className="p-5 m-5 flex flex-row justify-between rounded-3xl bg-grayLi">
-        <button
-          type="button"
-          // onClick={() => this.iniciarSesion()}
-          className="mr-2 h-16 w-1/3 bg-red-dark font-semibold text-white rounded-xl px-3 py-1 border-2 border-red-dark"
-        >
-          Borrar
-          <FontAwesomeIcon
-            className="flex-1 ml-1"
-            icon={["fas", "save"]}
-            size="1x"
-          />
-        </button>
+        <div className="mr-2 h-16 w-1/3 bg-red-dark font-semibold text-white rounded-xl px-3 py-1 border-2 border-red-dark">
+          <input className="" value={search} placeholder="Buscar jugadores" />
+          <button>
+            <FontAwesomeIcon
+              className="flex-1 ml-2 bg-black"
+              icon={["fas", "search"]}
+              size="1x"
+            />
+          </button>
+        </div>
+
         <button
           type="button"
           onClick={() => (window.location.href = "/dashboard/registerplayer")}

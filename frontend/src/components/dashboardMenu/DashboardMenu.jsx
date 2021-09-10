@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React from "react";
-import picture from "../../assets/profile_picture.jpg";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./DashboardMenu.css";
@@ -12,7 +11,6 @@ import PlayersScreen from "../../pages/PlayersScreen";
 import registerPlayer from "../../pages/registerPlayer";
 import EditPlayer from "../../pages/EditPlayer";
 
-
 export default function DashboardMenu(props) {
   let { path } = useRouteMatch();
 
@@ -21,7 +19,7 @@ export default function DashboardMenu(props) {
       <div className="relative bg-red min-w-max flex-col items-center">
         <img
           className="w-32 rounded-full mx-10 mt-10"
-          src={picture}
+          src="https://i.ibb.co/WgBTFBj/profile-picture.jpg"
           alt="Profile Photo"
         />
         <h1 className="text-center px-5 pb-5 text-3xl text-white font-extrabold ">
