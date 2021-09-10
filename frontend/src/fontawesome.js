@@ -17,6 +17,7 @@ import {
   faEdit,
   faTrashAlt,
   faLock,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -30,5 +31,6 @@ library.add(
   faSave,
   faEdit,
   faTrashAlt,
-  faLock
+  faLock,
+  faSearch
 );
