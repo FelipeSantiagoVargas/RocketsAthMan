@@ -20,3 +20,7 @@
   .custom-font-bold {
     font-family: "PostNoBillsJaffna-Bold";
   }
+
+  .disabledButton{
+    pointer-events: none;
+  }

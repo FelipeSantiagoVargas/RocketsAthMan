@@ -19,23 +19,43 @@ export default function PlayersScreen(props) {
           "http://3.238.91.249:4000/api/players"
         );
         setPlayers(data);
+        setPlayersCardList(data);
       } catch (err) { }
     };
     fetchData();
   }, []);
 
+  const handleChange = e => {
+    setSearch(e.target.value);
+    filterValues(e.target.value);
+  }
+
+  const filterValues = (searchValue) => {
+    var searchResult = playersCardList.filter((value) => {
+      if (value.name.toString().toLowerCase().includes(searchValue.toLowerCase())) {
+        return value;
+      }
+      return undefined;
+    })
+    setPlayers(searchResult);
+  }
+
   return (
     <div className="custom-font-bold">
       <div className="p-5 m-5 flex flex-row justify-between rounded-3xl bg-grayLi">
-        <div className="mr-2 h-16 w-1/3 bg-red-dark font-semibold text-white rounded-xl px-3 py-1 border-2 border-red-dark">
-          <input className="" value={search} placeholder="Buscar jugadores" />
-          <button>
-            <FontAwesomeIcon
-              className="flex-1 ml-2 bg-black"
-              icon={["fas", "search"]}
-              size="1x"
-            />
-          </button>
+        <div className="flex content-center justify-center items-center mr-2 h-16 w-1/3 bg-red-dark font-semibold rounded-xl px-3 py-1 border-2 border-red-dark">
+          <input className="text-black w-1/2 border-2 h-8 border-black rounded pl-3" value={search}
+            placeholder="Buscar jugadores"
+            onChange={handleChange}
+          />
+
+          <FontAwesomeIcon
+            id="disabledButton"
+            className="ml-2 text-white"
+            icon={["fas", "search"]}
+            size="1x"
+          />
+
         </div>
 
         <button
@@ -53,7 +73,7 @@ export default function PlayersScreen(props) {
       </div>
 
       <div className="flex flex-row">
-        <section className="w-1/2 m-5 bg-grayLi rounded-t-2xl">
+        <section className="w-1/2 m-5 bg-grayLi rounded-2xl">
           <h1 className="rounded-2xl text-center py-5 bg-gray-dark text-white text-5xl">
             MASCULINO
           </h1>
@@ -65,7 +85,7 @@ export default function PlayersScreen(props) {
               ))}
           </div>
         </section>
-        <section className="w-1/2 m-5 bg-grayLi rounded-t-2xl">
+        <section className="w-1/2 m-5 bg-grayLi rounded-2xl">
           <h1 className="rounded-2xl text-center py-5 bg-gray-dark text-white text-5xl">
             FEMENINO
           </h1>
