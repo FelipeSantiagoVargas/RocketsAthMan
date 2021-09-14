@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4bdfdfb3-a5e0-4f68-b0b9-c8bccd44838d",
+		"_postman_id": "65c9a8d5-9860-4256-9593-c253e444b682",
 		"name": "Rockets AthMan",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -21,12 +21,12 @@
 							{
 								"key": "x-access-token",
 								"type": "text",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZjliNDhjMDE0ZjVjYTgwNmFmNWE3ZCIsImlhdCI6MTYyNjk3NzQyMCwiZXhwIjoxNjI3MDYzODIwfQ.V9snGgXrs-z6D_S8AD4c0CxzNl00YIzi-M-niiFYkgM"
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYyOTc1OTAxNCwiZXhwIjoxNjI5ODQ1NDE0fQ.RS7_VdC6rUbwQMQyf8_1dWLjoDrmzDzRTv7AZLP2C10"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"imgUrl\":\"Felipe\",\n    \"name\":\"Felipe\",\n    \"lastName\": \"Vargas\",\n    \"gender\": \"Male\",\n    \"birthday\": \"29-05-2001\",\n    \"documentId\": \"1002567487\",\n    \"phone\": \"3224549893\",\n    \"address\": \"Calle 12\",\n    \"position\": \"QB\",\n    \"height\": \"1.74cm\",\n    \"weight\": \"70kg\",\n    \"eps\": \"Locura\",\n    \"user\":{\n        \"username\":\"Felipe\",\n        \"email\":\"felipee@gmail.com\",\n        \"password\":\"felipe\"\n    }\n}"
+							"raw": "{\n    \"imgUrl\":\"Felipe\",\n    \"name\":\"Felipe\",\n    \"lastName\": \"Vargas\",\n    \"gender\": \"Male\",\n    \"birthday\": \"29-05-2001\",\n    \"documentId\": \"1002567487\",\n    \"phone\": \"3224549893\",\n    \"address\": \"Calle 12\",\n    \"position\": \"QB\",\n    \"height\": \"1.74cm\",\n    \"weight\": \"70kg\",\n    \"eps\": \"Locura\",\n    \"username\":\"Santiago\",\n    \"email\":\"felipesan@gmail.com\",\n    \"password\":\"felipe\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:4000/api/players",
@@ -263,6 +263,230 @@
 								"api",
 								"auth",
 								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "proofs",
+			"item": [
+				{
+					"name": "/proofs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMTU1MzM5OCwiZXhwIjoxNjMxNjM5Nzk4fQ.WYDLseDpCcgQyuOvTEL5ogPWbWK_d6fGSWChMDgRbwY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"40yd\",\n    \"unitMeasure\": \"seconds\",\n    \"proofType\": \"speed\",\n    \"description\": \"The best test\",\n    \"rateMale\": 5,\n    \"rateFemale\": 6\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/proofs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"proofs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/proofs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMTU1MzM5OCwiZXhwIjoxNjMxNjM5Nzk4fQ.WYDLseDpCcgQyuOvTEL5ogPWbWK_d6fGSWChMDgRbwY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"40yd\",\n    \"unitMeasure\": \"seconds\",\n    \"proofType\": \"speed\",\n    \"description\": \"The best test\",\n    \"rateMale\": 5,\n    \"rateFemale\": 6\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/proofs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"proofs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/proofs/addResult/:proofId",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMTU1MzM5OCwiZXhwIjoxNjMxNjM5Nzk4fQ.WYDLseDpCcgQyuOvTEL5ogPWbWK_d6fGSWChMDgRbwY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"playerId\":\"61242af29764d47de5b36a93\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/proofs/addResult/613ffa879067d0f49e28ef48",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"proofs",
+								"addResult",
+								"613ffa879067d0f49e28ef48"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/proofs/:proofId",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMTU1MzM5OCwiZXhwIjoxNjMxNjM5Nzk4fQ.WYDLseDpCcgQyuOvTEL5ogPWbWK_d6fGSWChMDgRbwY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"vertical jump\",\n    \"unitMeasure\": \"meters\",\n    \"proofType\": \"jump\",\n    \"description\": \"The best jump test\",\n    \"rateMale\": 5,\n    \"rateFemale\": 6\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/proofs/613ffa879067d0f49e28ef48",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"proofs",
+								"613ffa879067d0f49e28ef48"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/proofs/:proofId Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMTU1MzM5OCwiZXhwIjoxNjMxNjM5Nzk4fQ.WYDLseDpCcgQyuOvTEL5ogPWbWK_d6fGSWChMDgRbwY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"40yd\",\n    \"unitMeasure\": \"seconds\",\n    \"proofType\": \"speed\",\n    \"description\": \"The best test\",\n    \"rateMale\": 5,\n    \"rateFemale\": 6\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/proofs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"proofs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/proofs/:proofId",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMTU1MzM5OCwiZXhwIjoxNjMxNjM5Nzk4fQ.WYDLseDpCcgQyuOvTEL5ogPWbWK_d6fGSWChMDgRbwY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"40yd\",\n    \"unitMeasure\": \"seconds\",\n    \"proofType\": \"speed\",\n    \"description\": \"The best test\",\n    \"rateMale\": 5,\n    \"rateFemale\": 6\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/proofs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"proofs"
 							]
 						}
 					},
