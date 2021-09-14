@@ -1,21 +1,22 @@
 import { Schema, model } from "mongoose";
 
 const playerSchema = new Schema({
-    imgUrl:String,
-    name:String,
-    lastName: String,
-    gender: String,
-    birthday: String,
+    imgUrl: {type: String},
+    name: {type: String,required: true},
+    lastName: {type: String,required: true},
+    gender: {type: String,required: true},
+    birthday: {type: String,required: true},
     documentId: {type: String,unique: true},
-    phone: String,
-    address: String,
-    position: String,
-    height: String,
-    weight: String,
-    eps: String,
+    phone: {type: String,required: true},
+    address: {type: String,required: true},
+    position: {type: String},
+    height: {type: String,required: true},
+    weight: {type: String,required: true},
+    eps: {type: String,required: true},
     user:{
         ref: "User",
         type: Schema.Types.ObjectId,
+        required: true
     }
 },{
     timestamps : true,
