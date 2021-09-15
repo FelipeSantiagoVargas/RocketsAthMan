@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../../components/header";
+import Carrousel from "../../components/carrousel";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -58,6 +59,7 @@ export default function Home() {
           </p>
         </section>
       </div>
+      <Carrousel />
     </div>
   );
 }
