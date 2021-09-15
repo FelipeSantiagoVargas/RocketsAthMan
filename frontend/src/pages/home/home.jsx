@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <div className="flex bg-gray">
+      <div className="flex bg-gray flex-wrap">
         <section className="w-1/2 p-12">
           <h3 className="text-gray font-bold tracking-widest">
             EQUIPO DE FOOTBALL FLAG
@@ -41,6 +41,22 @@ export default function Home() {
           src="https://i.ibb.co/W2dtvgc/right-main.png"
           alt="logo Rockets Athman"
         />
+        <img
+          className="w-1/2 border-1"
+          src="https://i.ibb.co/7RKZL1W/left-Main.png"
+          alt="logo Rockets Athman"
+        />
+        <section className="w-1/2 p-12">
+          <h1 className="text-6xl text-red text-right my-2">CONÓCENOS</h1>
+          <p className="text-2xl text-black text-right font-light my-2">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+            vulputate lorem vitae faucibus porttitor. Suspendisse faucibus nibh
+            condimentum leo luctus iaculis. Donec vitae nulla efficitur,
+            pulvinar tellus sed, venenatis dui. Proin facilisis placerat porta.
+            Vivamus pretium lorem in nunc vehicula, at euismod enim euismod.
+            Phasellus vitae luctus justo.
+          </p>
+        </section>
       </div>
     </div>
   );
