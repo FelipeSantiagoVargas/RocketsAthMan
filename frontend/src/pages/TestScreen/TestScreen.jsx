@@ -16,6 +16,8 @@ const headers = {
 export default function TestScreen(props) {
 
   const [tests, setTests] = useState([]);
+  const [testList, setTestList] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +26,7 @@ export default function TestScreen(props) {
           "http://3.238.91.249:4000/api/proofs", { headers: headers}
         )
         setTests(data)     
+        setTestList(data)
         console.log(JSON.stringify(data))   
       } catch (err) { }
     }
@@ -31,10 +34,40 @@ export default function TestScreen(props) {
     
   }, [])
 
+  const handleChange = e => {
+    setSearch(e.target.value);
+    filterValues(e.target.value);
+  }
+
+  const filterValues = (searchValue) => {
+    var searchResult = testList.filter((value) => {
+      if (value.name.toString().toLowerCase().includes(searchValue.toLowerCase())) {
+        return value;
+      }
+      return undefined;
+    })
+    setTests(searchResult);
+  }
+
   return (
 
     <div className="custom-font-bold">
       <div className="p-5 m-5 flex flex-row justify-between rounded-3xl bg-grayLi">
+
+      <div className="flex content-center justify-center items-center mr-2 h-16 w-1/3 bg-red-dark font-semibold rounded-xl px-3 py-1 border-2 border-red-dark">
+          <input className="text-black w-1/2 border-2 h-8 border-black rounded pl-3" value={search}
+            placeholder="Buscar jugadores"
+            onChange={handleChange}
+          />
+
+          <FontAwesomeIcon
+            id="disabledButton"
+            className="ml-2 text-white"
+            icon={["fas", "search"]}
+            size="1x"
+          />
+
+        </div>
 
 
         <button
