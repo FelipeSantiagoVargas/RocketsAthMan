@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import Cookies from "universal-cookie";
 
 import "./registerPlayer.css";
 
 const url = "http://3.238.91.249:4000/api/players";
 
+const cookies = new Cookies();
+
 const headers = {
   'Content-Type': 'application/json',
-  'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMTY4MDc3MywiZXhwIjoxNjMxNzY3MTczfQ.A-O3t-HjsSuqNtIWhxq9TRdthGwfa9x4nhMxf9vAaXM'
+  'x-access-token': cookies.get("token")
 }
 
 const validate = values => {

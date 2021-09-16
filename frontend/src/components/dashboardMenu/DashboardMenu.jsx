@@ -15,9 +15,26 @@ import TestCardComp from "../TestCardComp/TestCardComp";
 import CreateTest from "../../pages/CreateTest"
 
 
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 export default function DashboardMenu(props) {
+
   let { path } = useRouteMatch();
+
+  function logOut() {
+    cookies.remove("token")
+    window.location.href = "/";
+  }
+
+  function tokenValidate() {
+    if (cookies.get("token") == undefined) {
+
+    }
+  }
+
+  tokenValidate();
 
   return (
     <div className="header relative w-full min-h-screen flex">
@@ -46,6 +63,9 @@ export default function DashboardMenu(props) {
           </a>
           <a className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-dark text-white">
             Femenino
+          </a>
+          <a onClick={logOut} className="block py-2.5 px-4 transition duration-200 hover:bg-gray-dark text-white">
+            Cerrar sesión
           </a>
         </nav>
         <Link to="/dashboard/test">
