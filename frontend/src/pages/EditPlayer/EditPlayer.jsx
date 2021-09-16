@@ -10,8 +10,7 @@ const url =
 
 const headers = {
   "Content-Type": "application/json",
-  "x-access-token":
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2I5MThkOGI2MzhmODI2OWEyYWVjMSIsImlhdCI6MTYzMTI5MzgzNywiZXhwIjoxNjMxMzgwMjM3fQ.bjkFmOdhYkaXK_bWlit9PHxkQYQn2rPDnYd-ML9MwPw",
+  "x-access-token": cookies.get("token")
 };
 
 const validate = (values) => {
@@ -95,7 +94,6 @@ export default class registerPlayer extends Component {
     fetch(url)
       .then(response => response.json())
       .then((responseData) => {
-        console.log(responseData);
         document.getElementById("name").value = responseData.name;
         document.getElementById("phone").value = responseData.phone;
         document.getElementById("lastName").value = responseData.lastName;
@@ -122,8 +120,9 @@ export default class registerPlayer extends Component {
           "documentId": responseData.documentId,
           "eps": responseData.eps
         })
-        console.log(this.state);
-      }).catch(console.log('error'));
+      }).catch((error) => {
+        console.log(error.message);
+      });
   }
 
   handleChange = ({ target }) => {
@@ -140,7 +139,6 @@ export default class registerPlayer extends Component {
 
     if (!Object.keys(result).length) {
       delete this.state["errors"];
-      console.log(this.state);
       axios
         .put(url, this.state, { headers: headers })
         .then((response) => {

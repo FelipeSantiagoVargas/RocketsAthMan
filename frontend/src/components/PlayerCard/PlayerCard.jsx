@@ -12,7 +12,7 @@ const url = "http://3.238.91.249:4000/api/players/"
 
 const headers = {
   'Content-Type': 'application/json',
-  'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2I5MThkOGI2MzhmODI2OWEyYWVjMSIsImlhdCI6MTYzMTI5MzgzNywiZXhwIjoxNjMxMzgwMjM3fQ.bjkFmOdhYkaXK_bWlit9PHxkQYQn2rPDnYd-ML9MwPw'
+  'x-access-token': cookies.get("token")
 }
 
 export default function PlayerCard(props) {
@@ -24,11 +24,8 @@ export default function PlayerCard(props) {
   }
 
   function deletePlayer() {
-
-    console.log(props.player._id)
-    const answer = window.confirm("Desea eliminar el jugador?")
+    const answer = window.confirm("¿Desea eliminar el jugador?")
     if (answer) {
-
       Axios.delete(url + props.player._id, { headers: headers })
         .then((res) => {
           window.alert("Jugador eliminado");
@@ -38,9 +35,18 @@ export default function PlayerCard(props) {
           console.log(error)
         })
     }
-
   }
 
+  function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
 
   return (
     <div>
@@ -52,9 +58,9 @@ export default function PlayerCard(props) {
           {name}
         </p>
         <div className="flex flex-col text-base leading-6 mx-6 text-gray-700 sm:text-lg sm:leading-7 mb-3">
-          <p>Estatura: {height}</p>
-          <p>Peso: {weight}</p>
-          <p>Edad: {birthday}</p>
+          <p>Estatura: {height} cm</p>
+          <p>Peso: {weight} kg</p>
+          <p>Edad: {getAge(birthday)} años</p>
         </div>
         <div className="border-solid border-red-800 border-2 rounded-b-lg text-white p-3 text-center transition-all duration-500">
           <button
