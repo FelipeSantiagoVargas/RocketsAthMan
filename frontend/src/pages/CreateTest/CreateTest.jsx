@@ -4,11 +4,15 @@ import axios from "axios";
 
 import "./CreateTest.css";
 
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
+
 const url = "http://3.238.91.249:4000/api/proofs";
 
 const headers = {
   'Content-Type': 'application/json',
-  'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMTY4MDc3MywiZXhwIjoxNjMxNzY3MTczfQ.A-O3t-HjsSuqNtIWhxq9TRdthGwfa9x4nhMxf9vAaXM'
+  'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMTgwODIyMiwiZXhwIjoxNjMxODk0NjIyfQ.Go2vR8da9H__Gw6o1vJhugXAWULtlEu4ST-5agZi5wM"
 }
 
 const validate = values => {
@@ -18,24 +22,24 @@ const validate = values => {
   } else if (values.name.length > 100) {
     errors.name = 'El nombre debe tener menos de 100 caracteres';
   }
-  if (!values.testType) {
-    errors.testType = 'Se debe escoger una opción';
+  if (!values.proofType) {
+    errors.proofType = 'Se debe escoger una opción';
   }
-  if (!values.measurement) {
-    errors.measurement = 'Se debe escoger una opción';
+  if (!values.unitMeasure) {
+    errors.unitMeasure = 'Se debe escoger una opción';
   }  
-  const estimateM = parseInt(values.estimateM);
-  if (!values.estimateM) {
-    errors.estimateM = "Campo obligatorio";
-  } else if (estimateM > 300 || estimateM < 1) {
-    errors.estimateM = "La estimación debe ser positiva";
+  const rateMale = parseInt(values.rateMale);
+  if (!values.rateMale) {
+    errors.rateMale = "Campo obligatorio";
+  } else if (rateMale > 300 || rateMale < 1) {
+    errors.rateMale = "La estimación debe ser positiva";
   }
 
-  const estimateF = parseInt(values.estimateF);
-  if (!values.estimateF) {
-    errors.estimateF = "Campo obligatorio";
-  } else if (estimateF > 300 || estimateF < 1) {
-    errors.estimateF = "La estimación debe ser positiva";
+  const rateFemale = parseInt(values.rateFemale);
+  if (!values.rateFemale) {
+    errors.rateFemale = "Campo obligatorio";
+  } else if (rateFemale > 300 || rateFemale < 1) {
+    errors.rateFemale = "La estimación debe ser positiva";
   }  
   return errors;
 }
@@ -63,7 +67,9 @@ export default class CreateTest extends Component {
       delete this.state['errors'];
       console.log(this.state);
       axios.post(url, this.state, { headers: headers }).then(response => {
-        window.location.href = "./";
+        window.location.href = "/dashboard/test";
+        console.log("Posteado")
+        console.log(this.state)
       }).catch(error => {
         console.log("Ya existe un usuario con ese documento y/o correo electrónico");
       })
@@ -97,8 +103,8 @@ export default class CreateTest extends Component {
             <div className="mb-4 text-gray-700">
               <span> Tipo de Prueba </span>
               <select
-                id="testType"
-                name="testType"
+                id="proofType"
+                name="proofType"
                 onChange={this.handleChange}
                 className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50"
                 defaultValue="DEFAULT"
@@ -126,8 +132,8 @@ export default class CreateTest extends Component {
             <div className="mb-4 text-gray-700">
               <span> Unidad de medida </span>
               <select
-                id="measurement"
-                name="measurement"
+                id="unitMeasure"
+                name="unitMeasure"
                 onChange={this.handleChange}
                 className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50"
                 defaultValue="DEFAULT"
@@ -157,8 +163,8 @@ export default class CreateTest extends Component {
                 max="300"
                 className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
                 placeholder="Estimación"
-                name="estimateM"
-                id="estimateM"
+                name="rateMale"
+                id="rateMale"
                 onChange={this.handleChange}
                 required
               />
@@ -177,8 +183,8 @@ export default class CreateTest extends Component {
                 max="300"
                 className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
                 placeholder="Estimación"
-                name="estimateF"
-                id="estimateF"
+                name="rateFemale"
+                id="rateFemale"
                 onChange={this.handleChange}
                 required
               />
@@ -195,8 +201,8 @@ export default class CreateTest extends Component {
                 type="text"
                 className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
                 placeholder="Descripción"
-                name="desc"
-                id="desc"
+                name="description"
+                id="description"
                 onChange={this.handleChange}
                 required
               />

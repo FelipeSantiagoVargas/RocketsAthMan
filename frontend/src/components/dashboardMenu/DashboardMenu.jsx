@@ -13,7 +13,7 @@ import EditPlayer from "../../pages/EditPlayer";
 import TestScreen from "../../pages/TestScreen";
 import TestCardComp from "../TestCardComp/TestCardComp";
 import CreateTest from "../../pages/CreateTest"
-
+import EditTest from "../../pages/EditTest"
 
 import Cookies from "universal-cookie";
 
@@ -90,7 +90,10 @@ export default function DashboardMenu(props) {
             </Route>
             <Route path={`${path}/editplayer`}>
               <h1 className="text-6xl text-white">EDITAR JUGADOR</h1>
-            </Route>            
+            </Route> 
+            <Route path={`${path}/edit-proof`}>
+              <h1 className="text-6xl text-white">EDITAR PRUEBA</h1>
+            </Route>           
             <Route path={`${path}/test`}>
               <h1 className="text-6xl text-white">PRUEBAS DE RENDIMIENTO</h1>
             </Route>  
@@ -105,9 +108,10 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/card`} component={PlayerCard} />
             <Route path={`${path}/testcard`} component={TestCardComp} />
             <Route path={`${path}/registerplayer`} component={registerPlayer} />
-            <Route path={`${path}/create-test`} component={CreateTest} />
-            <Route path={`${path}/editplayer`} component={EditPlayer} />            
-            
+            <Route path={`${path}/create-test`} component={CreateTest} />            
+            <Route path={`${path}/editplayer`} component={EditPlayer} />
+            <Route path={`${path}/edit-proof`} component={EditTest} />         
+                         
             <Route path={`${path}/test`} component={TestScreen} />
             <Route path={`${path}*`} component={PlayersScreen} />            
           </Switch>

@@ -4,10 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TestCardComp from "../../components/TestCardComp/TestCardComp";
 
 import "./TestScreen.css";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 const headers = {
   'Content-Type': 'application/json',
-  'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMTc2OTYxMSwiZXhwIjoxNjMxODU2MDExfQ.4vZ8EsEB3Pk2fPyqRYwm9yXsqy1oE9Exr9rr0ayDuNw'
+  'x-access-token': cookies.get("token")
 }
 
 export default function TestScreen(props) {
