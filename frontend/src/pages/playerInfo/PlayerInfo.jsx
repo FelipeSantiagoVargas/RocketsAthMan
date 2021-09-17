@@ -37,9 +37,7 @@ export default function PlayerInfo(props) {
   fetch(myRequest)
     .then(response => response.json())
     .then((responseData) => {
-      var parElement = document.getElementById("myPar");
-      var textToAdd = document.createTextNode("Text to be added");
-      parElement.appendChild(textToAdd);
+
 
     }).catch((error) => {
       console.log(error.message);
@@ -54,7 +52,6 @@ export default function PlayerInfo(props) {
           FECHA DE NACIMIENTO
         </p>
         <p id="birthday">
-          {birthDay}
         </p>
 
       </div>
