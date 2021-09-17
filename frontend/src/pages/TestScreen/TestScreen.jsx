@@ -23,15 +23,14 @@ export default function TestScreen(props) {
     const fetchData = async () => {
       try {
         const { data } = await Axios.get(
-          "http://3.238.91.249:4000/api/proofs", { headers: headers}
+          "http://3.238.91.249:4000/api/proofs", { headers: headers }
         )
-        setTests(data)     
+        setTests(data)
         setTestList(data)
-        console.log(JSON.stringify(data))   
       } catch (err) { }
     }
-    fetchData()    
-    
+    fetchData()
+
   }, [])
 
   const handleChange = e => {
@@ -54,9 +53,9 @@ export default function TestScreen(props) {
     <div className="custom-font-bold">
       <div className="p-5 m-5 flex flex-row justify-between rounded-3xl bg-grayLi">
 
-      <div className="flex content-center justify-center items-center mr-2 h-16 w-1/3 bg-red-dark font-semibold rounded-xl px-3 py-1 border-2 border-red-dark">
+        <div className="flex content-center justify-center items-center mr-2 h-16 w-1/3 bg-red-dark font-semibold rounded-xl px-3 py-1 border-2 border-red-dark">
           <input className="text-black w-1/2 border-2 h-8 border-black rounded pl-3" value={search}
-            placeholder="Buscar jugadores"
+            placeholder="Buscar pruebas"
             onChange={handleChange}
           />
 

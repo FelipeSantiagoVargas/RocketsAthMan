@@ -182,7 +182,7 @@ export default class registerPlayer extends Component {
             </div>
 
             <div className="mb-4 text-gray-700">
-              <span>Telefono</span>
+              <span>Teléfono</span>
               <input
                 className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
                 type="text"

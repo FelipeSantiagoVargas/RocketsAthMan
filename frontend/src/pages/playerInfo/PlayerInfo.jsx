@@ -1,103 +1,113 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Axios from "axios";
-import PlayerCard from "../../components/PlayerCard/PlayerCard";
+import picture from "../../assets/profile_picture.jpg";
 
-import "./PlayersScreen.css";
+import Cookies from "universal-cookie";
+import "./PlayerInfo.css";
 
+const cookies = new Cookies();
 
-export default function PlayersScreen(props) {
+export default function PlayerInfo(props) {
+  const url = "http://3.238.91.249:4000/api/users/player/" + props.match.params.playerid;
 
-  const [players, setPlayers] = useState([]);
-  const [playersCardList, setPlayersCardList] = useState([]);
-  const [search, setSearch] = useState("");
+  const [player, setPlayer] = useState("");
+
+  var myInit = {
+    method: 'GET',
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "x-access-token": cookies.get("token")
+    }),
+    mode: 'cors',
+    cache: 'default'
+  };
+
+  var myRequest = new Request(url, myInit);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await Axios.get(
-          "http://3.238.91.249:4000/api/players"
-        );
-        setPlayers(data);
-        setPlayersCardList(data);
-      } catch (err) { }
-    };
-    fetchData();
-  }, []);
+    fetch(myRequest)
+      .then(response => response.json())
+      .then((responseData) => {
+        if (responseData) {
+          setPlayer(responseData);
+        } else {
+          console.log("datos vacíos");
+        }
+      }).catch((error) => {
+        console.log(error.message);
+      })
+  }, [url]);
 
-  const handleChange = e => {
-    setSearch(e.target.value);
-    filterValues(e.target.value);
-  }
-
-  const filterValues = (searchValue) => {
-    var searchResult = playersCardList.filter((value) => {
-      if (value.name.toString().toLowerCase().includes(searchValue.toLowerCase())) {
-        return value;
-      }
-      return undefined;
-    })
-    setPlayers(searchResult);
-  }
+  console.log(player);
 
   return (
-    <div className="custom-font-bold">
-      <div className="p-5 m-5 flex flex-row justify-between rounded-3xl bg-grayLi">
-        <div className="flex content-center justify-center items-center mr-2 h-16 w-1/3 bg-red-dark font-semibold rounded-xl px-3 py-1 border-2 border-red-dark">
-          <input className="text-black w-1/2 border-2 h-8 border-black rounded pl-3" value={search}
-            placeholder="Buscar jugadores"
-            onChange={handleChange}
-          />
-
-          <FontAwesomeIcon
-            id="disabledButton"
-            className="ml-2 text-white"
-            icon={["fas", "search"]}
-            size="1x"
-          />
-
+    <div className="flex justify-center">
+      <div className="block content-center justify-center items-center">
+        <div className="relative content-center justify-center items-center" >
+          <img src={picture} alt="" className="w-80 rounded-full mx-10 mt-10" />
+          <h1 className="text-gray-600 mt-5 text-4xl text-center">
+            {player.name.toUpperCase()}
+          </h1>
+          <h1 className="text-gray-600 text-center">
+            {player.position}
+          </h1>
         </div>
 
-        <button
-          type="button"
-          onClick={() => (window.location.href = "/dashboard/registerplayer")}
-          className="mr-2 h-16 w-1/3 bg-red-dark font-semibold text-white rounded-xl px-3 py-1 border-2 border-red-dark"
-        >
-          REGISTRAR JUGADORES
-          <FontAwesomeIcon
-            className="flex-1 ml-1"
-            icon={["fas", "user-plus"]}
-            size="1x"
-          />
-        </button>
-      </div>
 
-      <div className="flex flex-row">
-        <section className="w-1/2 m-5 bg-grayLi rounded-2xl">
-          <h1 className="rounded-2xl text-center py-5 bg-gray-dark text-white text-5xl">
-            MASCULINO
+        <div className="flex justify-center space-x-20 ">
+          <h1 className="text-gray-600">
+            Peso: {player.weight} kg
           </h1>
-          <div className="w-full flex flex-wrap">
-            {players
-              .filter((players) => players.gender.includes("Male"))
-              .map((player) => (
-                <PlayerCard key={player._id} player={player} />
-              ))}
-          </div>
-        </section>
-        <section className="w-1/2 m-5 bg-grayLi rounded-2xl">
-          <h1 className="rounded-2xl text-center py-5 bg-gray-dark text-white text-5xl">
-            FEMENINO
+          <h1 className="text-gray-600">
+            Altura: {player.height} cm
           </h1>
-          <div className="w-full flex flex-wrap">
-            {players
-              .filter((players) => players.gender.includes("Female"))
-              .map((player) => (
-                <PlayerCard key={player._id} player={player} />
-              ))}
-          </div>
-        </section>
+        </div>
       </div>
-    </div>
+      <div className="w-1/3 bg-gray-300 mx-10 mt-10 py-10 pl-10 rounded-2xl ">
+        <p >
+          FECHA DE NACIMIENTO
+        </p>
+        <p className="mb-2 text-gray-600">
+          {player.birthday}
+        </p>
+
+        <p>
+          CORREO ELECTRÓNICO
+        </p>
+        <p className="mb-2 text-gray-600">
+          correo@gmail.com
+        </p>
+
+        <p>
+          DOCUMENTO
+        </p>
+        <p className="mb-2 text-gray-600">
+          {player.documentId}
+
+        </p>
+
+        <p>
+          EPS
+        </p>
+        <p className="mb-2 text-gray-600">
+          {player.eps}
+        </p>
+
+
+        <p>
+          DIRECCIÓN
+        </p >
+        <p className="mb-2 text-gray-600">
+          {player.address}
+        </p>
+
+        <p>
+          TELÉFONO
+        </p>
+        <p className="text-gray-600">
+          {player.phone}
+        </p>
+      </div>
+    </div >
   );
 }

@@ -12,7 +12,7 @@ const url = "http://3.238.91.249:4000/api/proofs";
 
 const headers = {
   'Content-Type': 'application/json',
-  'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMTgwODIyMiwiZXhwIjoxNjMxODk0NjIyfQ.Go2vR8da9H__Gw6o1vJhugXAWULtlEu4ST-5agZi5wM"
+  'x-access-token': cookies.get("token")
 }
 
 const validate = values => {
@@ -27,7 +27,7 @@ const validate = values => {
   }
   if (!values.unitMeasure) {
     errors.unitMeasure = 'Se debe escoger una opción';
-  }  
+  }
   const rateMale = parseInt(values.rateMale);
   if (!values.rateMale) {
     errors.rateMale = "Campo obligatorio";
@@ -40,7 +40,7 @@ const validate = values => {
     errors.rateFemale = "Campo obligatorio";
   } else if (rateFemale > 300 || rateFemale < 1) {
     errors.rateFemale = "La estimación debe ser positiva";
-  }  
+  }
   return errors;
 }
 
@@ -71,7 +71,7 @@ export default class CreateTest extends Component {
         console.log("Posteado")
         console.log(this.state)
       }).catch(error => {
-        console.log("Ya existe un usuario con ese documento y/o correo electrónico");
+        console.log("Ya existe una prueba con ese documento y/o correo electrónico");
       })
     }
   }
@@ -80,138 +80,138 @@ export default class CreateTest extends Component {
     const { errors } = this.state;
     return (
       <div className="w-full min-h-screen pl-20 pr-20 bg-auto object-fill back-image">
-        <form className = "mt-4">
-          
-            <div className="z-0 mb-4 text-gray-700">
-              <span>Nombre de la Prueba</span>
-              <input
-                className="z-10 block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Nombre"
-                onChange={this.handleChange}
-                required
-              />
-              {errors.name && (
-                <span className="ml-3 text-md text-red" id="passwordHelp">
-                  {errors.name}
-                </span>
-              )}
-            </div>
+        <form className="mt-4">
 
-            <div className="mb-4 text-gray-700">
-              <span> Tipo de Prueba </span>
-              <select
-                id="proofType"
-                name="proofType"
-                onChange={this.handleChange}
-                className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50"
-                defaultValue="DEFAULT"
-                required
-              >
-                <option value="DEFAULT" disabled defaultValue>
-                  Tipo
-                </option>
-                <option value="agility">agility</option>
-                <option value="speed">speed</option>
-                <option value="resistance">resistance</option>
-                <option value="catching">catching</option>
-                <option value="strength">strength</option>
-                <option value="jump">jump</option>
-                <option value="power">power</option>
-                <option value="other">other</option>
-              </select>
-              {errors.testType && (
-                <span className="ml-3 text-md text-red" id="passwordHelp">
-                  {errors.testType}
-                </span>
-              )}
-            </div>
+          <div className="z-0 mb-4 text-gray-700">
+            <span>Nombre de la Prueba</span>
+            <input
+              className="z-10 block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Nombre"
+              onChange={this.handleChange}
+              required
+            />
+            {errors.name && (
+              <span className="ml-3 text-md text-red" id="passwordHelp">
+                {errors.name}
+              </span>
+            )}
+          </div>
 
-            <div className="mb-4 text-gray-700">
-              <span> Unidad de medida </span>
-              <select
-                id="unitMeasure"
-                name="unitMeasure"
-                onChange={this.handleChange}
-                className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50"
-                defaultValue="DEFAULT"
-                required
-              >
-                <option value="DEFAULT" disabled defaultValue>
-                  Unidad
-                </option>
-                <option value="seconds">seconds</option>
-                <option value="meters">meters</option>
-                <option value="reps">reps</option>
-                <option value="other">other</option>
-              </select>
-              {errors.measurement && (
-                <span className="ml-3 text-md text-red" id="passwordHelp">
-                  {errors.measurement}
-                </span>
-              )}
-            </div>
+          <div className="mb-4 text-gray-700">
+            <span> Tipo de Prueba </span>
+            <select
+              id="proofType"
+              name="proofType"
+              onChange={this.handleChange}
+              className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50"
+              defaultValue="DEFAULT"
+              required
+            >
+              <option value="DEFAULT" disabled defaultValue>
+                Tipo
+              </option>
+              <option value="agility">agility</option>
+              <option value="speed">speed</option>
+              <option value="resistance">resistance</option>
+              <option value="catching">catching</option>
+              <option value="strength">strength</option>
+              <option value="jump">jump</option>
+              <option value="power">power</option>
+              <option value="other">other</option>
+            </select>
+            {errors.testType && (
+              <span className="ml-3 text-md text-red" id="passwordHelp">
+                {errors.testType}
+              </span>
+            )}
+          </div>
+
+          <div className="mb-4 text-gray-700">
+            <span> Unidad de medida </span>
+            <select
+              id="unitMeasure"
+              name="unitMeasure"
+              onChange={this.handleChange}
+              className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50"
+              defaultValue="DEFAULT"
+              required
+            >
+              <option value="DEFAULT" disabled defaultValue>
+                Unidad
+              </option>
+              <option value="seconds">seconds</option>
+              <option value="meters">meters</option>
+              <option value="reps">reps</option>
+              <option value="other">other</option>
+            </select>
+            {errors.measurement && (
+              <span className="ml-3 text-md text-red" id="passwordHelp">
+                {errors.measurement}
+              </span>
+            )}
+          </div>
 
 
-            <div className="mb-4 text-gray-700">
-              <span>Estimación Equipo Masculino</span>
-              <input
-                type="number"
-                min="1"
-                max="300"
-                className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
-                placeholder="Estimación"
-                name="rateMale"
-                id="rateMale"
-                onChange={this.handleChange}
-                required
-              />
-              {errors.estimateM && (
-                <span className="ml-3 text-md text-red" id="passwordHelp">
-                  {errors.estimateM}
-                </span>
-              )}
-            </div>
+          <div className="mb-4 text-gray-700">
+            <span>Estimación Equipo Masculino</span>
+            <input
+              type="number"
+              min="1"
+              max="300"
+              className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
+              placeholder="Estimación"
+              name="rateMale"
+              id="rateMale"
+              onChange={this.handleChange}
+              required
+            />
+            {errors.estimateM && (
+              <span className="ml-3 text-md text-red" id="passwordHelp">
+                {errors.estimateM}
+              </span>
+            )}
+          </div>
 
-            <div className="mb-4 text-gray-700">
-              <span>Estimación Equipo Femenino</span>
-              <input
-                type="number"
-                min="1"
-                max="300"
-                className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
-                placeholder="Estimación"
-                name="rateFemale"
-                id="rateFemale"
-                onChange={this.handleChange}
-                required
-              />
-              {errors.estimateF && (
-                <span className="ml-3 text-md text-red" id="passwordHelp">
-                  {errors.estimateF}
-                </span>
-              )}
-            </div>
+          <div className="mb-4 text-gray-700">
+            <span>Estimación Equipo Femenino</span>
+            <input
+              type="number"
+              min="1"
+              max="300"
+              className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
+              placeholder="Estimación"
+              name="rateFemale"
+              id="rateFemale"
+              onChange={this.handleChange}
+              required
+            />
+            {errors.estimateF && (
+              <span className="ml-3 text-md text-red" id="passwordHelp">
+                {errors.estimateF}
+              </span>
+            )}
+          </div>
 
-            <div className="mb-4 text-gray-700">
-              <span>Descripción (Opcional)</span>
-              <textarea
-                type="text"
-                className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
-                placeholder="Descripción"
-                name="description"
-                id="description"
-                onChange={this.handleChange}
-                required
-              />
-              {errors.height && (
-                <span className="ml-3 text-md text-red" id="passwordHelp">
-                  {errors.height}
-                </span>
-              )}
-            </div>            
+          <div className="mb-4 text-gray-700">
+            <span>Descripción (Opcional)</span>
+            <textarea
+              type="text"
+              className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
+              placeholder="Descripción"
+              name="description"
+              id="description"
+              onChange={this.handleChange}
+              required
+            />
+            {errors.height && (
+              <span className="ml-3 text-md text-red" id="passwordHelp">
+                {errors.height}
+              </span>
+            )}
+          </div>
         </form>
 
         <div className="flex justify-end">
