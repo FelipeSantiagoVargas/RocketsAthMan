@@ -30,7 +30,7 @@ export default function DashboardMenu(props) {
 
   function tokenValidate() {
     if (cookies.get("token") == undefined) {
-
+      window.location.href = "/";
     }
   }
 
@@ -90,17 +90,17 @@ export default function DashboardMenu(props) {
             </Route>
             <Route path={`${path}/editplayer`}>
               <h1 className="text-6xl text-white">EDITAR JUGADOR</h1>
-            </Route> 
+            </Route>
             <Route path={`${path}/edit-proof`}>
               <h1 className="text-6xl text-white">EDITAR PRUEBA</h1>
-            </Route>           
+            </Route>
             <Route path={`${path}/test`}>
               <h1 className="text-6xl text-white">PRUEBAS DE RENDIMIENTO</h1>
-            </Route>  
+            </Route>
 
             <Route path={`${path}*`} exact>
               <h1 className="text-6xl text-white">JUGADORES</h1>
-            </Route>           
+            </Route>
           </Switch>
         </div>
         <div className="bg-gray min-h-screen w-full">
@@ -108,12 +108,12 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/card`} component={PlayerCard} />
             <Route path={`${path}/testcard`} component={TestCardComp} />
             <Route path={`${path}/registerplayer`} component={registerPlayer} />
-            <Route path={`${path}/create-test`} component={CreateTest} />            
+            <Route path={`${path}/create-test`} component={CreateTest} />
             <Route path={`${path}/editplayer`} component={EditPlayer} />
-            <Route path={`${path}/edit-proof`} component={EditTest} />         
-                         
+            <Route path={`${path}/edit-proof`} component={EditTest} />
+
             <Route path={`${path}/test`} component={TestScreen} />
-            <Route path={`${path}*`} component={PlayersScreen} />            
+            <Route path={`${path}*`} component={PlayersScreen} />
           </Switch>
         </div>
       </div>

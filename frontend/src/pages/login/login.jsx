@@ -86,7 +86,7 @@ export default class Login extends Component {
           <button
             type="button"
             onClick={() => this.iniciarSesion()}
-            className="mr-3 my-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
+            className="mr-3 my-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark shadow hover:shadow-lg"
           >
             Ingresar
             <FontAwesomeIcon
@@ -96,7 +96,6 @@ export default class Login extends Component {
             />
           </button>
           <ModalForgetPassword />
-          <button>¿Olvidaste tu contraseña?</button>
         </div>
       </div>
     );
