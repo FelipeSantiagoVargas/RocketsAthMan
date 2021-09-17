@@ -9,7 +9,8 @@ console.log(connection)
 mongoose.connect(connection,{
     useNewUrlParser: true ,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false,
 })
     .then(db=> console.log('Db is connected'))
     .catch(error=> console.log(error))
