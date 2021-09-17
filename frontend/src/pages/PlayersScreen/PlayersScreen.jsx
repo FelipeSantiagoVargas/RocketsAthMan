@@ -44,7 +44,7 @@ export default function PlayersScreen(props) {
     <div className="custom-font-bold">
       <div className="p-5 m-5 flex flex-row justify-between rounded-3xl bg-grayLi">
         <div className="flex content-center justify-center items-center mr-2 h-16 w-1/3 bg-red-dark font-semibold rounded-xl px-3 py-1 border-2 border-red-dark">
-          <input className="text-black w-1/2 border-2 h-8 border-black rounded pl-3" value={search}
+          <input className="text-black w-1/2 border-2 h-8 border-black rounded pl-3 focus:outline-none" value={search}
             placeholder="Buscar jugadores"
             onChange={handleChange}
           />

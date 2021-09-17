@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import Cookies from "universal-cookie";
-
+import jwt from "jsonwebtoken";
+import ModalForgetPassword from "../../components/ModalForgetPassword/ModalForgetPassword";
 import "./login.css";
+
+const cookies = new Cookies();
 
 const instance = axios.create({
   headers: {
@@ -12,9 +15,9 @@ const instance = axios.create({
 });
 
 const baseUrl = "http://3.238.91.249:4000/api/auth/signin";
-const cookies = new Cookies();
 
 export default class Login extends Component {
+
   state = {
     form: {
       email: "",
@@ -29,7 +32,6 @@ export default class Login extends Component {
         [e.target.name]: e.target.value,
       },
     });
-    console.log(this.state.form);
   };
 
   iniciarSesion = async () => {
@@ -40,6 +42,8 @@ export default class Login extends Component {
       })
       .then((response) => {
         if (response.data.token) {
+          const decoded = jwt.verify(response.data.token, "players-api");
+          console.log(decoded);
           cookies.set("token", response.data.token);
           alert(`Bienvenido ${cookies.get("token")}`);
           window.location.href = "./dashboard";
@@ -82,7 +86,7 @@ export default class Login extends Component {
           <button
             type="button"
             onClick={() => this.iniciarSesion()}
-            className="mr-3 my-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
+            className="mr-3 my-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark shadow hover:shadow-lg"
           >
             Ingresar
             <FontAwesomeIcon
@@ -91,7 +95,7 @@ export default class Login extends Component {
               size="1x"
             />
           </button>
-          <span>¿Olvidaste tu contraseña?</span>
+          <ModalForgetPassword />
         </div>
       </div>
     );
