@@ -2,6 +2,7 @@
 import React from "react";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import "./DashboardMenu.css";
 import { Link } from "react-router-dom";
 
@@ -23,10 +24,21 @@ const cookies = new Cookies();
 
 export default function DashboardMenu(props) {
 
+  var isAdmin = false;
+  const instance = axios.create({
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "x-access-token": cookies.get("token")
+    },
+  });
+
   let { path } = useRouteMatch();
 
   function logOut() {
-    cookies.remove("token")
+    cookies.remove("token");
+    cookies.remove("username");
+    cookies.remove("roles");
+    cookies.remove("email");
     window.location.href = "/";
   }
 
@@ -36,18 +48,42 @@ export default function DashboardMenu(props) {
     }
   }
 
+  function loadUser() {
+    instance.get("http://3.238.91.249:4000/api/users/")
+      .then(response => {
+        var result = response.data.find(obj => {
+          return obj.email === cookies.get("email");
+        });
+        cookies.set("username", result.username);
+        cookies.set("roles", result.roles);
+      }).catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function validateRole() {
+    console.log("validate role: " + cookies.get("roles"));
+    if (cookies.get("roles")) {
+      if (cookies.get("roles").includes("61258e1ba11f773a00be1cb7") || cookies.get("roles").includes("61258e1ba11f773a00be1cb8")) {
+        isAdmin = true;
+      }
+    }
+  }
+
   tokenValidate();
+  validateRole();
+  loadUser();
 
   return (
-    <div className="header relative w-full min-h-screen flex">
-      <div className="relative bg-red min-w-max flex-col items-center">
+    <div className="header relative w-full min-h-screen flex" >
+      <div className="relative bg-red min-w-max flex-col">
         <img
-          className="w-32 rounded-full mx-10 mt-10"
+          className="w-32 align-middle mx-auto rounded-full mt-10"
           src="https://i.ibb.co/WgBTFBj/profile-picture.jpg"
           alt="Profile Photo"
         />
-        <h1 className="text-center px-5 pb-5 text-3xl text-white font-extrabold ">
-          Coach
+        <h1 className="justify-center text-center px-5 pb-5 text-3xl text-white font-extrabold ">
+          {cookies.get("username")}
         </h1>
         <Link to="/dashboard">
           <article className="block p-5 text-2xl text-white font-extrabold bg-gray-dark">
@@ -70,16 +106,18 @@ export default function DashboardMenu(props) {
             Cerrar sesión
           </a>
         </nav>
-        <Link to="/dashboard/test">
-          <article className="block p-5 text-xl text-white font-extrabold bg-gray-dark">
-            <FontAwesomeIcon
-              className="flex-1 mx-2"
-              icon={["fas", "clipboard-list"]}
-              size="1x"
-            />
-            Pruebas de Rendimiento
-          </article>
-        </Link>
+        {isAdmin &&
+          <Link to="/dashboard/test">
+            <article className="block p-5 text-xl text-white font-extrabold bg-gray-dark">
+              <FontAwesomeIcon
+                className="flex-1 mx-2"
+                icon={["fas", "clipboard-list"]}
+                size="1x"
+              />
+              Pruebas de Rendimiento
+            </article>
+          </Link>
+        }
       </div>
       <div className="flex flex-col w-full">
         <div className="bg-gray-dark flex items-center justify-center w-full h-28">
@@ -120,6 +158,6 @@ export default function DashboardMenu(props) {
           </Switch>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
