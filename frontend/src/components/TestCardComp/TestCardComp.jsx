@@ -17,7 +17,7 @@ const headers = {
 
 export default function TestCardComp(props) {
 
-    const { name, rateMale, rateFemale, unitMeasure, proofType, description } = props.test;
+    const { name, rateMale, rateFemale, unitMeasure, proofType } = props.test;
 
     function editTest() {
         cookies.set("testEditId", props.test._id);

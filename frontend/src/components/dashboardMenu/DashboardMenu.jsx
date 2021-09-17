@@ -16,6 +16,7 @@ import CreateTest from "../../pages/CreateTest"
 import EditTest from "../../pages/EditTest"
 
 import Cookies from "universal-cookie";
+import PlayerInfo from "../../pages/playerInfo/PlayerInfo";
 
 const cookies = new Cookies();
 
@@ -97,7 +98,9 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/test`}>
               <h1 className="text-6xl text-white">PRUEBAS DE RENDIMIENTO</h1>
             </Route>
-
+            <Route path={`${path}/player/:playerid`}>
+              <h1 className="text-6xl text-white">JUGADOR</h1>
+            </Route>
             <Route path={`${path}*`} exact>
               <h1 className="text-6xl text-white">JUGADORES</h1>
             </Route>
@@ -111,6 +114,8 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/create-test`} component={CreateTest} />
             <Route path={`${path}/editplayer`} component={EditPlayer} />
             <Route path={`${path}/edit-proof`} component={EditTest} />
+            <Route path={`${path}/player/:playerid`} component={PlayerInfo} />
+
 
             <Route path={`${path}/test`} component={TestScreen} />
             <Route path={`${path}*`} component={PlayersScreen} />

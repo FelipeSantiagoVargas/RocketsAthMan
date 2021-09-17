@@ -2,6 +2,8 @@ import React from "react";
 import picture from "../../assets/profile_picture.jpg";
 import Axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+
 
 import "./PlayerCard.css";
 import Cookies from "universal-cookie";
@@ -36,6 +38,7 @@ export default function PlayerCard(props) {
         })
     }
   }
+  const userUrl = "/dashboard/player/" + props.player.user._id
 
   function getAge(dateString) {
     var today = new Date();
@@ -50,45 +53,50 @@ export default function PlayerCard(props) {
 
   return (
     <div>
-      <div className="custom-font flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52">
-        <div className="flex justify-center">
-          <img src={picture} alt="" className="h-24 w-24 rounded-3xl m-6" />
+      <Link to={userUrl}>
+
+        <div className="custom-font flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52">
+
+          <div className="flex justify-center">
+            <img src={picture} alt="" className="h-24 w-24 rounded-3xl m-6" />
+          </div>
+
+          <p className="text-center text-base leading-6 px-2 pb-2 uppercase">
+            {name}
+          </p>
+          <div className="flex flex-col text-base leading-6 mx-6 text-gray-700 sm:text-lg sm:leading-7 mb-3">
+            <p>Estatura: {height} cm</p>
+            <p>Peso: {weight} kg</p>
+            <p>Edad: {getAge(birthday)} años</p>
+          </div>
+          <div className="border-solid border-red-800 border-2 rounded-b-lg text-white p-3 text-center transition-all duration-500">
+            <button
+              type="button"
+              onClick={editPlayer}
+              className="mr-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
+            >
+              Editar
+              <FontAwesomeIcon
+                className="flex-1 ml-1"
+                icon={["fas", "edit"]}
+                size="1x"
+              />
+            </button>
+            <button
+              type="button"
+              onClick={deletePlayer}
+              className="mr-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
+            >
+              Borrar
+              <FontAwesomeIcon
+                className="flex-1 ml-1"
+                icon={["fas", "trash-alt"]}
+                size="1x"
+              />
+            </button>
+          </div>
         </div>
-        <p className="text-center text-base leading-6 px-2 pb-2 uppercase">
-          {name}
-        </p>
-        <div className="flex flex-col text-base leading-6 mx-6 text-gray-700 sm:text-lg sm:leading-7 mb-3">
-          <p>Estatura: {height} cm</p>
-          <p>Peso: {weight} kg</p>
-          <p>Edad: {getAge(birthday)} años</p>
-        </div>
-        <div className="border-solid border-red-800 border-2 rounded-b-lg text-white p-3 text-center transition-all duration-500">
-          <button
-            type="button"
-            onClick={editPlayer}
-            className="mr-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
-          >
-            Editar
-            <FontAwesomeIcon
-              className="flex-1 ml-1"
-              icon={["fas", "edit"]}
-              size="1x"
-            />
-          </button>
-          <button
-            type="button"
-            onClick={deletePlayer}
-            className="mr-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
-          >
-            Borrar
-            <FontAwesomeIcon
-              className="flex-1 ml-1"
-              icon={["fas", "trash-alt"]}
-              size="1x"
-            />
-          </button>
-        </div>
-      </div>
+      </Link>
     </div>
   );
 }

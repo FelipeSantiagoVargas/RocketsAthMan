@@ -27,7 +27,6 @@ export default function TestScreen(props) {
         )
         setTests(data)
         setTestList(data)
-        console.log(JSON.stringify(data))
       } catch (err) { }
     }
     fetchData()

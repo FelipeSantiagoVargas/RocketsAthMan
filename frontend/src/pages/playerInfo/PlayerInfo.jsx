@@ -1,102 +1,62 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Axios from "axios";
-import PlayerCard from "../../components/PlayerCard/PlayerCard";
+import axios from "axios";
+import Cookies from "universal-cookie";
+import "./PlayerInfo.css";
 
-import "./PlayersScreen.css";
 
+const cookies = new Cookies();
 
-export default function PlayersScreen(props) {
+const headers = {
+  "Content-Type": "application/json",
+  "x-access-token": cookies.get("token")
+};
 
-  const [players, setPlayers] = useState([]);
-  const [playersCardList, setPlayersCardList] = useState([]);
-  const [search, setSearch] = useState("");
+export default function PlayerInfo(props) {
+  const url = "http://3.238.91.249:4000/api/users/player/" + props.match.params.playerid;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await Axios.get(
-          "http://3.238.91.249:4000/api/players"
-        );
-        setPlayers(data);
-        setPlayersCardList(data);
-      } catch (err) { }
-    };
-    fetchData();
-  }, []);
+  // axios.get(url, { headers: headers })
+  //   .then((response) => {
+  //     document.getElementById("birthday").value = response.data.birthday;
+  //     console.log(response.data.birthday);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error.message);
+  //   });
 
-  const handleChange = e => {
-    setSearch(e.target.value);
-    filterValues(e.target.value);
-  }
+  var myInit = {
+    method: 'GET',
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "x-access-token": cookies.get("token")
+    }),
+    mode: 'cors',
+    cache: 'default'
+  };
+  var myRequest = new Request(url, myInit);
+  fetch(myRequest)
+    .then(response => response.json())
+    .then((responseData) => {
+      var parElement = document.getElementById("myPar");
+      var textToAdd = document.createTextNode("Text to be added");
+      parElement.appendChild(textToAdd);
 
-  const filterValues = (searchValue) => {
-    var searchResult = playersCardList.filter((value) => {
-      if (value.name.toString().toLowerCase().includes(searchValue.toLowerCase())) {
-        return value;
-      }
-      return undefined;
-    })
-    setPlayers(searchResult);
-  }
-
+    }).catch((error) => {
+      console.log(error.message);
+    });
   return (
-    <div className="custom-font-bold">
-      <div className="p-5 m-5 flex flex-row justify-between rounded-3xl bg-grayLi">
-        <div className="flex content-center justify-center items-center mr-2 h-16 w-1/3 bg-red-dark font-semibold rounded-xl px-3 py-1 border-2 border-red-dark">
-          <input className="text-black w-1/2 border-2 h-8 border-black rounded pl-3" value={search}
-            placeholder="Buscar jugadores"
-            onChange={handleChange}
-          />
+    <div>
+      <div>
 
-          <FontAwesomeIcon
-            id="disabledButton"
-            className="ml-2 text-white"
-            icon={["fas", "search"]}
-            size="1x"
-          />
-
-        </div>
-
-        <button
-          type="button"
-          onClick={() => (window.location.href = "/dashboard/registerplayer")}
-          className="mr-2 h-16 w-1/3 bg-red-dark font-semibold text-white rounded-xl px-3 py-1 border-2 border-red-dark"
-        >
-          REGISTRAR JUGADORES
-          <FontAwesomeIcon
-            className="flex-1 ml-1"
-            icon={["fas", "user-plus"]}
-            size="1x"
-          />
-        </button>
       </div>
+      <div>
+        <p>
+          FECHA DE NACIMIENTO
+        </p>
+        <p id="birthday">
+          {birthDay}
+        </p>
 
-      <div className="flex flex-row">
-        <section className="w-1/2 m-5 bg-grayLi rounded-2xl">
-          <h1 className="rounded-2xl text-center py-5 bg-gray-dark text-white text-5xl">
-            MASCULINO
-          </h1>
-          <div className="w-full flex flex-wrap">
-            {players
-              .filter((players) => players.gender.includes("Male"))
-              .map((player) => (
-                <PlayerCard key={player._id} player={player} />
-              ))}
-          </div>
-        </section>
-        <section className="w-1/2 m-5 bg-grayLi rounded-2xl">
-          <h1 className="rounded-2xl text-center py-5 bg-gray-dark text-white text-5xl">
-            FEMENINO
-          </h1>
-          <div className="w-full flex flex-wrap">
-            {players
-              .filter((players) => players.gender.includes("Female"))
-              .map((player) => (
-                <PlayerCard key={player._id} player={player} />
-              ))}
-          </div>
-        </section>
       </div>
     </div>
   );
