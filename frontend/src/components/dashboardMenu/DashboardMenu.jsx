@@ -12,11 +12,12 @@ import registerPlayer from "../../pages/registerPlayer";
 import EditPlayer from "../../pages/EditPlayer";
 import TestScreen from "../../pages/TestScreen";
 import TestCardComp from "../TestCardComp/TestCardComp";
-import CreateTest from "../../pages/CreateTest"
-import EditTest from "../../pages/EditTest"
+import CreateTest from "../../pages/CreateTest";
+import EditTest from "../../pages/EditTest";
+import PlayerInfo from "../../pages/playerInfo/PlayerInfo";
 
 import Cookies from "universal-cookie";
-import PlayerInfo from "../../pages/playerInfo/PlayerInfo";
+
 
 const cookies = new Cookies();
 
@@ -97,9 +98,6 @@ export default function DashboardMenu(props) {
             </Route>
             <Route path={`${path}/test`}>
               <h1 className="text-6xl text-white">PRUEBAS DE RENDIMIENTO</h1>
-            </Route>
-            <Route path={`${path}/player/:playerid`}>
-              <h1 className="text-6xl text-white">JUGADOR</h1>
             </Route>
             <Route path={`${path}*`} exact>
               <h1 className="text-6xl text-white">JUGADORES</h1>
