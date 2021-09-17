@@ -12,7 +12,7 @@ const url = "http://3.238.91.249:4000/api/proofs/"
 
 const headers = {
     'Content-Type': 'application/json',
-    'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMTgwODIyMiwiZXhwIjoxNjMxODk0NjIyfQ.Go2vR8da9H__Gw6o1vJhugXAWULtlEu4ST-5agZi5wM"
+    'x-access-token': cookies.get("token")
 }
 
 export default function TestCardComp(props) {
@@ -23,20 +23,20 @@ export default function TestCardComp(props) {
         cookies.set("testEditId", props.test._id);
         window.location.href = "/dashboard/edit-proof"
     }
-    
+
     function deleteTest() {
-        const answer = window.confirm("¿Desea eliminar el jugador?")
+        const answer = window.confirm("¿Desea eliminar la prueba?")
         if (answer) {
-          Axios.delete(url + props.test._id, { headers: headers })
-            .then((res) => {
-              window.alert("Prueba eliminada");
-              window.location.href = "/dashboard/test"
-    
-            }).catch((error) => {
-              console.log(error)
-            })
+            Axios.delete(url + props.test._id, { headers: headers })
+                .then((res) => {
+                    window.alert("Prueba eliminada");
+                    window.location.href = "/dashboard/test"
+
+                }).catch((error) => {
+                    console.log(error)
+                })
         }
-      }
+    }
 
     return (
         <div className="p-5 m-5 flex flex-row justify-between rounded-3xl bg-gray-50 shadow-xl">

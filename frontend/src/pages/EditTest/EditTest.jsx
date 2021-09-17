@@ -11,7 +11,7 @@ const url =
 
 const headers = {
     "Content-Type": "application/json",
-    'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMTgwODIyMiwiZXhwIjoxNjMxODk0NjIyfQ.Go2vR8da9H__Gw6o1vJhugXAWULtlEu4ST-5agZi5wM"
+    'x-access-token': cookies.get("token")
 };
 
 const validate = (values) => {
@@ -51,7 +51,7 @@ export default class EditTest extends Component {
     }
 
     componentDidMount() {
-        fetch(url, {headers}).then(response => response.json()).then((responseData) => {
+        fetch(url, { headers }).then(response => response.json()).then((responseData) => {
             console.log("hola soy el response", responseData)
             document.getElementById("name").value = responseData.name;
             document.getElementById("proofType").value = responseData.proofType.name;
@@ -90,7 +90,7 @@ export default class EditTest extends Component {
             axios
                 .put(url, this.state, { headers: headers })
                 .then((response) => {
-                    window.location.href = "./";
+                    window.location.href = "/dashboard/test";
                 })
                 .catch((error) => {
                     console.log(error.message);
@@ -243,7 +243,7 @@ export default class EditTest extends Component {
                         className="w-500 bg-black text-white rounded-full px-4 py-3"
                     >
                         <div className="mr-10 ml-20"></div>
-                        Registrar
+                        EDITAR
                         <FontAwesomeIcon
                             className="flex-1 ml-5"
                             icon={["fas", "plus-circle"]}

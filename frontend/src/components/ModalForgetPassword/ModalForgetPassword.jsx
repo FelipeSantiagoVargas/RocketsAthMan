@@ -1,11 +1,26 @@
 import React from "react";
-
-
+import axios from "axios";
 
 export default function ModalForgetPassword() {
 
   const [showModal, setShowModal] = React.useState(false);
+  const [inputMail, setInputMail] = React.useState('')
 
+  const url = "http://3.238.91.249:4000/api/users/recoverPassword";
+
+  function handleInput() {
+    if (inputMail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputMail)) {
+      axios.post(url, JSON.stringify(inputMail)).then(response => {
+        console.log(response.data);
+      }).catch(error => {
+        console.log(error);
+      })
+    } else {
+      console.log("correo no válido");
+    }
+    setInputMail();
+    setShowModal(false);
+  }
 
   return (
     <>
@@ -40,7 +55,8 @@ export default function ModalForgetPassword() {
                   <label className="custom-field">
                     <input
                       type="text"
-                      name="email"
+                      name="mailImput"
+                      onChange={event => setInputMail(event.target.value)}
                       className="mt-3"
                       required
                     />
@@ -51,14 +67,15 @@ export default function ModalForgetPassword() {
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => console.log(inputMail)}
                   >
                     Cancelar
                   </button>
+
                   <button
                     className="bg-red-700 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => handleInput()}
                   >
                     Solicitar contraseña
                   </button>
