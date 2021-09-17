@@ -27,7 +27,6 @@ export default function Carrousel() {
 
   return (
     <Swiper
-      id="main"
       thumbs={{ swiper: thumbsSwiper }}
       controller={{ control: controlledSwiper }}
       tag="section"

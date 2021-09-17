@@ -45,6 +45,7 @@ export default class Login extends Component {
           const decoded = jwt.verify(response.data.token, "players-api");
           console.log(decoded);
           cookies.set("token", response.data.token);
+          cookies.set("email", this.state.form.email);
           alert(`Bienvenido ${cookies.get("token")}`);
           window.location.href = "./dashboard";
         } else {

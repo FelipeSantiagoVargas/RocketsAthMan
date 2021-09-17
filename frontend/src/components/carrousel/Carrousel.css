@@ -1,7 +1,6 @@
 .swiper-container {
-  position: absolute;
-  width: 100%;
-}
-
-SwiperSlide img {
+  width: 90vw;
+  padding: auto;
+  margin-top: 3%;
+  background-position: center;
 }
