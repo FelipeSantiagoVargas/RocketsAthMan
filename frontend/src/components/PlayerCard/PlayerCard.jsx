@@ -17,6 +17,9 @@ const headers = {
   'x-access-token': cookies.get("token")
 }
 
+var isAdmin = false;
+
+
 export default function PlayerCard(props) {
   const { name, height, weight, birthday } = props.player;
 
@@ -50,7 +53,16 @@ export default function PlayerCard(props) {
     }
     return age;
   }
+  function validateRole() {
+    console.log("validate role: " + cookies.get("roles"));
+    if (cookies.get("roles")) {
+      if (cookies.get("roles").includes("61258e1ba11f773a00be1cb7") || cookies.get("roles").includes("61258e1ba11f773a00be1cb8")) {
+        isAdmin = true;
+      }
+    }
+  }
 
+  validateRole();
   return (
     <div>
       <Link to={userUrl}>
@@ -69,33 +81,37 @@ export default function PlayerCard(props) {
             <p>Peso: {weight} kg</p>
             <p>Edad: {getAge(birthday)} años</p>
           </div>
-          <div className="border-solid border-red-800 border-2 rounded-b-lg text-white p-3 text-center transition-all duration-500">
-            <button
-              type="button"
-              onClick={editPlayer}
-              className="mr-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
-            >
-              Editar
-              <FontAwesomeIcon
-                className="flex-1 ml-1"
-                icon={["fas", "edit"]}
-                size="1x"
-              />
-            </button>
-            <button
-              type="button"
-              onClick={deletePlayer}
-              className="mr-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
-            >
-              Borrar
-              <FontAwesomeIcon
-                className="flex-1 ml-1"
-                icon={["fas", "trash-alt"]}
-                size="1x"
-              />
-            </button>
-          </div>
+          {isAdmin &&
+            <div className="border-solid border-red-800 border-2 rounded-b-lg text-white p-3 text-center transition-all duration-500">
+              <button
+                type="button"
+                onClick={editPlayer}
+                className="mr-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
+              >
+                Editar
+                <FontAwesomeIcon
+                  className="flex-1 ml-1"
+                  icon={["fas", "edit"]}
+                  size="1x"
+                />
+              </button>
+              <button
+                type="button"
+                onClick={deletePlayer}
+                className="mr-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
+              >
+                Borrar
+                <FontAwesomeIcon
+                  className="flex-1 ml-1"
+                  icon={["fas", "trash-alt"]}
+                  size="1x"
+                />
+              </button>
+            </div>
+          }
         </div>
+
+
       </Link>
     </div>
   );

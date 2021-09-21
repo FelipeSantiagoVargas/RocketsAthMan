@@ -9,7 +9,7 @@ const cookies = new Cookies();
 
 export default function PlayerInfo(props) {
   const url = "http://3.238.91.249:4000/api/users/player/" + props.match.params.playerid;
-
+  console.log(props.match.params);
   const [player, setPlayer] = useState("");
 
   var myInit = {
@@ -37,10 +37,8 @@ export default function PlayerInfo(props) {
         console.log(error.message);
       })
   }, [url]);
-
-  console.log(player);
-
   return (
+
     <div className="flex justify-center">
       <div className="block content-center justify-center items-center">
         <div className="relative content-center justify-center items-center" >
