@@ -4,13 +4,30 @@ import Axios from "axios";
 import PlayerCard from "../../components/PlayerCard/PlayerCard";
 
 import "./PlayersScreen.css";
+import Cookies from "universal-cookie";
+
+
+const cookies = new Cookies();
 
 
 export default function PlayersScreen(props) {
 
+
   const [players, setPlayers] = useState([]);
   const [playersCardList, setPlayersCardList] = useState([]);
   const [search, setSearch] = useState("");
+
+  var isAdmin = false;
+
+  function validateRole() {
+    if (cookies.get("roles")) {
+      if (cookies.get("roles").includes("61258e1ba11f773a00be1cb7") || cookies.get("roles").includes("61258e1ba11f773a00be1cb8")) {
+        isAdmin = true;
+      }
+    }
+  }
+
+  validateRole();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +57,8 @@ export default function PlayersScreen(props) {
     setPlayers(searchResult);
   }
 
+
+
   return (
     <div className="custom-font-bold">
       <div className="p-5 m-5 flex flex-row justify-between rounded-3xl bg-grayLi">
@@ -57,19 +76,20 @@ export default function PlayersScreen(props) {
           />
 
         </div>
-
-        <button
-          type="button"
-          onClick={() => (window.location.href = "/dashboard/registerplayer")}
-          className="mr-2 h-16 w-1/3 bg-red-dark font-semibold text-white rounded-xl px-3 py-1 border-2 border-red-dark"
-        >
-          REGISTRAR JUGADORES
-          <FontAwesomeIcon
-            className="flex-1 ml-1"
-            icon={["fas", "user-plus"]}
-            size="1x"
-          />
-        </button>
+        {isAdmin &&
+          <button
+            type="button"
+            onClick={() => (window.location.href = "/dashboard/registerplayer")}
+            className="mr-2 h-16 w-1/3 bg-red-dark font-semibold text-white rounded-xl px-3 py-1 border-2 border-red-dark"
+          >
+            REGISTRAR JUGADORES
+            <FontAwesomeIcon
+              className="flex-1 ml-1"
+              icon={["fas", "user-plus"]}
+              size="1x"
+            />
+          </button>
+        }
       </div>
 
       <div className="flex flex-row">
