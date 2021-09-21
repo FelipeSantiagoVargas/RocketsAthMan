@@ -54,7 +54,6 @@ export default function PlayerCard(props) {
     return age;
   }
   function validateRole() {
-    console.log("validate role: " + cookies.get("roles"));
     if (cookies.get("roles")) {
       if (cookies.get("roles").includes("61258e1ba11f773a00be1cb7") || cookies.get("roles").includes("61258e1ba11f773a00be1cb8")) {
         isAdmin = true;

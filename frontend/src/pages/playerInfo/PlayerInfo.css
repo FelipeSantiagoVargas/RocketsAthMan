@@ -24,3 +24,7 @@
   .disabledButton{
     pointer-events: none;
   }
+
+  .back-image {
+  background-image: url("../../assets/bricks_background.png");
+}

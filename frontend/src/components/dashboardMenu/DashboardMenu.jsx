@@ -28,7 +28,7 @@ export default function DashboardMenu(props) {
   const instance = axios.create({
     headers: {
       "Access-Control-Allow-Origin": "*",
-      "x-access-token": cookies.get("token")
+      "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMzAzNTE1ZDhmNjAxOWUyYmViOGFiZSIsImlhdCI6MTYzMjE5NTY5NiwiZXhwIjoxNjMyMjgyMDk2fQ.fkFkp3tFONIeoCgLkzTfNKBCEkdGME8naQnUSagzp4o"
     },
   });
 
@@ -62,7 +62,6 @@ export default function DashboardMenu(props) {
   }
 
   function validateRole() {
-    console.log("validate role: " + cookies.get("roles"));
     if (cookies.get("roles")) {
       if (cookies.get("roles").includes("61258e1ba11f773a00be1cb7") || cookies.get("roles").includes("61258e1ba11f773a00be1cb8")) {
         isAdmin = true;
@@ -71,9 +70,9 @@ export default function DashboardMenu(props) {
   }
 
   tokenValidate();
-  validateRole();
   loadUser();
-
+  validateRole();
+  console.log(isAdmin);
   return (
     <div className="header relative w-full min-h-screen flex" >
       <div className="relative bg-red min-w-max flex-col">
