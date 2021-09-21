@@ -53,6 +53,7 @@ export default class Login extends Component {
         }
       })
       .catch((error) => {
+        alert('Usuario o contraseña no válidos');
         console.log(error);
       });
   };

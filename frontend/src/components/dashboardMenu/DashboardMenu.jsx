@@ -72,7 +72,7 @@ export default function DashboardMenu(props) {
   tokenValidate();
   loadUser();
   validateRole();
-  console.log(isAdmin);
+
   return (
     <div className="header relative w-full min-h-screen flex" >
       <div className="relative bg-red min-w-max flex-col">

@@ -1,13 +1,22 @@
 import React from "react";
 import picture from "../../assets/profile_picture.jpg";
+import axios from "axios";
 
 import Cookies from "universal-cookie";
 import "./PlayerInfo.css";
 
+
 const cookies = new Cookies();
 
 export default function PlayerInfo(props) {
+  var isOwnProfile = false;
   const url = "http://3.238.91.249:4000/api/users/player/" + props.match.params.playerid;
+  const userUrl = "http://3.238.91.249:4000/api/users/" + props.match.params.playerid;
+
+  const headers = {
+    "Content-Type": "application/json",
+    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMzAzNTE1ZDhmNjAxOWUyYmViOGFiZSIsImlhdCI6MTYzMjE5NTY5NiwiZXhwIjoxNjMyMjgyMDk2fQ.fkFkp3tFONIeoCgLkzTfNKBCEkdGME8naQnUSagzp4o"
+  };
 
   var myInit = {
     method: 'GET',
@@ -21,12 +30,10 @@ export default function PlayerInfo(props) {
 
   var myRequest = new Request(url, myInit);
 
-
   fetch(myRequest)
     .then(response => response.json())
     .then((responseData) => {
       if (responseData) {
-        console.log(responseData);
         document.getElementById('dob').innerHTML = responseData.birthday;
         document.getElementById('document').innerHTML = responseData.documentId;
         document.getElementById('eps').innerHTML = responseData.eps;
@@ -44,8 +51,19 @@ export default function PlayerInfo(props) {
       console.log(error.message);
     })
 
+  axios
+    .get(userUrl, { headers: headers })
+    .then((response) => {
+      document.getElementById('email').innerHTML = response.data.email;
+      if (response.data.email === cookies.get("email")) {
+        isOwnProfile = true;
+      }
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
 
-
+  console.log(isOwnProfile);
   return (
     <div className="w-full min-h-screen pl-20 pr-20 bg-auto object-fill back-image">
       <div className="flex justify-center">
@@ -76,8 +94,7 @@ export default function PlayerInfo(props) {
           <p >
             CORREO ELECTRÓNICO
           </p>
-          <p id="mail" className="mb-2 text-gray-600">
-            correo@gmail.com
+          <p id="email" className="mb-2 text-gray-600">
           </p>
 
           <p >
