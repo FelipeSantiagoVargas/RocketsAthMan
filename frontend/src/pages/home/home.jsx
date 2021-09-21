@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../components/header";
 import Carrousel from "../../components/carrousel";
+import AwardCard from "../../components/AwardCard";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -60,6 +61,7 @@ export default function Home() {
         </section>
       </div>
       <Carrousel />
+      <AwardCard />
     </div>
   );
 }
