@@ -28,7 +28,7 @@ export default function DashboardMenu(props) {
   const instance = axios.create({
     headers: {
       "Access-Control-Allow-Origin": "*",
-      "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMzAzNTE1ZDhmNjAxOWUyYmViOGFiZSIsImlhdCI6MTYzMjE5NTY5NiwiZXhwIjoxNjMyMjgyMDk2fQ.fkFkp3tFONIeoCgLkzTfNKBCEkdGME8naQnUSagzp4o"
+      "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMjk3OTMzMiwiZXhwIjoxNjMzMDY1NzMyfQ.fg2utbWwf9642w_r2w1gVYqIOck7ZXD7jXHsT_xZMlE"
     },
   });
 
@@ -85,7 +85,7 @@ export default function DashboardMenu(props) {
           {cookies.get("username")}
         </h1>
         <Link to="/dashboard">
-          <article className="block p-5 text-2xl text-white font-extrabold bg-gray-dark">
+          <article className="block p-5 text-2xl text-white font-extrabold bg-gray-dark hover:bg-gray-900">
             <FontAwesomeIcon
               className="flex-1 mx-2"
               icon={["fas", "users"]}
@@ -95,19 +95,10 @@ export default function DashboardMenu(props) {
           </article>
         </Link>
         <nav>
-          <a className="block py-2.5 px-4 transition duration-200 hover:bg-gray-dark text-white">
-            Masculino
-          </a>
-          <a className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-dark text-white">
-            Femenino
-          </a>
-          <a onClick={logOut} className="block py-2.5 px-4 transition duration-200 hover:bg-gray-dark text-white">
-            Cerrar sesión
-          </a>
         </nav>
         {isAdmin &&
           <Link to="/dashboard/test">
-            <article className="block p-5 text-xl text-white font-extrabold bg-gray-dark">
+            <article className="block p-5 text-xl text-white font-extrabold bg-gray-dark mt-1 hover:bg-gray-900">
               <FontAwesomeIcon
                 className="flex-1 mx-2"
                 icon={["fas", "clipboard-list"]}
@@ -117,6 +108,14 @@ export default function DashboardMenu(props) {
             </article>
           </Link>
         }
+        <article className="absolute bottom-0 w-60 block p-5 text-base text-white font-extrabold bg-gray-dark mt-1 hover:bg-gray-900" onClick={logOut}>
+          <FontAwesomeIcon
+            className="flex-1 mx-2"
+            icon={["fas", "users"]}
+            size="1x"
+          />
+          Cerrar sesión
+        </article>
       </div>
       <div className="flex flex-col w-full">
         <div className="bg-gray-dark flex items-center justify-center w-full h-28">
