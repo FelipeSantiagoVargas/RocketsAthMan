@@ -88,6 +88,45 @@ export const addProofResult = async (req, res) => {
 
 }
 
+export const editProofResult = async (req, res) => {
+    const proof = await Proof.findById(req.params.proofId)
+    if(proof){
+        const proofArray = Array.from(proof.listPlayers)
+        const edit = proofArray.find(e => e.playerId == req.body.playerId)
+        if(edit){
+            edit.result = req.body.result
+            const updateProof = await Proof.findByIdAndUpdate(req.params.proofId, {listPlayers:proofArray},
+                { new: true }
+            );
+            return res.status(200).json(await populateProof(updateProof))
+        }
+    }else{
+        return res.json({message: 'The result doesnt have edit'})
+    }
+
+}
+
+export const deleteProofResult = async (req, res) => {
+    const proof = await Proof.findById(req.params.proofId)
+    if(proof){
+        const proofArray = Array.from(proof.listPlayers)
+        const edit = proofArray.filter((e) => {
+           if(e.playerId != req.body.playerId){
+                return e
+            }
+        })
+        console.log(edit)
+        if(edit){
+            const updateProof = await Proof.findByIdAndUpdate(req.params.proofId, {listPlayers:edit},
+                { new: true }
+            );
+            return res.status(200).json(await populateProof(updateProof))
+        }
+    }else{
+        return res.json({message: 'The result doesnt exist'})
+    }
+
+}
 
 const populateProof = async (proof) => {
     const unitMeasure = await UnitMesuare.populate(proof, {path:'unitMeasure'})
