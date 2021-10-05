@@ -23,8 +23,9 @@ const proofSchema = new Schema(
         {
           ref: "Player",
           type: Schema.Types.ObjectId,
+          unique:false,
         },
-        result:{type:Number,required:true},
+        result:{type:Number,required:true, unique:false}, unique: false,
         _id:false}],
   },
   {
