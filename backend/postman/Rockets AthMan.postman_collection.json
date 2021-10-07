@@ -434,7 +434,7 @@
 							},
 							{
 								"key": "x-access-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMTU1MzM5OCwiZXhwIjoxNjMxNjM5Nzk4fQ.WYDLseDpCcgQyuOvTEL5ogPWbWK_d6fGSWChMDgRbwY",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMjg4NTAxNCwiZXhwIjoxNjMyOTcxNDE0fQ.oeKimFg_rh8RqOw0xcnDgxzxdzsyokqEvLQvO6ZynIM",
 								"type": "text"
 							}
 						],
@@ -472,7 +472,7 @@
 							},
 							{
 								"key": "x-access-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMTU1MzM5OCwiZXhwIjoxNjMxNjM5Nzk4fQ.WYDLseDpCcgQyuOvTEL5ogPWbWK_d6fGSWChMDgRbwY",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMjg4NTAxNCwiZXhwIjoxNjMyOTcxNDE0fQ.oeKimFg_rh8RqOw0xcnDgxzxdzsyokqEvLQvO6ZynIM",
 								"type": "text"
 							}
 						],
@@ -507,16 +507,16 @@
 							},
 							{
 								"key": "x-access-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMTU1MzM5OCwiZXhwIjoxNjMxNjM5Nzk4fQ.WYDLseDpCcgQyuOvTEL5ogPWbWK_d6fGSWChMDgRbwY",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMzM2NTE0OSwiZXhwIjoxNjMzNDUxNTQ5fQ.Acf8hXgt4qozXfXY1PC3YGUMNF72FcVxGsJU1qc9gFY",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"playerId\":\"61242af29764d47de5b36a93\"\n}"
+							"raw": "{\n        \"playerId\":\"6153da1fe6219d854496475e\",\n        \"result\": 4\n}\n"
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/proofs/addResult/613ffa879067d0f49e28ef48",
+							"raw": "http://localhost:4000/api/proofs/addResult/6153d94de6219d854496472d",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -526,7 +526,81 @@
 								"api",
 								"proofs",
 								"addResult",
-								"613ffa879067d0f49e28ef48"
+								"6153d94de6219d854496472d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/proofs/editResult/:proofId",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMzM2NTE0OSwiZXhwIjoxNjMzNDUxNTQ5fQ.Acf8hXgt4qozXfXY1PC3YGUMNF72FcVxGsJU1qc9gFY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"playerId\":\"6153da1fe6219d854496475e\",\n        \"result\": 100\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/proofs/editResult/6153d94de6219d854496472d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"proofs",
+								"editResult",
+								"6153d94de6219d854496472d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/proofs/deleteResult/:proofId",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMzM2NTE0OSwiZXhwIjoxNjMzNDUxNTQ5fQ.Acf8hXgt4qozXfXY1PC3YGUMNF72FcVxGsJU1qc9gFY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"playerId\":\"61242f5904130f8d51a21acd\"\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/proofs/deleteResult/6153d94de6219d854496472d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"proofs",
+								"deleteResult",
+								"6153d94de6219d854496472d"
 							]
 						}
 					},
@@ -618,7 +692,7 @@
 							},
 							{
 								"key": "x-access-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMTU1MzM5OCwiZXhwIjoxNjMxNjM5Nzk4fQ.WYDLseDpCcgQyuOvTEL5ogPWbWK_d6fGSWChMDgRbwY",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMjg4NTAxNCwiZXhwIjoxNjMyOTcxNDE0fQ.oeKimFg_rh8RqOw0xcnDgxzxdzsyokqEvLQvO6ZynIM",
 								"type": "text"
 							}
 						],
@@ -627,7 +701,7 @@
 							"raw": "{\n    \"name\":\"40yd\",\n    \"unitMeasure\": \"seconds\",\n    \"proofType\": \"speed\",\n    \"description\": \"The best test\",\n    \"rateMale\": 5,\n    \"rateFemale\": 6\n}"
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/proofs",
+							"raw": "http://localhost:4000/api/proofs/614022c4d29e47437e50e425",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -635,7 +709,473 @@
 							"port": "4000",
 							"path": [
 								"api",
-								"proofs"
+								"proofs",
+								"614022c4d29e47437e50e425"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "playbook",
+			"item": [
+				{
+					"name": "/playbook",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMzM2NTE0OSwiZXhwIjoxNjMzNDUxNTQ5fQ.Acf8hXgt4qozXfXY1PC3YGUMNF72FcVxGsJU1qc9gFY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"40yd\",\n    \"unitMeasure\": \"seconds\",\n    \"proofType\": \"speed\",\n    \"description\": \"The best test\",\n    \"rateMale\": 5,\n    \"rateFemale\": 6\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/playbook",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"playbook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/playbook/:playbookId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNTNjMDllMTQ0M2ViNjQ0MjBiYmU0MCIsImlhdCI6MTYzMjg3ODc1MCwiZXhwIjoxNjMyOTY1MTUwfQ.CvQmfeQoMbShRrfQNOssfGrXMEnvgbSJcpNqZpNmryM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"40yd\",\n    \"unitMeasure\": \"seconds\",\n    \"proofType\": \"speed\",\n    \"description\": \"The best test\",\n    \"rateMale\": 5,\n    \"rateFemale\": 6\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/playbook/6153c761bad3317a49fbfdff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"playbook",
+								"6153c761bad3317a49fbfdff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/playbook",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMjg3ODgzMiwiZXhwIjoxNjMyOTY1MjMyfQ.ksHwLo9dgmKNGTkyiWSl_LP4V515InUsuPKPbkUOua0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Male2 Plays\",\n    \"imgUrl\": \"undefined2\",\n    \"description\": \"The best plays\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/playbook",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"playbook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/playbook/:playbookId",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMjg3ODgzMiwiZXhwIjoxNjMyOTY1MjMyfQ.ksHwLo9dgmKNGTkyiWSl_LP4V515InUsuPKPbkUOua0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Femalesss Playss\",\n    \"imgUrl\": \"undefinedsdds\",\n    \"description\": \"The best playssss\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/playbook/6153c5cfc480197591581ece",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"playbook",
+								"6153c5cfc480197591581ece"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/playbook/:playbookId",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMjg3ODgzMiwiZXhwIjoxNjMyOTY1MjMyfQ.ksHwLo9dgmKNGTkyiWSl_LP4V515InUsuPKPbkUOua0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Females Plays\",\n    \"imgUrl\": \"undefined\",\n    \"description\": \"The best plays\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/playbook/6153c681b27794780e1d0d64",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"playbook",
+								"6153c681b27794780e1d0d64"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/playbook/addPlay/:playbookId",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMzM2NTE0OSwiZXhwIjoxNjMzNDUxNTQ5fQ.Acf8hXgt4qozXfXY1PC3YGUMNF72FcVxGsJU1qc9gFY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"C1111\",\n    \"imgUrl\": \"undefined1d1\",\n    \"description\": \"Shortr Pla1y\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/playbook/addPlay/6153c9d932339583dac0a59e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"playbook",
+								"addPlay",
+								"6153c9d932339583dac0a59e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "plays",
+			"item": [
+				{
+					"name": "/plays",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMzM2NTE0OSwiZXhwIjoxNjMzNDUxNTQ5fQ.Acf8hXgt4qozXfXY1PC3YGUMNF72FcVxGsJU1qc9gFY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"40yd\",\n    \"unitMeasure\": \"seconds\",\n    \"proofType\": \"speed\",\n    \"description\": \"The best test\",\n    \"rateMale\": 5,\n    \"rateFemale\": 6\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/play",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"play"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/play/:playId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMzM2NTE0OSwiZXhwIjoxNjMzNDUxNTQ5fQ.Acf8hXgt4qozXfXY1PC3YGUMNF72FcVxGsJU1qc9gFY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"40yd\",\n    \"unitMeasure\": \"seconds\",\n    \"proofType\": \"speed\",\n    \"description\": \"The best test\",\n    \"rateMale\": 5,\n    \"rateFemale\": 6\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/play/615b2e5091252f7f8b416a2f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"play",
+								"615b2e5091252f7f8b416a2f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/play/:playId",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMzM2NTE0OSwiZXhwIjoxNjMzNDUxNTQ5fQ.Acf8hXgt4qozXfXY1PC3YGUMNF72FcVxGsJU1qc9gFY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Femalesss Playss\",\n    \"imgUrl\": \"undefinedsdds\",\n    \"description\": \"The best playssss\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/play/615b2e5091252f7f8b416a2f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"play",
+								"615b2e5091252f7f8b416a2f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/play/:playId",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMzM2NTE0OSwiZXhwIjoxNjMzNDUxNTQ5fQ.Acf8hXgt4qozXfXY1PC3YGUMNF72FcVxGsJU1qc9gFY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"C2111\",\n    \"imgUrl\": \"undefined1d1\",\n    \"description\": \"Shortr Pla1y\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/play/615b2f1f91252f7f8b416a68",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"play",
+								"615b2f1f91252f7f8b416a68"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "statistics",
+			"item": [
+				{
+					"name": "/statistic/category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMzM2NTE0OSwiZXhwIjoxNjMzNDUxNTQ5fQ.Acf8hXgt4qozXfXY1PC3YGUMNF72FcVxGsJU1qc9gFY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"40yd\",\n    \"unitMeasure\": \"seconds\",\n    \"proofType\": \"speed\",\n    \"description\": \"The best test\",\n    \"rateMale\": 5,\n    \"rateFemale\": 6\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/statistic/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"statistic",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/statistic/category/proof",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjQyNjI2MTZjZTFjNmUwYjZjYmM3YiIsImlhdCI6MTYzMzM2NTE0OSwiZXhwIjoxNjMzNDUxNTQ5fQ.Acf8hXgt4qozXfXY1PC3YGUMNF72FcVxGsJU1qc9gFY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"40yd\",\n    \"unitMeasure\": \"seconds\",\n    \"proofType\": \"speed\",\n    \"description\": \"The best test\",\n    \"rateMale\": 5,\n    \"rateFemale\": 6\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/statistic/category/proof/agility",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"statistic",
+								"category",
+								"proof",
+								"agility"
 							]
 						}
 					},
