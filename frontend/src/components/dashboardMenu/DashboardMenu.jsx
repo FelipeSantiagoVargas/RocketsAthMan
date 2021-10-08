@@ -86,7 +86,7 @@ export default function DashboardMenu(props) {
           {cookies.get("username")}
         </h1>
         <Link to="/dashboard">
-          <article className="block p-5 text-2xl text-white font-extrabold bg-gray-dark hover:bg-gray-900">
+          <article className="block p-5 w-60 text-2xl text-white font-extrabold bg-gray-dark hover:bg-gray-900">
             <FontAwesomeIcon
               className="flex-1 mx-2"
               icon={["fas", "users"]}
