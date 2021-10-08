@@ -86,7 +86,7 @@ export default function ModalEditProofResult(props) {
                   </div>
                   <label className="custom-field content-start justify-start items-start">
                     <input
-                      type="text"
+                      type="number"
                       name=""
                       onChange={event => setProofValue(event.target.value)}
                       className="mt-3 text-black"
