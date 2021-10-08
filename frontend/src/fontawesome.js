@@ -8,6 +8,8 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 
+import { faChartBar } from "@fortawesome/free-regular-svg-icons";
+
 import {
   faExternalLinkAlt,
   faUserPlus,
@@ -17,10 +19,10 @@ import {
   faEdit,
   faTrashAlt,
   faLock,
-  faSearch, 
+  faSearch,
   faClipboardList,
   faPlusCircle,
-  faPlay
+  faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -38,5 +40,6 @@ library.add(
   faSearch,
   faClipboardList,
   faPlusCircle,
-  faPlay
+  faPlay,
+  faChartBar
 );
