@@ -17,6 +17,7 @@ import TestCardComp from "../TestCardComp/TestCardComp";
 import CreateTest from "../../pages/CreateTest";
 import EditTest from "../../pages/EditTest";
 import PlayerInfo from "../../pages/playerInfo/PlayerInfo";
+import ProofInfoScreen from "../../pages/proofInfoScreen/ProofInfoScreen";
 
 import Cookies from "universal-cookie";
 
@@ -82,7 +83,7 @@ export default function DashboardMenu(props) {
           src="https://i.ibb.co/WgBTFBj/profile-picture.jpg"
           alt="Profile Photo"
         />
-        <h1 className="justify-center text-center px-5 pb-5 text-3xl text-white font-extrabold ">
+        <h1 className="justify-center text-center px-5 pb-5 pt-3 text-3xl text-white font-extrabold ">
           {cookies.get("username")}
         </h1>
         <Link to="/dashboard">
@@ -98,7 +99,7 @@ export default function DashboardMenu(props) {
         <nav>
         </nav>
         {isAdmin &&
-          <Link to="/dashboard/test">
+          <Link to="/dashboard/proof">
             <article className="block p-5 text-xl text-white font-extrabold bg-gray-dark mt-1 hover:bg-gray-900">
               <FontAwesomeIcon
                 className="flex-1 mx-2"
@@ -165,6 +166,7 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/editplayer`} component={EditPlayer} />
             <Route path={`${path}/edit-proof`} component={EditTest} />
             <Route path={`${path}/player/:playerid`} component={PlayerInfo} />
+            <Route path={`${path}/proof/:proofid`} component={ProofInfoScreen} />
 
             <Route path={`${path}/statistics`} component={Statistics} />
             <Route path={`${path}/test`} component={TestScreen} />

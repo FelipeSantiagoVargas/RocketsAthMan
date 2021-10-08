@@ -91,7 +91,7 @@ export default class registerPlayer extends Component {
   };
 
   componentDidMount() {
-    fetch(url)
+    fetch(url, { headers })
       .then(response => response.json())
       .then((responseData) => {
         document.getElementById("name").value = responseData.name;

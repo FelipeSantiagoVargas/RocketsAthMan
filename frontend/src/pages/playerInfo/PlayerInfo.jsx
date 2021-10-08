@@ -15,7 +15,7 @@ export default function PlayerInfo(props) {
 
   const headers = {
     "Content-Type": "application/json",
-    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMzAzNTE1ZDhmNjAxOWUyYmViOGFiZSIsImlhdCI6MTYzMjE5NTY5NiwiZXhwIjoxNjMyMjgyMDk2fQ.fkFkp3tFONIeoCgLkzTfNKBCEkdGME8naQnUSagzp4o"
+    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMzAzNTE1ZDhmNjAxOWUyYmViOGFiZSIsImlhdCI6MTYzMzU1NDE3MiwiZXhwIjoxNjMzNjQwNTcyfQ.pR3wd2Q92wfuV-nbAJZLn6BD73PQZ-M_eYF1WYRHLcs"
   };
 
   var myInit = {
