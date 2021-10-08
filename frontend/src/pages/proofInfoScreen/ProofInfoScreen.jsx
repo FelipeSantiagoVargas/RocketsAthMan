@@ -87,20 +87,9 @@ export default function ProofInfoScreen(props) {
 
             {players
               .map((player) => (
-                <PlayerProofCard key={player.playerId._id} player={player} proofName={proofInfo.name} infoMeasure={proofInfo.unitMeasure.name} proofType={proofInfo.proofType.name} />
+                <PlayerProofCard key={player.playerId._id} player={player} proofName={proofInfo.name} infoMeasure={proofInfo.unitMeasure.name} proofType={proofInfo.proofType.name} proofId={proofId} />
               ))}
-            {/* <button
-              type="button"
-              //onClick={() => (window.location.href = "/dashboard/registerplayer")}
-              className="h-max w-max bg-red-dark font-semibold text-white rounded-md px-3 py-2 border-2 border-red-dark mx-6"
-            >
-              <FontAwesomeIcon
-                className="flex-1 p-4 "
-                icon={["fas", "user-plus"]}
-                size="4x"
-              />
-            </button> */}
-            <ModalAddProofResult />
+            <ModalAddProofResult proofId={proofId} />
           </div>
 
 

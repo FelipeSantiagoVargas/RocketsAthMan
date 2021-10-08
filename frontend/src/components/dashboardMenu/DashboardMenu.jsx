@@ -146,7 +146,7 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/edit-proof`}>
               <h1 className="text-6xl text-white">EDITAR PRUEBA</h1>
             </Route>
-            <Route path={`${path}/test`}>
+            <Route path={`${path}/proof`}>
               <h1 className="text-6xl text-white">PRUEBAS DE RENDIMIENTO</h1>
             </Route>
             <Route path={`${path}/statistics`}>
@@ -169,7 +169,7 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/proof/:proofid`} component={ProofInfoScreen} />
 
             <Route path={`${path}/statistics`} component={Statistics} />
-            <Route path={`${path}/test`} component={TestScreen} />
+            <Route path={`${path}/proof`} component={TestScreen} />
             <Route path={`${path}*`} component={PlayersScreen} />
           </Switch>
         </div>

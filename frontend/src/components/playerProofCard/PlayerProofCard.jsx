@@ -1,20 +1,18 @@
 import React from "react";
-import Axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-
+import Axios from "axios";
 
 import "./PlayerProofCard.css";
 import Cookies from "universal-cookie";
 
-const cookies = new Cookies();
 
-const url = "http://3.238.91.249:4000/api/players/"
+const cookies = new Cookies();
 
 const headers = {
   'Content-Type': 'application/json',
   'x-access-token': cookies.get("token")
 }
+
 
 export default function PlayerProofCard(props) {
 
@@ -23,26 +21,27 @@ export default function PlayerProofCard(props) {
   const measure = props.infoMeasure;
   const value = props.player.result;
   const proofType = props.proofType;
+  const playerId = props.player.playerId._id;
 
+  const url = "http://3.238.91.249:4000/api/proofs/deleteResult/" + props.proofId;
   // function editPlayer() {
   //   cookies.set("playerEditID", props.player._id);
   //   window.location.href = "/dashboard/editplayer";
   // }
+  function deleteResult() {
+    const answer = window.confirm("¿Desea eliminar el resultado?")
+    if (answer) {
+      Axios.delete(url, { headers: headers }, { data: { "playerId": playerId } })
+        .then((res) => {
+          window.alert("Resultado eliminado");
+          console.log(res);
+        }).catch((error) => {
+          console.log(error)
+          window.alert("Error al eliminar");
 
-  // function deletePlayer() {
-  //   const answer = window.confirm("¿Desea eliminar el jugador?")
-  //   if (answer) {
-  //     Axios.delete(url + props.player._id, { headers: headers })
-  //       .then((res) => {
-  //         window.alert("Jugador eliminado");
-  //         window.location.href = "/dashboard/playerscreen"
-
-  //       }).catch((error) => {
-  //         console.log(error)
-  //       })
-  //   }
-  // }
-
+        })
+    }
+  }
   return (
 
     <div className="border-red-800 border-2 custom-font flex flex-col bg-white rounded-md shadow-md w-full m-6 overflow-hidden sm:w-52">
@@ -69,7 +68,7 @@ export default function PlayerProofCard(props) {
         </button>
         <button
           type="button"
-          //onClick={deletePlayer}
+          onClick={deleteResult}
           className="mr-2 bg-red-dark font-semibold text-white px-3 py-1 border-2 border-red-dark"
         >
           Borrar

@@ -1,27 +1,56 @@
 import React from "react";
-import axios from "axios";
+import Axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Cookies from "universal-cookie";
 
 
-export default function ModalAddProofResult() {
+const cookies = new Cookies();
+
+const headers = {
+  'Content-Type': 'application/json',
+  'x-access-token': cookies.get("token")
+}
+
+
+export default function ModalAddProofResult(props) {
+
+  const url = "http://3.238.91.249:4000/api/proofs/addResult/" + props.proofId;
 
   const [showModal, setShowModal] = React.useState(false);
-  const [resultInfo, setResult] = React.useState({});
+  const [playerName, setPlayer] = React.useState("");
+  const [proofValue, setProofValue] = React.useState("");
+  const [players, setPlayers] = React.useState([]);
 
 
-  // function handleInput() {
-  //   if (inputMail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputMail)) {
-  //     axios.post(url, JSON.stringify(inputMail)).then(response => {
-  //       console.log(response.data);
-  //     }).catch(error => {
-  //       console.log(error);
-  //     })
-  //   } else {
-  //     console.log("correo no válido");
-  //   }
-  //   setInputMail();
-  //   setShowModal(false);
-  // }
+  function handleInput() {
+    if (playerName && !proofValue === "") {
+      Axios.put(url, JSON.stringify({ "playerId": playerName, "result": proofValue }), { headers: headers })
+        .then(response => {
+          console.log(response.data);
+          window.location.reload();
+        }).catch(error => {
+          console.log(error);
+        })
+
+    } else {
+      alert("Faltan valores o el jugador ya tiene una prueba ingresada");
+    }
+  }
+
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await Axios.get(
+          "http://3.238.91.249:4000/api/players", { headers: headers }
+        );
+        setPlayers(data);
+      } catch (err) { }
+    };
+    fetchData();
+  }, []);
+
+
 
   return (
 
@@ -54,23 +83,25 @@ export default function ModalAddProofResult() {
                     <select
                       name="gender"
                       id="gender"
-                      // onChange={this.handleChange}
+                      onChange={event => setPlayer(event.target.value)}
                       className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg"
                       defaultValue="DEFAULT"
                       required
                     >
                       <option value="DEFAULT" disabled defaultValue>
-                        Género:
+                        Jugador:
                       </option>
-                      <option value="Male">Masculino</option>
-                      <option value="Female">Femenino</option>
+                      {players.map(item => (
+                        <option key={item._id} value={item._id}>
+                          {item.name + " " + item.lastName}
+                        </option>))}
                     </select>
                   </div>
                   <label className="custom-field content-start justify-start items-start">
                     <input
                       type="text"
-                      name="mailImput"
-                      onChange={event => setResult(event.target.value)}
+                      name=""
+                      onChange={event => setProofValue(event.target.value)}
                       className="mt-3"
                       required
                     />
@@ -89,7 +120,7 @@ export default function ModalAddProofResult() {
                   <button
                     className="bg-red-700 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                  // onClick={() => handleInput()}
+                    onClick={handleInput}
                   >
                     aceptar
                   </button>
