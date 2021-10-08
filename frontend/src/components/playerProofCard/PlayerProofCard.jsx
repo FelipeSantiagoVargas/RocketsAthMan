@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./PlayerProofCard.css";
 import Cookies from "universal-cookie";
-
+import ModalEditProofResult from "../modalEditProofResult/ModalEditProofResult";
 
 const cookies = new Cookies();
 
@@ -23,22 +23,11 @@ export default function PlayerProofCard(props) {
   const playerId = props.player.playerId._id;
 
   const url = "http://3.238.91.249:4000/api/proofs/deleteResult/" + props.proofId;
-  // function editPlayer() {
-  //   cookies.set("playerEditID", props.player._id);
-  //   window.location.href = "/dashboard/editplayer";
-  // }
+
   function deleteResult() {
     const answer = window.confirm("¿Desea eliminar el resultado?")
     if (answer) {
-      // Axios.delete(url, { headers: headers }, { data: playerId })
-      //   .then((res) => {
-      //     window.alert("Resultado eliminado");
-      //     console.log(res);
-      //   }).catch((error) => {
-      //     console.log(error)
-      //     window.alert("Error al eliminar");
 
-      //   })
       fetch(url, {
         method: 'DELETE',
         body: JSON.stringify({ "playerId": playerId }),
@@ -66,7 +55,7 @@ export default function PlayerProofCard(props) {
       </div>
 
       <div className="text-white p-3 text-center transition-all duration-500">
-        <button
+        {/* <button
           type="button"
           //onClick={editPlayer}
           className="mr-2 bg-red-dark font-semibold text-white px-3 py-1 border-2 border-red-dark"
@@ -77,7 +66,8 @@ export default function PlayerProofCard(props) {
             icon={["fas", "edit"]}
             size="1x"
           />
-        </button>
+        </button> */}
+        <ModalEditProofResult parentProps={props} />
         <button
           type="button"
           onClick={deleteResult}
