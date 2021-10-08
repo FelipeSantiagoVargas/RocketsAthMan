@@ -1,6 +1,5 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Axios from "axios";
 
 import "./PlayerProofCard.css";
 import Cookies from "universal-cookie";
@@ -31,14 +30,27 @@ export default function PlayerProofCard(props) {
   function deleteResult() {
     const answer = window.confirm("¿Desea eliminar el resultado?")
     if (answer) {
-      Axios.delete(url, { headers: headers }, { data: { "playerId": playerId } })
-        .then((res) => {
-          window.alert("Resultado eliminado");
-          console.log(res);
-        }).catch((error) => {
-          console.log(error)
-          window.alert("Error al eliminar");
+      // Axios.delete(url, { headers: headers }, { data: playerId })
+      //   .then((res) => {
+      //     window.alert("Resultado eliminado");
+      //     console.log(res);
+      //   }).catch((error) => {
+      //     console.log(error)
+      //     window.alert("Error al eliminar");
 
+      //   })
+      fetch(url, {
+        method: 'DELETE',
+        body: JSON.stringify({ "playerId": playerId }),
+        headers: headers
+      })
+        .then(res => res.text())
+        .then(res => {
+          window.alert("Resultado eliminado");
+          window.location.reload();
+        }).catch((error) => {
+          console.log(error);
+          window.alert("Error al eliminar");
         })
     }
   }

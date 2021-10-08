@@ -23,7 +23,7 @@ export default function ModalAddProofResult(props) {
 
 
   function handleInput() {
-    if (playerName && !proofValue === "") {
+    if (playerName && proofValue) {
       Axios.put(url, JSON.stringify({ "playerId": playerName, "result": proofValue }), { headers: headers })
         .then(response => {
           console.log(response.data);
