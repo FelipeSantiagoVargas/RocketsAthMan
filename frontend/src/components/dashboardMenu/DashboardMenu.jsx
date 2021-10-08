@@ -16,6 +16,7 @@ import TestCardComp from "../TestCardComp/TestCardComp";
 import CreateTest from "../../pages/CreateTest";
 import EditTest from "../../pages/EditTest";
 import PlayerInfo from "../../pages/playerInfo/PlayerInfo";
+import ProofInfoScreen from "../../pages/proofInfoScreen/ProofInfoScreen";
 
 import Cookies from "universal-cookie";
 
@@ -28,7 +29,7 @@ export default function DashboardMenu(props) {
   const instance = axios.create({
     headers: {
       "Access-Control-Allow-Origin": "*",
-      "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMjk3OTMzMiwiZXhwIjoxNjMzMDY1NzMyfQ.fg2utbWwf9642w_r2w1gVYqIOck7ZXD7jXHsT_xZMlE"
+      "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMjg2ZGRlOTI4ZThkMDFkMzkwZTdiZSIsImlhdCI6MTYzMzU1Njg4MCwiZXhwIjoxNjMzNjQzMjgwfQ.zxjNGem6rEZzTx8i7IiHAK-65NVMukRWY1xDpu8xgxQ"
     },
   });
 
@@ -81,7 +82,7 @@ export default function DashboardMenu(props) {
           src="https://i.ibb.co/WgBTFBj/profile-picture.jpg"
           alt="Profile Photo"
         />
-        <h1 className="justify-center text-center px-5 pb-5 text-3xl text-white font-extrabold ">
+        <h1 className="justify-center text-center px-5 pb-5 pt-3 text-3xl text-white font-extrabold ">
           {cookies.get("username")}
         </h1>
         <Link to="/dashboard">
@@ -97,7 +98,7 @@ export default function DashboardMenu(props) {
         <nav>
         </nav>
         {isAdmin &&
-          <Link to="/dashboard/test">
+          <Link to="/dashboard/proof">
             <article className="block p-5 text-xl text-white font-extrabold bg-gray-dark mt-1 hover:bg-gray-900">
               <FontAwesomeIcon
                 className="flex-1 mx-2"
@@ -135,6 +136,9 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/test`}>
               <h1 className="text-6xl text-white">PRUEBAS DE RENDIMIENTO</h1>
             </Route>
+            <Route path={`${path}/proof/:proofid`}>
+              <h1 className="text-6xl text-white">PRUEBAS DE RENDIMIENTO</h1>
+            </Route>
             <Route path={`${path}*`} exact>
               <h1 className="text-6xl text-white">JUGADORES</h1>
             </Route>
@@ -149,9 +153,10 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/editplayer`} component={EditPlayer} />
             <Route path={`${path}/edit-proof`} component={EditTest} />
             <Route path={`${path}/player/:playerid`} component={PlayerInfo} />
+            <Route path={`${path}/proof/:proofid`} component={ProofInfoScreen} />
 
 
-            <Route path={`${path}/test`} component={TestScreen} />
+            <Route path={`${path}/proof`} component={TestScreen} />
             <Route path={`${path}*`} component={PlayersScreen} />
           </Switch>
         </div>

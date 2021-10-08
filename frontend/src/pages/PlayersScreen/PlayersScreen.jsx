@@ -9,6 +9,10 @@ import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
+const headers = {
+  'Content-Type': 'application/json',
+  'x-access-token': cookies.get("token")
+}
 
 export default function PlayersScreen(props) {
 
@@ -33,7 +37,7 @@ export default function PlayersScreen(props) {
     const fetchData = async () => {
       try {
         const { data } = await Axios.get(
-          "http://3.238.91.249:4000/api/players"
+          "http://3.238.91.249:4000/api/players", { headers: headers }
         );
         setPlayers(data);
         setPlayersCardList(data);
@@ -109,7 +113,7 @@ export default function PlayersScreen(props) {
           <h1 className="rounded-2xl text-center py-5 bg-gray-dark text-white text-5xl">
             FEMENINO
           </h1>
-          <div className="w-full flex flex-wrap">
+          <div className="w-full flex content-center justify-center items-center flex-wrap">
             {players
               .filter((players) => players.gender.includes("Female"))
               .map((player) => (
