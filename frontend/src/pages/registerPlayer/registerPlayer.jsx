@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import S3FileUpload from "react-s3";
 
 import "./registerPlayer.css";
 
@@ -12,6 +13,14 @@ const cookies = new Cookies();
 const headers = {
   'Content-Type': 'application/json',
   'x-access-token': cookies.get("token")
+}
+
+const config = {
+  bucketName: 'rocketsathmanbucket',
+  dirName: 'playbooksimages',
+  region: 'us-east-1',
+  accessKeyId: 'AKIAR6A2X4GMKPYPI7OL',
+  secretAccessKey: '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'
 }
 
 const validate = values => {
@@ -85,7 +94,19 @@ const validate = values => {
   return errors;
 }
 
+
+
 export default class registerPlayer extends Component {
+
+  uploadFile = (e) => {
+    S3FileUpload.uploadFile(e.target.files[0], config)
+      .then((data) => {
+        this.setState({ "playerFrofileImg": data.location });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   state = {
     errors: {
@@ -103,7 +124,6 @@ export default class registerPlayer extends Component {
     const result = validate(noErrors);
 
     this.setState({ errors: result })
-
     if (!Object.keys(result).length) {
       delete this.state['errors'];
       console.log(this.state);
@@ -364,6 +384,20 @@ export default class registerPlayer extends Component {
               {errors.eps && (
                 <span className="ml-3 text-md text-red" id="passwordHelp">
                   {errors.eps}
+                </span>
+              )}
+            </div>
+            <div className="mb-4 text-gray-700">
+              <h3>subir imagen</h3>
+              <input type="file"
+                id="img"
+                name="img"
+                onChange={this.uploadFile}
+                className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
+              />
+              {errors.img && (
+                <span className="ml-3 text-md text-red" id="passwordHelp">
+                  {errors.img}
                 </span>
               )}
             </div>
