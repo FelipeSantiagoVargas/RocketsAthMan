@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "./Statistics.css";
 import Axios from "axios";
 import StatisticCard from "../../components/StatisticCard";
+import GeneralStatisticChart from "../../components/GeneralStatisticChart";
 import StatisticChart from "../../components/StatisticChart";
 import GeneralStatisticCard from "../../components/GeneralStatisticCard";
 import Cookies from "universal-cookie";
@@ -13,8 +14,6 @@ const headers = {
   'Content-Type': 'application/json',
   'x-access-token': cookies.get("token")
 }
-
-//https://my-json-server.typicode.com/eithri/testfakedb/db
 
 const tempUrl = "http://3.238.91.249:4000/api/statistic/category"
 
@@ -50,7 +49,7 @@ export default function Statistics() {
                 {!isInactive(item[1]) &&
                   <div className="flex flex-row pb-5">
                     <GeneralStatisticCard data={item[1]} />
-                    <StatisticChart data={item[1]} />
+                    <GeneralStatisticChart data={item[1]} />
                   </div>
                 }
               </>
