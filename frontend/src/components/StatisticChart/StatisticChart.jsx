@@ -6,7 +6,7 @@ export default function StatisticCard(props) {
 
   //destructuring of variables
   const { averageMale, averageProof, averageFemale, bestMale, best, bestFemale,
-    worstMale, worst, worstFemale, quantityMale, quantity, quantityFemale } = props.data;
+    worstMale, worst, worstFemale } = props.data;
 
   //type of chart
   const options = {
