@@ -1,83 +1,32 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import "./StatisticCard.css";
-import Cookies from "universal-cookie";
-import Axios from "axios";
-
-const cookies = new Cookies();
-
-const headers = {
-  'Content-Type': 'application/json',
-  'x-access-token': cookies.get("token")
-}
 
 export default function StatisticCard(props) {
-
-  const [labels, setLabels] = useState([]);
-  const [values, setValues] = useState([]);
-  const [colors, setColors] = useState([]);
-  const [data, setData] = useState([]);
-  const [options, setOptions] = useState([]);
-
-  useEffect(() => {
-    Axios.get("http://3.238.91.249:4000/api/statistic/category", { headers: headers })
-      .then((res) => {
-        console.log(Object.keys(res.data.agility));
-        setLabels(Object.keys(res.data.agility));
-        setValues(Object.values(res.data.agility));
-        setTimeout(() => {
-          console.log(labels);
-          console.log(values);
-        }, 1000);
-      }).catch(error => {
-        console.log(error);
-      })
-    generarColores()
-  }, []);
-
-  function generarCaracter() {
-    var caracter = ["a", "b", "c", "d", "e", "f", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    return caracter[(Math.random() * 15).toFixed(0)];
-  }
-
-  function colorHEX() {
-    var color = "";
-    for (var i = 0; i < 6; i++) {
-      color = color + generarCaracter();
-    }
-    return "#" + color;
-  }
-
-  function generarColores() {
-    var colores = [];
-    for (var i = 0; i < labels.length; i++) {
-      colores.push(colorHEX());
-    }
-    setColors(colores);
-    console.log(colors);
-  }
-
-  function configurarGrafica() {
-    const data = {
-      labels: labels,
-      datasets: [{
-        data: values,
-        backgroundColor: colors
-      }]
-    };
-    const opciones = {
-      responsive: true,
-      maintainAspectRatio: false
-    }
-    setData(data);
-    setOptions(opciones);
-  }
+  const { averageMale, averageProof, averageFemale, bestMale, best, bestFemale,
+    worstMale, worst, worstFemale, quantityMale, quantity, quantityFemale } = props.data;
 
   return (
-    <div className="rounded-2xl p-5 bg-red">
-      <h1>esta es una tarjeta</h1>
-      <h2>{labels}</h2>
-      <h2>{values}</h2>
+    <div className=" w-1/2 flex flex-col text-center rounded-2xl p-5 bg-white">
+      <h1>{props.title} </h1>
+      <div className="w-full flex flex-row justify-around border-2 border-black">
+        <h1 > HOMBRES </h1>
+        <br />
+        <h1> MUJERES </h1>
+      </div>
+      <div className="w-full grid grid-cols-3 grid-rows-4 items-stretch border-2 bg-gray-dark gap-1 p-0.5 border-black ">
+        <h3>{averageMale}</h3>
+        <h3>Promedio General <br /> {averageProof}</h3>
+        <h3>{averageFemale}</h3>
+        <h3>{bestMale}</h3>
+        <h3>Mejor <br /> {best}</h3>
+        <h3>{bestFemale}</h3>
+        <h3>{worstMale}</h3>
+        <h3>Peor <br /> {worst}</h3>
+        <h3>{worstFemale}</h3>
+        <h3>{quantityMale}</h3>
+        <h3>Total <br /> {quantity}</h3>
+        <h3>{quantityFemale}</h3>
+      </div>
     </div>
   );
 }
