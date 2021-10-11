@@ -7,31 +7,34 @@ import Best from '../statistics/best'
 import Worst from '../statistics/worst'
 import Total from '../statistics/total'
 
-const agility = []
-const speed = []
-const resistance = []
-const catching = []
-const strength = []
-const jump = []
-const power = []
-const other = []
+let agility = []
+let speed = []
+let resistance = []
+let catching = []
+let strength = []
+let jump = []
+let power = []
+let other = []
 
 export const getStatisticsByCategory = async (req, res, next) => {
     const prueba = await populateProof(await Proof.find())
     await separateCategories(prueba)
 
-    let aux = [agility, speed, resistance, catching, strength, jump, power, other]
+
+    const aux = [agility, speed, resistance, catching, strength, jump, power, other]
     let aux2 = ["agility", "speed", "resistance", "catching", "strength", "jump", "power", "other"]
 
     let response = ''
-    for (let i = 0; i < 8; i++) {
-        if (i == 7) {
-            response += `"${aux2[i]}":{"averageAll": ${Average.getAverageAll(aux[i])},"averageMale" : ${Average.getAverageMale(aux[i])},"averageFemale" : ${Average.getAverageFemale(aux[i])},"best" : ${Best.getBestAll(aux[i])},"bestMale" : ${Best.getBestMale(aux[i])},"bestFemale" : ${Best.getBestFemale(aux[i])},"worst" : ${Worst.getWorstAll(aux[i])},"worstMale" : ${Worst.getWorstMale(aux[i])},"worstFemale" : ${Worst.getWorstFemale(aux[i])},"quantity": ${Total.getTotalAll(aux[i])},"quantityMale": ${Total.getTotalMale(aux[i])},"quantityFemale": ${Total.getTotalFemale(aux[i])},"underAverage": ${Average.getUnderAverageAll(aux[i])},"underAverageMale": ${Average.getUnderAverageMale(aux[i])},"underAverageFemale": ${Average.getUnderAverageFemale(aux[i])},"overAverage": ${Average.getOverAverageAll(aux[i])},"overAverageMale": ${Average.getOverAverageMale(aux[i])},"overAverageFemale": ${Average.getOverAverageFemale(aux[i])}}`
-        } else {
-            response += `"${aux2[i]}":{"averageAll": ${Average.getAverageAll(aux[i])},"averageMale" : ${Average.getAverageMale(aux[i])},"averageFemale" : ${Average.getAverageFemale(aux[i])},"best" : ${Best.getBestAll(aux[i])},"bestMale" : ${Best.getBestMale(aux[i])},"bestFemale" : ${Best.getBestFemale(aux[i])},"worst" : ${Worst.getWorstAll(aux[i])},"worstMale" : ${Worst.getWorstMale(aux[i])},"worstFemale" : ${Worst.getWorstFemale(aux[i])},"quantity": ${Total.getTotalAll(aux[i])},"quantityMale": ${Total.getTotalMale(aux[i])},"quantityFemale": ${Total.getTotalFemale(aux[i])},"underAverage": ${Average.getUnderAverageAll(aux[i])},"underAverageMale": ${Average.getUnderAverageMale(aux[i])},"underAverageFemale": ${Average.getUnderAverageFemale(aux[i])},"overAverage": ${Average.getOverAverageAll(aux[i])},"overAverageMale": ${Average.getOverAverageMale(aux[i])},"overAverageFemale": ${Average.getOverAverageFemale(aux[i])}},`
-        }
-    }
-    return res.json(JSON.parse(`{${response}}`))
+    // for (let i = 0; i < aux.length; i++) {
+    //         response += `"${aux2[i]}":{"averageAll": ${Average.getAverageAll(aux[i])},"averageMale" : ${Average.getAverageMale(aux[i])},"averageFemale" : ${Average.getAverageFemale(aux[i])},"best" : ${Best.getBestAll(aux[i])},"bestMale" : ${Best.getBestMale(aux[i])},"bestFemale" : ${Best.getBestFemale(aux[i])},"worst" : ${Worst.getWorstAll(aux[i])},"worstMale" : ${Worst.getWorstMale(aux[i])},"worstFemale" : ${Worst.getWorstFemale(aux[i])},"quantity": ${Total.getTotalAll(aux[i])},"quantityMale": ${Total.getTotalMale(aux[i])},"quantityFemale": ${Total.getTotalFemale(aux[i])},"underAverage": ${Average.getUnderAverageAll(aux[i])},"underAverageMale": ${Average.getUnderAverageMale(aux[i])},"underAverageFemale": ${Average.getUnderAverageFemale(aux[i])},"overAverage": ${Average.getOverAverageAll(aux[i])},"overAverageMale": ${Average.getOverAverageMale(aux[i])},"overAverageFemale": ${Average.getOverAverageFemale(aux[i])}},`
+    // }
+    let i = 0
+    aux.forEach((e) => {
+        response += `"${aux2[i]}":{"averageAll": ${Average.getAverageAll(e)},"averageMale" : ${Average.getAverageMale(e)},"averageFemale" : ${Average.getAverageFemale(e)},"best" : ${Best.getBestAll(e)},"bestMale" : ${Best.getBestMale(e)},"bestFemale" : ${Best.getBestFemale(e)},"worst" : ${Worst.getWorstAll(e)},"worstMale" : ${Worst.getWorstMale(e)},"worstFemale" : ${Worst.getWorstFemale(e)},"quantity": ${Total.getTotalAll(e)},"quantityMale": ${Total.getTotalMale(e)},"quantityFemale": ${Total.getTotalFemale(e)},"underAverage": ${Average.getUnderAverageAll(e)},"underAverageMale": ${Average.getUnderAverageMale(e)},"underAverageFemale": ${Average.getUnderAverageFemale(e)},"overAverage": ${Average.getOverAverageAll(e)},"overAverageMale": ${Average.getOverAverageMale(e)},"overAverageFemale": ${Average.getOverAverageFemale(e)}},`
+        i++
+    })
+    response = response.slice(1, -1)
+    return res.json(JSON.parse(`{"${response}}`))
 }
 
 export const getStatisticsByProof = async (req, res, next) => {
@@ -39,7 +42,7 @@ export const getStatisticsByProof = async (req, res, next) => {
     const prueba = await populateProof(await Proof.find())
     await separateCategories(prueba)
 
-    let aux = [agility, speed, resistance, catching, strength, jump, power, other]
+    const aux = [agility, speed, resistance, catching, strength, jump, power, other]
     let aux2 = ["agility", "speed", "resistance", "catching", "strength", "jump", "power", "other"]
 
     const i = aux2.findIndex(e => e == typeProof)
@@ -60,6 +63,14 @@ export const getStatisticsByProof = async (req, res, next) => {
 }
 
 const separateCategories = async (prueba) => {
+    agility = []
+    speed = []
+    resistance = []
+    catching = []
+    strength = []
+    jump = []
+    power = []
+    other = []
     return await prueba.forEach(e => {
         switch (e.proofType.name) {
             case 'agility':

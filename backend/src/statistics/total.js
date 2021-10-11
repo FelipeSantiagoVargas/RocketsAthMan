@@ -8,12 +8,13 @@ const total = {
     getTotalProofFemale: new Function()
 }
 
+
 total.getTotalAll = (array) => {
-    let cont = 0
+    let cont = 0;
     array.forEach(e => {
         if (e.listPlayers.length > 0) {
             e.listPlayers.forEach(el => {
-                cont++
+                cont++;
             })
         }
     })
