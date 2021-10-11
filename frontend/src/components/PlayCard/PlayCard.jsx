@@ -23,17 +23,17 @@ export default function PlayCard(props) {
     cookies.set("id_jugada_editar", props.play._id)
     console.log("Cookie seteada para id", cookies.get("id_jugada_editar"))
     setTimeout(() => {
-      window.location.href = "/dashboard/edit-play/" + props.play._id 
+      window.location.href = "/dashboard/edit-play/" + props.play._id
     }, 2000)
   }
 
   function deletePlaybook() {
     const answer = window.confirm("¿Desea eliminar el play?")
     if (answer) {
-      Axios.delete(url + props.playbook._id, { headers: headers })
+      Axios.delete(url + props.play._id, { headers: headers })
         .then((res) => {
           window.alert("Play eliminada");
-          window.location.href = "/dashboard/playbooks"
+          window.location.href = "/dashboard/playbook"
         }).catch((error) => {
           console.log(error)
         })
@@ -71,7 +71,7 @@ export default function PlayCard(props) {
             className="wrapper max-w-xs bg-gray-50 rounded-md shadow-lg overflow-hidden"
           >
             <div>
-              <img src={imgUrl} className="" alt="playbook" />
+              <img src={imgUrl} className="w-60 h-60" alt="playbook" />
             </div>
             <div className="p-3">
               <span className="bg-pink-200 text-red-600 py-1 px-3 rounded-full text-xl">{name}</span>

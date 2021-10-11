@@ -70,7 +70,7 @@ export default function PlaybookCard(props) {
               className="wrapper max-w-xs bg-gray-50 rounded-md shadow-lg overflow-hidden"
             >
               <div>
-                <img src={imgUrl} className="" alt="playbook" />
+                <img src={imgUrl} className="h-60 w-60" alt="playbook" />
               </div>
               <div className="p-3">
                 <span className="bg-pink-200 text-red-600 py-1 px-3 rounded-full text-xl">{name}</span>
