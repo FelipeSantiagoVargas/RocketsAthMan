@@ -17,9 +17,14 @@ import TestCardComp from "../TestCardComp/TestCardComp";
 import CreateTest from "../../pages/CreateTest";
 import EditTest from "../../pages/EditTest";
 import PlayerInfo from "../../pages/playerInfo/PlayerInfo";
+import PlaybookScreen from "../../pages/PlaybookScreen";
+import CreatePlaybook from "../../pages/CreatePlaybook/CreatePlaybook";
 import ProofInfoScreen from "../../pages/proofInfoScreen/ProofInfoScreen";
 
 import Cookies from "universal-cookie";
+import PlaybookInfo from "../../pages/PlaybookInfo/PlaybookInfo";
+import CreatePlay from "../../pages/CreatePlay/CreatePlay";
+import EditPlay from "../../pages/EditPlay";
 
 
 const cookies = new Cookies();
@@ -110,6 +115,18 @@ export default function DashboardMenu(props) {
             </article>
           </Link>
         }
+        <nav>
+        </nav>
+        <Link to="/dashboard/playbook">
+          <article className="block p-5 text-xl text-white font-extrabold bg-gray-dark mt-1 hover:bg-gray-900">
+            <FontAwesomeIcon
+              className="flex-1 mx-2"
+              icon={["fas", "running"]}
+              size="1x"
+            />
+            Playbooks
+          </article>
+        </Link>
         {isAdmin &&
           <Link to="/dashboard/statistics">
             <article className="block p-5 text-xl text-white font-extrabold bg-gray-dark mt-1 hover:bg-gray-900">
@@ -146,6 +163,24 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/edit-proof`}>
               <h1 className="text-6xl text-white">EDITAR PRUEBA</h1>
             </Route>
+            <Route path={`${path}/edit-play/:playbookid`}>
+              <h1 className="text-6xl text-white">EDITAR PLAY</h1>
+            </Route>
+            <Route path={`${path}/test`}>
+              <h1 className="text-6xl text-white">PRUEBAS DE RENDIMIENTO</h1>
+            </Route>
+            <Route path={`${path}/playbook`}>
+              <h1 className="text-6xl text-white">PLAYBOOKS</h1>
+            </Route>
+            <Route path={`${path}/create-playbook`}>
+              <h1 className="text-6xl text-white">CREAR PLAYBOOK</h1>
+            </Route>
+            <Route path={`${path}/playbook/:playbookid`}>
+              <h1 className="text-6xl text-white">PLAYBOOKS</h1>
+            </Route>
+            <Route path={`${path}/create-play/:playbookid`}>
+              <h1 className="text-6xl text-white">CREAR PLAY</h1>
+            </Route>
             <Route path={`${path}/proof`}>
               <h1 className="text-6xl text-white">PRUEBAS DE RENDIMIENTO</h1>
             </Route>
@@ -161,10 +196,22 @@ export default function DashboardMenu(props) {
           <Switch>
             <Route path={`${path}/card`} component={PlayerCard} />
             <Route path={`${path}/testcard`} component={TestCardComp} />
+
+            <Route path={`${path}/create-playbook`} component={CreatePlaybook} />
+            <Route path={`${path}/create-play/:playbookid`} component={CreatePlay} />
             <Route path={`${path}/registerplayer`} component={registerPlayer} />
             <Route path={`${path}/create-test`} component={CreateTest} />
+
             <Route path={`${path}/editplayer`} component={EditPlayer} />
             <Route path={`${path}/edit-proof`} component={EditTest} />
+            <Route path={`${path}/edit-play/:playbookid`} component={EditPlay} />
+
+            <Route path={`${path}/player/:playerid`} component={PlayerInfo} />
+
+            <Route path={`${path}/playbook/:playbookid`} component={PlaybookInfo} />
+            <Route path={`${path}/test`} component={TestScreen} />
+            <Route path={`${path}/playbook`} component={PlaybookScreen} />
+
             <Route path={`${path}/player/:playerid`} component={PlayerInfo} />
             <Route path={`${path}/proof/:proofid`} component={ProofInfoScreen} />
 

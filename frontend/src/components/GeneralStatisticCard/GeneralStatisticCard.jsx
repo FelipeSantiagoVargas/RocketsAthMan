@@ -1,9 +1,10 @@
 import React from "react";
-import "./StatisticCard.css";
+import "./GeneralStatisticCard.css";
 
-export default function StatisticCard(props) {
-  const { averageMale, averageProof, averageFemale, bestMale, best, bestFemale,
-    worstMale, worst, worstFemale, quantityMale, quantity, quantityFemale } = props.data;
+export default function GeneralStatisticCard(props) {
+  const { averageAll, averageMale, averageFemale, best, bestMale, bestFemale,
+    worst, worstMale, worstFemale, quantity, quantityMale, quantityFemale,
+    underAverage, underAverageMale, underAverageFemale, overAverage, overAverageMale, overAverageFemale } = props.data;
 
   return (
     <div className=" w-1/2 flex flex-col text-center p-5">
@@ -19,9 +20,15 @@ export default function StatisticCard(props) {
         <h3>{bestMale}</h3>
         <h3>Mejor <br /> {best}</h3>
         <h3>{bestFemale}</h3>
+        <h3>{overAverageMale}</h3>
+        <h3>Sobre el promedio <br /> {overAverage}</h3>
+        <h3>{overAverageFemale}</h3>
         <h3>{Math.round(averageMale)}</h3>
-        <h3>Promedio General <br /> {averageProof}</h3>
+        <h3>Promedio General <br /> {averageAll}</h3>
         <h3>{averageFemale}</h3>
+        <h3>{underAverageMale}</h3>
+        <h3>Debajo del promedio <br /> {underAverage}</h3>
+        <h3>{underAverageFemale}</h3>
         <h3>{worstMale}</h3>
         <h3>Peor <br /> {worst}</h3>
         <h3>{worstFemale}</h3>

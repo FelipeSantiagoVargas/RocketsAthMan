@@ -6,13 +6,14 @@ import PlayerCard from "../../components/PlayerCard/PlayerCard";
 import "./PlayersScreen.css";
 import Cookies from "universal-cookie";
 
-
 const cookies = new Cookies();
 
 const headers = {
   'Content-Type': 'application/json',
   'x-access-token': cookies.get("token")
 }
+
+
 
 export default function PlayersScreen(props) {
 
