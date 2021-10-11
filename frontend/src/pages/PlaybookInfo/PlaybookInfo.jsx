@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import picture from "../../assets/profile_picture.jpg";
-import axios from "axios";
 
 import Cookies from "universal-cookie";
 import "./PlaybookInfo.css";
@@ -8,8 +6,6 @@ import "./PlaybookInfo.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Axios from "axios";
 import PlayCard from "../../components/PlayCard/PlayCard";
-import { Link } from "react-router-dom";
-
 
 import "./PlaybookInfo.css";
 
@@ -39,7 +35,7 @@ export default function PlaybookInfo(props) {
     // validateRole();
     const headers = {
         "Content-Type": "application/json",
-        "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNjNiYzYwOGFlOGIxOThmMTQ1YTk1NyIsImlhdCI6MTYzMzkyNjY2MCwiZXhwIjoxNjM0MDEzMDYwfQ.0BmY70j9SDhncRsdUnXmKqDEuhJ0QsN40OWS_ImEF74"
+        "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNjNiYzYwOGFlOGIxOThmMTQ1YTk1NyIsImlhdCI6MTYzMzkzMjY0NSwiZXhwIjoxNjM0MDE5MDQ1fQ.qwkCKYzvA6YY2FNInAZdpRMd0a0c_lsyjJl1rMF5kvM"
     };
 
     useEffect(() => {

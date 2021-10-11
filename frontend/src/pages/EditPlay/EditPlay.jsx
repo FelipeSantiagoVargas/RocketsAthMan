@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import "./EditPlay.css";
+import S3FileUpload from "react-s3"
 
 
 const cookies = new Cookies();
@@ -24,7 +25,26 @@ const validate = (values) => {
     return errors;
 }
 
+const config = {
+    bucketName: 'rocketsathmanbucket',
+    dirName: 'playimages',
+    region: 'us-east-1',
+    accessKeyId: process.env.REACT_APP_S3_KEY_VALUE,
+    secretAccessKey: process.env.REACT_APP_S3_PASS_VALUE
+}
+
 export default class EditPlay extends Component {
+
+    uploadFile = (e) => {
+        S3FileUpload.uploadFile(e.target.files[0], config)
+            .then((data) => {
+                this.setState({ "imgUrl": data.location });
+                console.log(data.location);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
 
     state = {
         errors: {
@@ -36,7 +56,7 @@ export default class EditPlay extends Component {
             console.log("cookies", cookies.get("id_jugada_editar"))
             console.log(responseData)
             document.getElementById("name").value = responseData.name;
-            document.getElementById("imgUrl").value = responseData.imgUrl;
+            document.getElementById("imgUrl").src = responseData.imgUrl;
             document.getElementById("description").value = responseData.description;
             this.setState({
                 "name": responseData.name,
@@ -65,7 +85,7 @@ export default class EditPlay extends Component {
             axios
                 .put(url, this.state, { headers: headers })
                 .then((response) => {
-                    window.location.href = "/dashboard/playbooks";
+                    window.location.href = "/dashboard/playbook";
                 })
                 .catch((error) => {
                     console.log(error.message);
@@ -105,11 +125,11 @@ export default class EditPlay extends Component {
                         <span>Imagen</span>
                         <input
                             className="z-10 block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
-                            type="text"
+                            type="file"
                             id="imgUrl"
                             name="imgUrl"
                             placeholder="Imagen"
-                            onChange={this.handleChange}
+                            onChange={this.uploadFile}
                             required
                         />
                         {errors.imgUrl && (
@@ -137,7 +157,7 @@ export default class EditPlay extends Component {
                 <div className="flex justify-end">
                     <button
                         type="submit"
-                        onClick={this.prueba}
+                        onClick={this.handleSubmit}
                         className="w-500 bg-black text-white rounded-full px-4 py-3"
                     >
                         <div className="mr-10 ml-20"></div>
