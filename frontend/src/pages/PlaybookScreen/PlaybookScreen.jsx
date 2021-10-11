@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Axios from "axios";
-import PlayerCard from "../../components/PlayerCard/PlayerCard";
+import PlaybookCard from "../../components/PlaybookCard/PlaybookCard";
+import { Link } from "react-router-dom";
 
-import "./PlayersScreen.css";
+import "./PlaybookScreen.css";
 import Cookies from "universal-cookie";
+
 
 const cookies = new Cookies();
 
@@ -14,19 +16,18 @@ const headers = {
 }
 
 
+export default function PlaybookScreen(props) {
 
-export default function PlayersScreen(props) {
 
-
-  const [players, setPlayers] = useState([]);
-  const [playersCardList, setPlayersCardList] = useState([]);
+  const [playbooks, setPlaybooks] = useState([]);
+  const [playbooksList, setPlaybooksList] = useState([]);
   const [search, setSearch] = useState("");
 
   var isAdmin = false;
 
   function validateRole() {
     if (cookies.get("roles")) {
-      if (cookies.get("roles").includes("6163b638fc2dd498791f9e9d") || cookies.get("roles").includes("6163b638fc2dd498791f9e9c")) {
+      if (cookies.get("roles").includes("61258e1ba11f773a00be1cb7") || cookies.get("roles").includes("61258e1ba11f773a00be1cb8")) {
         isAdmin = true;
       }
     }
@@ -38,10 +39,10 @@ export default function PlayersScreen(props) {
     const fetchData = async () => {
       try {
         const { data } = await Axios.get(
-          "http://3.238.91.249:4000/api/players", { headers: headers }
+          "http://3.238.91.249:4000/api/playbook", { headers: headers }
         );
-        setPlayers(data);
-        setPlayersCardList(data);
+        setPlaybooks(data);
+        setPlaybooksList(data);
       } catch (err) { }
     };
     fetchData();
@@ -53,13 +54,13 @@ export default function PlayersScreen(props) {
   }
 
   const filterValues = (searchValue) => {
-    var searchResult = playersCardList.filter((value) => {
+    var searchResult = playbooksList.filter((value) => {
       if (value.name.toString().toLowerCase().includes(searchValue.toLowerCase())) {
         return value;
       }
       return undefined;
     })
-    setPlayers(searchResult);
+    setPlaybooks(searchResult);
   }
 
 
@@ -67,9 +68,10 @@ export default function PlayersScreen(props) {
   return (
     <div className="custom-font-bold">
       <div className="p-5 m-5 flex flex-row justify-between rounded-3xl bg-grayLi">
+
         <div className="flex content-center justify-center items-center mr-2 h-16 w-1/3 bg-red-dark font-semibold rounded-xl px-3 py-1 border-2 border-red-dark">
-          <input className="text-black w-1/2 border-2 h-8 border-black rounded pl-3 focus:outline-none" value={search}
-            placeholder="Buscar jugadores"
+          <input className="text-black w-1/2 border-2 h-8 border-black rounded pl-3" value={search}
+            placeholder="Buscar playbooks"
             onChange={handleChange}
           />
 
@@ -81,48 +83,34 @@ export default function PlayersScreen(props) {
           />
 
         </div>
-        {isAdmin &&
+        
           <button
             type="button"
-            onClick={() => (window.location.href = "/dashboard/registerplayer")}
+            onClick={() => (window.location.href = "/dashboard/create-playbook")}
             className="mr-2 h-16 w-1/3 bg-red-dark font-semibold text-white rounded-xl px-3 py-1 border-2 border-red-dark"
           >
-            REGISTRAR JUGADORES
+            CREAR PLAYBOOK
             <FontAwesomeIcon
               className="flex-1 ml-1"
-              icon={["fas", "user-plus"]}
+              icon={["fas", "plus-circle"]}
               size="1x"
             />
           </button>
-        }
+        
       </div>
-
       <div className="flex flex-row">
-        <section className="w-1/2 m-5 bg-grayLi rounded-2xl">
+        <section className="w-full m-5 bg-grayLi rounded-2xl">
           <h1 className="rounded-2xl text-center py-5 bg-gray-dark text-white text-5xl">
-            MASCULINO
+            PLAYBOOKS
           </h1>
-          <div className="w-full flex content-center justify-center items-center flex-wrap">
-            {players
-              .filter((players) => players.gender.includes("Male"))
-              .map((player) => (
-                <PlayerCard key={player._id} player={player} />
-              ))}
-          </div>
-        </section>
-        <section className="w-1/2 m-5 bg-grayLi rounded-2xl">
-          <h1 className="rounded-2xl text-center py-5 bg-gray-dark text-white text-5xl">
-            FEMENINO
-          </h1>
-          <div className="w-full flex content-center justify-center items-center flex-wrap">
-            {players
-              .filter((players) => players.gender.includes("Female"))
-              .map((player) => (
-                <PlayerCard key={player._id} player={player} />
-              ))}
+          <div className="w-full flex flex-wrap">
+            {playbooks.map((playbook) => (
+              <PlaybookCard key={playbook._id} playbook={playbook} />
+            ))}
           </div>
         </section>
       </div>
     </div>
+
   );
 }

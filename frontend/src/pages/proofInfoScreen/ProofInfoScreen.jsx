@@ -36,7 +36,7 @@ export default function ProofInfoScreen(props) {
       } catch (err) { }
     };
     fetchData();
-  }, []);
+  }, [proofId]);
 
   const handleChange = e => {
     setSearch(e.target.value);
