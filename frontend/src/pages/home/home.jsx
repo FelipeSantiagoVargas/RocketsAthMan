@@ -11,8 +11,8 @@ export default function Home() {
       <Header />
       <div className="flex bg-gray flex-wrap">
         <section className="w-1/2 p-12">
-          <h3 className="text-gray font-bold tracking-widest">
-            EQUIPO DE FOOTBALL FLAG
+          <h3 className="text-gray-500 text-center font-bold tracking-widest w-3/4">
+            EQUIPO DE FLAG FOOTBALL
           </h3>
           <h1 className="text-7xl my-2">Haz parte de nuestra familia </h1>
           <span className="text-red text-7xl my-2">ROCKETS 🚀</span>

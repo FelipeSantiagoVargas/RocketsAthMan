@@ -1,5 +1,4 @@
 import React from "react";
-import picture from "../../assets/profile_picture.jpg";
 import axios from "axios";
 
 import Cookies from "universal-cookie";
@@ -34,7 +33,7 @@ export default function PlayerInfo(props) {
     .then(response => response.json())
     .then((responseData) => {
       if (responseData) {
-        document.getElementById('img').src=responseData.imgUrl;
+        document.getElementById('img').src = responseData.imgUrl;
         document.getElementById('dob').innerHTML = responseData.birthday;
         document.getElementById('document').innerHTML = responseData.documentId;
         document.getElementById('eps').innerHTML = responseData.eps;

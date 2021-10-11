@@ -40,7 +40,6 @@ export default function ModalEditProofResult(props) {
       alert("Faltan valores");
     }
   }
-
   return (
 
     <>
@@ -73,7 +72,6 @@ export default function ModalEditProofResult(props) {
                     <select
                       name="gender"
                       id="gender"
-                      //onChange={event => setPlayer(event.target.value)}
                       className="block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg"
                       defaultValue="DEFAULT"
                       required
@@ -86,8 +84,9 @@ export default function ModalEditProofResult(props) {
                   </div>
                   <label className="custom-field content-start justify-start items-start">
                     <input
-                      type="text"
+                      type="number"
                       name=""
+                      value={props.parentProps.player.result}
                       onChange={event => setProofValue(event.target.value)}
                       className="mt-3 text-black"
                       required
