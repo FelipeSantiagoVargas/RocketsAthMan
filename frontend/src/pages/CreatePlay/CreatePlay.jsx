@@ -77,12 +77,19 @@ export default class CreatePlay extends Component {
             delete this.state['errors'];
             console.log(this.state);
             axios.put(url + this.props.match.params.playbookid, this.state, { headers: headers }).then(response => {
-                window.location.href = "/dashboard/playbook";
-                console.log("Posteado")
-                console.log(this.state)
-                console.log(response)
+                if (response.data.message == "name play already exist") {
+                    window.alert("Ya existe una play con ese nombre");
+                } else {
+                    window.alert("Play agregada")
+                    console.log("Posteado")
+                    console.log(this.state)
+                    console.log(response)
+                    window.location.href = "/dashboard/playbook";
+
+                }
             }).catch(error => {
-                console.log("Ya existe una prueba con ese documento y/o correo electrónico");
+                window.alert("Ya existe una play con ese nombre");
+                console.log(error);
             })
         }
     }

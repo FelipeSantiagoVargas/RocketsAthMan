@@ -74,12 +74,21 @@ export default class CreatePlaybook extends Component {
             delete this.state['errors'];
             console.log(this.state);
             axios.post(url, this.state, { headers: headers }).then(response => {
-                window.location.href = "/dashboard/playbook";
-                console.log("Posteado")
-                console.log(this.state)
-                console.log(response)
+                if (response.data.message == "name playbook already exist") {
+                    window.alert("Ya existe un playbook con ese nombre");
+
+                } else {
+                    window.alert("Playbook agregado")
+                    console.log("Posteado")
+                    console.log(this.state)
+                    console.log(response)
+                    window.location.href = "/dashboard/playbook";
+
+                }
+
             }).catch(error => {
-                console.log("Ya existe una prueba con ese documento y/o correo electrónico");
+                window.alert("Ya existe un playbook con ese nombre");
+                console.log(error);
             })
         }
     }

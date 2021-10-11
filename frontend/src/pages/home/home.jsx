@@ -17,7 +17,7 @@ export default function Home() {
           <h1 className="text-7xl my-2">Haz parte de nuestra familia </h1>
           <span className="text-red text-7xl my-2">ROCKETS 🚀</span>
           <div className="items-center">
-            <button
+            {/* <button
               type="button"
               className="mr-3 my-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
             >
@@ -27,7 +27,7 @@ export default function Home() {
                 icon={["fas", "external-link-alt"]}
                 size="1x"
               />
-            </button>
+            </button> */}
             <Link to="/login">
               <button
                 type="button"
