@@ -64,8 +64,6 @@ export default function PlayerCard(props) {
   validateRole();
   return (
     <div>
-
-
       <div className="custom-font flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52">
         <Link to={userUrl}>
           <div className="flex justify-center">

@@ -35,6 +35,7 @@ export default class Login extends Component {
   };
 
   iniciarSesion = async () => {
+
     await instance
       .post(baseUrl, {
         email: this.state.form.email,
@@ -46,7 +47,7 @@ export default class Login extends Component {
           console.log(decoded);
           cookies.set("token", response.data.token);
           cookies.set("email", this.state.form.email);
-          alert(`Bienvenido ${cookies.get("token")}`);
+          alert(`Bienvenido!`);
           window.location.href = "./dashboard";
         } else {
           alert("Usuario o contraseña incorrectos");
