@@ -86,7 +86,7 @@ export default function ModalEditProofResult(props) {
                     <input
                       type="number"
                       name=""
-                      value={props.parentProps.player.result}
+                      defaultValue={props.parentProps.player.result}
                       onChange={event => setProofValue(event.target.value)}
                       className="mt-3 text-black"
                       required
