@@ -5,114 +5,110 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 
-import "./PlayerCard.css";
+import "./PlaybookCard.css";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
-const url = "http://3.238.91.249:4000/api/players/"
+const url = "http://3.238.91.249:4000/api/playbook/"
 
 const headers = {
   'Content-Type': 'application/json',
   'x-access-token': cookies.get("token")
 }
 
-var isAdmin = false;
+// var isAdmin = false;
 
+export default function PlaybookCard(props) {
+  const { name, imgUrl, description } = props.playbook;
 
-export default function PlayerCard(props) {
-  const { name, height, weight, birthday } = props.player;
+  // function editPlayer() {
+  //   cookies.set("playerEditID", props.player._id);
+  //   window.location.href = "/dashboard/editplayer";
+  // }
 
-  function editPlayer() {
-    cookies.set("playerEditID", props.player._id);
-    window.location.href = "/dashboard/editplayer";
-  }
-
-  function deletePlayer() {
-    const answer = window.confirm("¿Desea eliminar el jugador?")
+  function deletePlaybook() {
+    const answer = window.confirm("¿Desea eliminar el playbook?")
     if (answer) {
-      Axios.delete(url + props.player._id, { headers: headers })
+      Axios.delete(url + props.playbook._id, { headers: headers })
         .then((res) => {
-          window.alert("Jugador eliminado");
-          window.location.href = "/dashboard/playerscreen"
-
+          window.alert("Playbook eliminado");
+          window.location.href = "/dashboard/playbooks/"
         }).catch((error) => {
           console.log(error)
         })
     }
   }
-  const userUrl = "/dashboard/player/" + props.player.user._id
 
-  function getAge(dateString) {
-    var today = new Date();
-    var birthDate = new Date(dateString);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    return age;
-  }
-  function validateRole() {
-    if (cookies.get("roles")) {
-      if (cookies.get("roles").includes("6163b638fc2dd498791f9e9d") || cookies.get("roles").includes("6163b638fc2dd498791f9e9c")) {
-        isAdmin = true;
-      }
-    }
-  }
+  const baseUrl = "/dashboard/playbook/" + props.playbook._id
 
-  validateRole();
+  // function getAge(dateString) {
+  //   var today = new Date();
+  //   var birthDate = new Date(dateString);
+  //   var age = today.getFullYear() - birthDate.getFullYear();
+  //   var m = today.getMonth() - birthDate.getMonth();
+  //   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+  //     age--;
+  //   }
+  //   return age;
+  // }
+  // function validateRole() {
+  //   if (cookies.get("roles")) {
+  //     if (cookies.get("roles").includes("61258e1ba11f773a00be1cb7") || cookies.get("roles").includes("61258e1ba11f773a00be1cb8")) {
+  //       isAdmin = true;
+  //     }
+  //   }
+  // }
+
+  // validateRole();
   return (
     <div>
-      <Link to={userUrl}>
-
-        <div className="custom-font flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52">
-
-          <div className="flex justify-center">
-            <img src={picture} alt="" className="h-24 w-24 rounded-3xl m-6" />
-          </div>
-
-          <p className="text-center text-base leading-6 px-2 pb-2 uppercase">
-            {name}
-          </p>
-          <div className="flex flex-col text-base leading-6 mx-6 text-gray-700 sm:text-lg sm:leading-7 mb-3">
-            <p>Estatura: {height} cm</p>
-            <p>Peso: {weight} kg</p>
-            <p>Edad: {getAge(birthday)} años</p>
-          </div>
-          {isAdmin &&
-            <div className="border-solid border-red-800 border-2 rounded-b-lg text-white p-3 text-center transition-all duration-500">
-              <button
-                type="button"
-                onClick={editPlayer}
-                className="mr-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
-              >
-                Editar
-                <FontAwesomeIcon
-                  className="flex-1 ml-1"
-                  icon={["fas", "edit"]}
-                  size="1x"
-                />
-              </button>
-              <button
-                type="button"
-                onClick={deletePlayer}
-                className="mr-2 bg-red-dark font-semibold text-white rounded-3xl px-3 py-1 border-2 border-red-dark"
-              >
-                Borrar
-                <FontAwesomeIcon
-                  className="flex-1 ml-1"
-                  icon={["fas", "trash-alt"]}
-                  size="1x"
-                />
-              </button>
+      <Link to={baseUrl}>
+        <div className="flex flex-row m-6">
+          <section className="flex justify-center items-center px-2">
+            <div
+              className="wrapper max-w-xs bg-gray-50 rounded-md shadow-lg overflow-hidden"
+            >
+              <div>
+                <img src={imgUrl} className="" alt="playbook" />
+              </div>
+              <div className="p-3">
+                <span className="bg-pink-200 text-red-600 py-1 px-3 rounded-full text-xl">{name}</span>
+                <p className="mx-2 my-4 text-md text-gray-900">
+                  {description}
+                </p>
+                <button
+                  type="button"
+                  className="flex-1 transform hover:text-red-900"
+                  onClick={deletePlaybook}>
+                  <FontAwesomeIcon
+                    className="flex-1 ml-2"
+                    icon={["fas", "trash-alt"]}
+                    size="1x"
+                  />
+                </button>
+                <button
+                  type="button"
+                  className="flex-1 transform hover:text-red-900"
+                >
+                  <FontAwesomeIcon
+                    className="flex-1 ml-2"
+                    icon={["fas", "edit"]}
+                    size="1x"
+                  />
+                </button>
+              </div>
             </div>
-          }
+          </section>
         </div>
-
-
       </Link>
+
     </div>
+
+
+
+
+
   );
 }
 

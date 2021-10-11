@@ -10,7 +10,7 @@ const url =
 
 const headers = {
   "Content-Type": "application/json",
-  "x-access-token": cookies.get("token")
+  "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNjNiYzYwOGFlOGIxOThmMTQ1YTk1NyIsImlhdCI6MTYzMzkyNjY2MCwiZXhwIjoxNjM0MDEzMDYwfQ.0BmY70j9SDhncRsdUnXmKqDEuhJ0QsN40OWS_ImEF74"
 };
 
 const validate = (values) => {

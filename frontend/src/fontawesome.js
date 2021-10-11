@@ -17,10 +17,12 @@ import {
   faEdit,
   faTrashAlt,
   faLock,
-  faSearch, 
+  faSearch,
   faClipboardList,
   faPlusCircle,
-  faPlay
+  faPlay,
+  faRunning
+
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -38,5 +40,6 @@ library.add(
   faSearch,
   faClipboardList,
   faPlusCircle,
-  faPlay
+  faPlay,
+  faRunning
 );
