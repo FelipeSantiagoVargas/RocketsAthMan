@@ -53,8 +53,6 @@ export default class CreatePlaybook extends Component {
                 console.log(err);
             })
     }
-
-
     state = {
         errors: {
         }

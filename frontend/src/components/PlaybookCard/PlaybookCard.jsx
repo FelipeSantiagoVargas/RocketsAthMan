@@ -22,10 +22,11 @@ const headers = {
 export default function PlaybookCard(props) {
   const { name, imgUrl, description } = props.playbook;
 
-  // function editPlayer() {
-  //   cookies.set("playerEditID", props.player._id);
-  //   window.location.href = "/dashboard/editplayer";
-  // }
+  function editPlaybook() {
+    cookies.set("playbookToEdit", props.playbook._id)
+    window.location.href = "/dashboard/edit-playbook/" + props.playbook._id
+
+  }
 
   function deletePlaybook() {
     const answer = window.confirm("¿Desea eliminar el playbook?")
@@ -40,27 +41,12 @@ export default function PlaybookCard(props) {
     }
   }
 
+  function prueba() {
+    console.log(props.playbook._id)
+  }
+
   const baseUrl = "/dashboard/playbook/" + props.playbook._id
 
-  // function getAge(dateString) {
-  //   var today = new Date();
-  //   var birthDate = new Date(dateString);
-  //   var age = today.getFullYear() - birthDate.getFullYear();
-  //   var m = today.getMonth() - birthDate.getMonth();
-  //   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-  //     age--;
-  //   }
-  //   return age;
-  // }
-  // function validateRole() {
-  //   if (cookies.get("roles")) {
-  //     if (cookies.get("roles").includes("61258e1ba11f773a00be1cb7") || cookies.get("roles").includes("61258e1ba11f773a00be1cb8")) {
-  //       isAdmin = true;
-  //     }
-  //   }
-  // }
-
-  // validateRole();
   return (
     <div>
       <Link to={baseUrl}>
@@ -70,7 +56,7 @@ export default function PlaybookCard(props) {
               className="wrapper max-w-xs bg-gray-50 rounded-md shadow-lg overflow-hidden"
             >
               <div>
-                <img src={imgUrl} className="h-60 w-60" alt="playbook" />
+                <img src={imgUrl} className="h-96 w-96" alt="playbook" />
               </div>
               <div className="p-3">
                 <span className="bg-pink-200 text-red-600 py-1 px-3 rounded-full text-xl">{name}</span>
@@ -93,6 +79,7 @@ export default function PlaybookCard(props) {
                 >
                   <FontAwesomeIcon
                     className="flex-1 ml-2"
+                    onClick={editPlaybook}
                     icon={["fas", "edit"]}
                     size="1x"
                   />

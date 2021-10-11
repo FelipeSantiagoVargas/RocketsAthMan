@@ -25,6 +25,7 @@ import Cookies from "universal-cookie";
 import PlaybookInfo from "../../pages/PlaybookInfo/PlaybookInfo";
 import CreatePlay from "../../pages/CreatePlay/CreatePlay";
 import EditPlay from "../../pages/EditPlay";
+import EditPlaybook from "../../pages/EditPlaybook/EditPlaybook";
 
 
 const cookies = new Cookies();
@@ -166,6 +167,9 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/edit-play/:playbookid`}>
               <h1 className="text-6xl text-white">EDITAR PLAY</h1>
             </Route>
+            <Route path={`${path}/edit-playbook/:playbookid`}>
+              <h1 className="text-6xl text-white">EDITAR PLAYBOOK</h1>
+            </Route>
             <Route path={`${path}/test`}>
               <h1 className="text-6xl text-white">PRUEBAS DE RENDIMIENTO</h1>
             </Route>
@@ -205,7 +209,7 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/editplayer`} component={EditPlayer} />
             <Route path={`${path}/edit-proof`} component={EditTest} />
             <Route path={`${path}/edit-play/:playbookid`} component={EditPlay} />
-
+            <Route path={`${path}/edit-playbook/:playbookid`} component={EditPlaybook} />
             <Route path={`${path}/player/:playerid`} component={PlayerInfo} />
 
             <Route path={`${path}/playbook/:playbookid`} component={PlaybookInfo} />
@@ -224,3 +228,4 @@ export default function DashboardMenu(props) {
     </div >
   );
 }
+

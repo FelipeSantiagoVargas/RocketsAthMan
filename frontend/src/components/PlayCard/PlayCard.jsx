@@ -22,9 +22,9 @@ export default function PlayCard(props) {
     console.log("Id de la jugada seleccionada", props.play._id);
     cookies.set("id_jugada_editar", props.play._id)
     console.log("Cookie seteada para id", cookies.get("id_jugada_editar"))
-    setTimeout(() => {
-      window.location.href = "/dashboard/edit-play/" + props.play._id
-    }, 2000)
+
+    window.location.href = "/dashboard/edit-play/" + props.play._id
+
   }
 
   function deletePlaybook() {
