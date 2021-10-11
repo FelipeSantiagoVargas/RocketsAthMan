@@ -23,6 +23,8 @@ import {
   faClipboardList,
   faPlusCircle,
   faPlay,
+  faRunning
+
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -41,5 +43,6 @@ library.add(
   faClipboardList,
   faPlusCircle,
   faPlay,
+  faRunning,
   faChartBar
 );

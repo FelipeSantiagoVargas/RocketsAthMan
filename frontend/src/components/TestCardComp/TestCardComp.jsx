@@ -91,7 +91,9 @@ export default function TestCardComp(props) {
                     </button>
                 </div>
             </div>
-        </div >
+
+        </div>
+
     );
 }
 

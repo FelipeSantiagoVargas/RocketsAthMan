@@ -67,6 +67,7 @@ export default class CreateTest extends Component {
       delete this.state['errors'];
       console.log(this.state);
       axios.post(url, this.state, { headers: headers }).then(response => {
+        console.log(headers)
         window.location.href = "/dashboard/test";
         console.log("Posteado")
         console.log(this.state)

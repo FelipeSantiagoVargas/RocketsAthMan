@@ -6,13 +6,14 @@ import PlayerCard from "../../components/PlayerCard/PlayerCard";
 import "./PlayersScreen.css";
 import Cookies from "universal-cookie";
 
-
 const cookies = new Cookies();
 
 const headers = {
   'Content-Type': 'application/json',
   'x-access-token': cookies.get("token")
 }
+
+
 
 export default function PlayersScreen(props) {
 
@@ -25,7 +26,7 @@ export default function PlayersScreen(props) {
 
   function validateRole() {
     if (cookies.get("roles")) {
-      if (cookies.get("roles").includes("61258e1ba11f773a00be1cb7") || cookies.get("roles").includes("61258e1ba11f773a00be1cb8")) {
+      if (cookies.get("roles").includes("6163b638fc2dd498791f9e9d") || cookies.get("roles").includes("6163b638fc2dd498791f9e9c")) {
         isAdmin = true;
       }
     }
