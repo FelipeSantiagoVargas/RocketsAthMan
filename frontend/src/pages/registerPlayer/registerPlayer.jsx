@@ -15,12 +15,13 @@ const headers = {
   'x-access-token': cookies.get("token")
 }
 
+
 const config = {
   bucketName: 'rocketsathmanbucket',
   dirName: 'playbooksimages',
   region: 'us-east-1',
-  accessKeyId: 'AKIAR6A2X4GMKPYPI7OL',
-  secretAccessKey: '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'
+  accessKeyId: process.env.REACT_APP_S3_KEY_VALUE,
+  secretAccessKey: process.env.REACT_APP_S3_PASS_VALUE
 }
 
 const validate = values => {
@@ -102,6 +103,7 @@ export default class registerPlayer extends Component {
     S3FileUpload.uploadFile(e.target.files[0], config)
       .then((data) => {
         this.setState({ "playerFrofileImg": data.location });
+        console.log(data.location);
       })
       .catch((err) => {
         console.log(err);
@@ -388,7 +390,7 @@ export default class registerPlayer extends Component {
               )}
             </div>
             <div className="mb-4 text-gray-700">
-              <h3>subir imagen</h3>
+              <h3>Imagen de perfil</h3>
               <input type="file"
                 id="img"
                 name="img"
