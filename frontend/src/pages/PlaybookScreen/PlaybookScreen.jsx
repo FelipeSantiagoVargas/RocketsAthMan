@@ -23,17 +23,17 @@ export default function PlaybookScreen(props) {
   const [playbooksList, setPlaybooksList] = useState([]);
   const [search, setSearch] = useState("");
 
-  // var isAdmin = false;
+  var isAdmin = false;
 
-  // function validateRole() {
-  //   if (cookies.get("roles")) {
-  //     if (cookies.get("roles").includes("61258e1ba11f773a00be1cb7") || cookies.get("roles").includes("61258e1ba11f773a00be1cb8")) {
-  //       isAdmin = true;
-  //     }
-  //   }
-  // }
+  function validateRole() {
+    if (cookies.get("roles")) {
+      if (cookies.get("roles").includes("61258e1ba11f773a00be1cb7") || cookies.get("roles").includes("61258e1ba11f773a00be1cb8")) {
+        isAdmin = true;
+      }
+    }
+  }
 
-  // validateRole();
+  validateRole();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,20 +83,20 @@ export default function PlaybookScreen(props) {
           />
 
         </div>
-
-
-        <button
-          type="button"
-          onClick={() => (window.location.href = "/dashboard/create-playbook")}
-          className="mr-2 h-16 w-1/3 bg-red-dark font-semibold text-white rounded-xl px-3 py-1 border-2 border-red-dark"
-        >
-          CREAR PLAYBOOK
-          <FontAwesomeIcon
-            className="flex-1 ml-1"
-            icon={["fas", "plus-circle"]}
-            size="1x"
-          />
-        </button>
+        
+          <button
+            type="button"
+            onClick={() => (window.location.href = "/dashboard/create-playbook")}
+            className="mr-2 h-16 w-1/3 bg-red-dark font-semibold text-white rounded-xl px-3 py-1 border-2 border-red-dark"
+          >
+            CREAR PLAYBOOK
+            <FontAwesomeIcon
+              className="flex-1 ml-1"
+              icon={["fas", "plus-circle"]}
+              size="1x"
+            />
+          </button>
+        
       </div>
       <div className="flex flex-row">
         <section className="w-full m-5 bg-grayLi rounded-2xl">
