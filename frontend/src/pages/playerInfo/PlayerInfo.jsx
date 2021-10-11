@@ -34,6 +34,7 @@ export default function PlayerInfo(props) {
     .then(response => response.json())
     .then((responseData) => {
       if (responseData) {
+        document.getElementById('img').src=responseData.imgUrl;
         document.getElementById('dob').innerHTML = responseData.birthday;
         document.getElementById('document').innerHTML = responseData.documentId;
         document.getElementById('eps').innerHTML = responseData.eps;
@@ -69,7 +70,7 @@ export default function PlayerInfo(props) {
       <div className="flex justify-center">
         <div className="block content-center justify-center items-center">
           <div className="relative content-center justify-center items-center" >
-            <img src={picture} alt="" className="w-80 rounded-full mx-10 mt-10" />
+            <img id="img" alt="" className="w-80 rounded-full mx-10 mt-10" />
             <h1 id="name" className="text-gray-600 mt-5 text-4xl text-center">
             </h1>
             <h1 id="position" className="mt-2 text-3xl text-gray-600 text-center ">

@@ -18,7 +18,7 @@ const headers = {
 
 const config = {
   bucketName: 'rocketsathmanbucket',
-  dirName: 'playbooksimages',
+  dirName: 'userimages',
   region: 'us-east-1',
   accessKeyId: process.env.REACT_APP_S3_KEY_VALUE,
   secretAccessKey: process.env.REACT_APP_S3_PASS_VALUE
@@ -102,7 +102,7 @@ export default class registerPlayer extends Component {
   uploadFile = (e) => {
     S3FileUpload.uploadFile(e.target.files[0], config)
       .then((data) => {
-        this.setState({ "playerFrofileImg": data.location });
+        this.setState({ "imgUrl": data.location });
         console.log(data.location);
       })
       .catch((err) => {

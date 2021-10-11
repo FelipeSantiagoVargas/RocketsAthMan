@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import S3FileUpload from "react-s3";
 
 import "./CreatePlaybook.css";
 
@@ -13,6 +14,14 @@ const url = "http://3.238.91.249:4000/api/playbook";
 const headers = {
     'Content-Type': 'application/json',
     'x-access-token': cookies.get("token")
+}
+
+const config = {
+    bucketName: 'rocketsathmanbucket',
+    dirName: 'playbooksimages',
+    region: 'us-east-1',
+    accessKeyId: process.env.REACT_APP_S3_KEY_VALUE,
+    secretAccessKey: process.env.REACT_APP_S3_PASS_VALUE
 }
 
 const validate = values => {
@@ -33,6 +42,18 @@ const validate = values => {
 }
 
 export default class CreatePlaybook extends Component {
+
+    uploadFile = (e) => {
+        S3FileUpload.uploadFile(e.target.files[0], config)
+            .then((data) => {
+                this.setState({ "imgUrl": data.location });
+                console.log(data.location);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
 
     state = {
         errors: {
@@ -55,7 +76,7 @@ export default class CreatePlaybook extends Component {
             delete this.state['errors'];
             console.log(this.state);
             axios.post(url, this.state, { headers: headers }).then(response => {
-                window.location.href = "/dashboard/playbooks";
+                window.location.href = "/dashboard/playbook";
                 console.log("Posteado")
                 console.log(this.state)
                 console.log(response)
@@ -95,11 +116,11 @@ export default class CreatePlaybook extends Component {
                         <span>Imagen</span>
                         <input
                             className="z-10 block w-full bg-white border-2 border-black rounded py-2 px-4 placeholder-gray-500 text-black text-lg focus:bg-red-50 "
-                            type="text"
+                            type="file"
                             id="imgUrl"
                             name="imgUrl"
                             placeholder="Imagen"
-                            onChange={this.handleChange}
+                            onChange={this.uploadFile}
                             required
                         />
                         {errors.imgUrl && (

@@ -33,7 +33,7 @@ export default function PlaybookCard(props) {
       Axios.delete(url + props.playbook._id, { headers: headers })
         .then((res) => {
           window.alert("Playbook eliminado");
-          window.location.href = "/dashboard/playbooks/"
+          window.location.href = "/dashboard/playbook/"
         }).catch((error) => {
           console.log(error)
         })

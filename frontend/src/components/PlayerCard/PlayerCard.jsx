@@ -21,7 +21,7 @@ var isAdmin = false;
 
 
 export default function PlayerCard(props) {
-  const { name, height, weight, birthday } = props.player;
+  const { name, imgUrl, height, weight, birthday } = props.player;
 
   function editPlayer() {
     cookies.set("playerEditID", props.player._id);
@@ -64,12 +64,10 @@ export default function PlayerCard(props) {
   validateRole();
   return (
     <div>
-
-
       <div className="custom-font flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52">
         <Link to={userUrl}>
           <div className="flex justify-center">
-            <img src={picture} alt="" className="h-24 w-24 rounded-3xl m-6" />
+            <img src={imgUrl} alt="" className="h-24 w-24 rounded-3xl m-6" />
           </div>
         </Link>
         <p className="text-center text-base leading-6 px-2 pb-2 uppercase">
