@@ -114,7 +114,7 @@ export default function PlayersScreen(props) {
           <h1 className="rounded-2xl text-center py-5 bg-gray-dark text-white text-5xl">
             FEMENINO
           </h1>
-          <div className="w-full flex flex-wrap">
+          <div className="w-full flex content-center justify-center items-center flex-wrap">
             {players
               .filter((players) => players.gender.includes("Female"))
               .map((player) => (

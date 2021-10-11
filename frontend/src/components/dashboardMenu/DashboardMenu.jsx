@@ -12,12 +12,14 @@ import PlayersScreen from "../../pages/PlayersScreen";
 import registerPlayer from "../../pages/registerPlayer";
 import EditPlayer from "../../pages/EditPlayer";
 import TestScreen from "../../pages/TestScreen";
+import Statistics from "../../pages/Statistics";
 import TestCardComp from "../TestCardComp/TestCardComp";
 import CreateTest from "../../pages/CreateTest";
 import EditTest from "../../pages/EditTest";
 import PlayerInfo from "../../pages/playerInfo/PlayerInfo";
 import PlaybookScreen from "../../pages/PlaybookScreen";
 import CreatePlaybook from "../../pages/CreatePlaybook/CreatePlaybook";
+import ProofInfoScreen from "../../pages/proofInfoScreen/ProofInfoScreen";
 
 import Cookies from "universal-cookie";
 import PlaybookInfo from "../../pages/PlaybookInfo/PlaybookInfo";
@@ -86,11 +88,11 @@ export default function DashboardMenu(props) {
           src="https://i.ibb.co/WgBTFBj/profile-picture.jpg"
           alt="Profile Photo"
         />
-        <h1 className="justify-center text-center px-5 pb-5 text-3xl text-white font-extrabold ">
+        <h1 className="justify-center text-center px-5 pb-5 pt-3 text-3xl text-white font-extrabold ">
           {cookies.get("username")}
         </h1>
         <Link to="/dashboard">
-          <article className="block p-5 text-2xl text-white font-extrabold bg-gray-dark hover:bg-gray-900">
+          <article className="block p-5 w-60 text-2xl text-white font-extrabold bg-gray-dark hover:bg-gray-900">
             <FontAwesomeIcon
               className="flex-1 mx-2"
               icon={["fas", "users"]}
@@ -102,7 +104,7 @@ export default function DashboardMenu(props) {
         <nav>
         </nav>
         {isAdmin &&
-          <Link to="/dashboard/test">
+          <Link to="/dashboard/proof">
             <article className="block p-5 text-xl text-white font-extrabold bg-gray-dark mt-1 hover:bg-gray-900">
               <FontAwesomeIcon
                 className="flex-1 mx-2"
@@ -125,6 +127,18 @@ export default function DashboardMenu(props) {
             Playbooks
           </article>
         </Link>
+        {isAdmin &&
+          <Link to="/dashboard/statistics">
+            <article className="block p-5 text-xl text-white font-extrabold bg-gray-dark mt-1 hover:bg-gray-900">
+              <FontAwesomeIcon
+                className="flex-1 mx-2"
+                icon={["far", "chart-bar"]}
+                size="1x"
+              />
+              Estadisticas
+            </article>
+          </Link>
+        }
         <article className="absolute bottom-0 w-60 block p-5 text-base text-white font-extrabold bg-gray-dark mt-1 hover:bg-gray-900" onClick={logOut}>
           <FontAwesomeIcon
             className="flex-1 mx-2"
@@ -167,10 +181,15 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/create-play/:playbookid`}>
               <h1 className="text-6xl text-white">CREAR PLAY</h1>
             </Route>
+            <Route path={`${path}/proof`}>
+              <h1 className="text-6xl text-white">PRUEBAS DE RENDIMIENTO</h1>
+            </Route>
+            <Route path={`${path}/statistics`}>
+              <h1 className="text-6xl text-white">ESTADISTICAS</h1>
+            </Route>
             <Route path={`${path}*`} exact>
               <h1 className="text-6xl text-white">JUGADORES</h1>
             </Route>
-
           </Switch>
         </div>
         <div className="bg-gray min-h-screen w-full">
@@ -193,6 +212,11 @@ export default function DashboardMenu(props) {
             <Route path={`${path}/test`} component={TestScreen} />
             <Route path={`${path}/playbook`} component={PlaybookScreen} />
 
+            <Route path={`${path}/player/:playerid`} component={PlayerInfo} />
+            <Route path={`${path}/proof/:proofid`} component={ProofInfoScreen} />
+
+            <Route path={`${path}/statistics`} component={Statistics} />
+            <Route path={`${path}/proof`} component={TestScreen} />
             <Route path={`${path}*`} component={PlayersScreen} />
           </Switch>
         </div>
